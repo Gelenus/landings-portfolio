@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProductDay 2026 — конференция о продуктах · 12.09.2026 Москва</title>
+<meta name="description" content="800 участников, 24 спикера, 3 трека. Главная конференция года о Product Management, дизайне и технологиях. Москва, ЦДП, 12 сентября 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== База ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #000;
+    color: #fff;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -1.5px; font-weight: 700; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  /* Утилиты */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+  .accent-yellow { color: #facc15; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 16px 28px; border-radius: 0; font-weight: 700; font-size: 15px;
+    transition: transform .15s, background .15s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .btn-yellow {
+    background: #facc15;
+    color: #000;
+  }
+  .btn-yellow:hover { background: #fde047; transform: translate(-2px, -2px); box-shadow: 6px 6px 0 #facc15; }
+  .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid #fff;
+  }
+  .btn-outline:hover { background: #fff; color: #000; }
+
+  /* ===== Шапка ===== */
+  header.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(0, 0, 0, .9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
+  .logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+  .logo .year { color: #facc15; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 14px; color: #d4d4d4; transition: color .15s; font-weight: 500; }
+  .nav-links a:hover { color: #facc15; }
+  .burger { display: none; width: 28px; height: 18px; flex-direction: column; justify-content: space-between; }
+  .burger span { width: 100%; height: 2px; background: #fff; }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 60px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-mega-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(80px, 18vw, 240px);
+    font-weight: 700;
+    letter-spacing: -8px;
+    line-height: .85;
+    color: #facc15;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+  .hero-title {
+    font-size: clamp(40px, 8vw, 110px);
+    line-height: .9;
+    letter-spacing: -3px;
+    margin-bottom: 24px;
+    font-weight: 700;
+  }
+  .hero-subtitle {
+    font-size: clamp(18px, 2vw, 22px);
+    color: #a3a3a3;
+    max-width: 720px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+  .hero-info-row {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    padding: 28px 0;
+    border-top: 2px solid #1a1a1a;
+    border-bottom: 2px solid #1a1a1a;
+    margin-bottom: 40px;
+  }
+  .hero-info-item .label {
+    font-size: 12px;
+    color: #facc15;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .hero-info-item .value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 50px; }
+
+  /* Обратный отсчёт */
+  .countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 720px;
+  }
+  .countdown-cell {
+    background: #fff;
+    color: #000;
+    padding: 22px 16px;
+    text-align: center;
+  }
+  .countdown-cell .n {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+  .countdown-cell .l {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 8px;
+    color: #525252;
+  }
+
+  /* ===== Универсальная секция ===== */
+  section.block { padding: 100px 0; position: relative; }
+  .block-white { background: #fff; color: #000; }
+  .block-yellow { background: #facc15; color: #000; }
+  .section-tag {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #facc15;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .block-white .section-tag, .block-yellow .section-tag { color: #000; }
+  .block-yellow .section-tag { color: #1a1a1a; }
+  .section-title {
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: .95;
+    margin-bottom: 30px;
+    letter-spacing: -2px;
+  }
+
+  /* ===== Цифры/факты ===== */
+  .facts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .fact {
+    padding: 50px 30px;
+    border-right: 1px solid #1a1a1a;
+    text-align: center;
+  }
+  .fact:last-child { border-right: none; }
+  .fact .number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(50px, 7vw, 86px);
+    font-weight: 700;
+    line-height: 1;
+    color: #facc15;
+    letter-spacing: -3px;
+  }
+  .fact .label {
+    margin-top: 14px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #a3a3a3;
+  }
+
+  /* ===== Спикеры ===== */
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+  }
+  .speaker-card {
+    background: #0a0a0a;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4/5;
+    transition: transform .25s;
+    cursor: pointer;
+  }
+  .speaker-card:hover { transform: scale(1.02); }
+  .speaker-card img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(100%) contrast(1.1);
+    transition: filter .3s;
+  }
+  .speaker-card:hover img { filter: grayscale(0); }
+  .speaker-card .info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 24px 20px;
+    background: linear-gradient(180deg, transparent, rgba(0, 0, 0, .9));
+  }
+  .speaker-card .info h4 {
+    font-size: 18px;
+    margin-bottom: 4px;
+    letter-spacing: -.5px;
+  }
+  .speaker-card .info .role {
+    font-size: 12px;
+    color: #facc15;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .speaker-card .info .company {
+    font-size: 13px;
+    color: #a3a3a3;
+  }
+
+  /* ===== Программа ===== */
+  .program-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid #000;
+    margin-bottom: 50px;
+  }
+  .program-tabs button {
+    flex: 1;
+    padding: 22px 12px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #000;
+    background: transparent;
+    border-bottom: 4px solid transparent;
+    margin-bottom: -2px;
+    transition: border-color .2s, background .2s;
+  }
+  .program-tabs button.active {
+    background: #facc15;
+    border-bottom-color: #000;
+  }
+  .program-tabs button:hover:not(.active) {
+    background: #f3f4f6;
+  }
+  .program-track { display: none; }
+  .program-track.active { display: block; }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 120px 1fr auto;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    align-items: center;
+  }
+  .timeline-row:last-child { border-bottom: none; }
+  .timeline-row .t {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+  .timeline-row h4 { font-size: 22px; margin-bottom: 6px; font-weight: 700; }
+  .timeline-row .speaker {
+    font-size: 14px;
+    color: #525252;
+  }
+  .timeline-row .duration {
+    font-size: 13px;
+    color: #525252;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .timeline-row.break {
+    background: rgba(0, 0, 0, .04);
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+  }
+  .timeline-row.break h4 { font-size: 18px; font-style: italic; opacity: .7; }
+  .timeline-row.break .speaker { display: none; }
+
+  /* ===== Локация ===== */
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .location-map {
+    aspect-ratio: 4/3;
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    position: relative;
+    overflow: hidden;
+  }
+  .location-info h2 { font-size: 48px; line-height: .95; margin-bottom: 24px; }
+  .location-info > p { font-size: 17px; color: #a3a3a3; margin-bottom: 28px; line-height: 1.6; }
+  .location-features { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 32px; }
+  .location-feature {
+    padding: 16px;
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+  }
+  .location-feature h5 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    color: #facc15;
+    margin-bottom: 4px;
+    letter-spacing: .5px;
+  }
+  .location-feature p { font-size: 13px; color: #a3a3a3; }
+
+  /* ===== Партнёры ===== */
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
+  }
+  .partner {
+    aspect-ratio: 3/2;
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid #1a1a1a;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: #737373;
+    font-size: 18px;
+    letter-spacing: 1px;
+    transition: color .2s, background .2s;
+  }
+  .partner:hover { color: #facc15; background: rgba(250, 204, 21, .05); }
+
+  /* ===== Билеты ===== */
+  .tickets-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .ticket {
+    background: #fff;
+    color: #000;
+    padding: 40px 32px;
+    border: 4px solid #fff;
+    position: relative;
+    transition: transform .2s;
+  }
+  .ticket:hover { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 #facc15; }
+  .ticket.featured {
+    background: #facc15;
+    border-color: #facc15;
+  }
+  .ticket .ticket-type {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .ticket .ticket-price {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -2px;
+  }
+  .ticket .ticket-old {
+    font-size: 16px;
+    color: #525252;
+    text-decoration: line-through;
+    margin-bottom: 28px;
+  }
+  .ticket ul {
+    list-style: none;
+    margin-bottom: 32px;
+  }
+  .ticket ul li {
+    padding: 10px 0;
+    border-top: 1px solid rgba(0, 0, 0, .15);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ticket ul li::before {
+    content: '✓';
+    color: #000;
+    font-weight: 700;
+  }
+  .ticket ul li.no::before {
+    content: '×';
+    opacity: .3;
+  }
+  .ticket ul li.no { opacity: .4; }
+  .ticket-btn {
+    width: 100%;
+    padding: 16px;
+    background: #000;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .ticket-btn:hover { background: #facc15; color: #000; outline: 2px solid #000; }
+  .ticket.featured .ticket-btn { background: #000; }
+  .ticket.featured .ticket-btn:hover { background: #fff; color: #000; }
+  .ticket .featured-badge {
+    position: absolute;
+    top: -16px; right: 24px;
+    background: #000;
+    color: #facc15;
+    padding: 6px 14px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  /* ===== Прошлые годы (галерея) ===== */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 4px;
+  }
+  .gallery-tile {
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #1a1a1a;
+    position: relative;
+  }
+  .gallery-tile img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .4s;
+  }
+  .gallery-tile:hover img { transform: scale(1.05); }
+  .gallery-tile .year-badge {
+    position: absolute;
+    bottom: 16px; left: 16px;
+    background: #facc15;
+    color: #000;
+    padding: 4px 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  /* ===== FAQ ===== */
+  .faq-list { max-width: 900px; margin: 0 auto; }
+  .faq-item {
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 28px 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -.5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    color: #facc15;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1;
+    transition: transform .25s;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item p.faq-a {
+    padding: 0 0 28px;
+    font-size: 16px;
+    color: #a3a3a3;
+    line-height: 1.65;
+    max-width: 720px;
+  }
+
+  /* ===== Финальный CTA (жёлтый блок) ===== */
+  .final-cta {
+    text-align: center;
+  }
+  .final-cta h2 {
+    font-size: clamp(48px, 9vw, 140px);
+    line-height: .9;
+    letter-spacing: -3px;
+    margin-bottom: 32px;
+  }
+  .final-cta p {
+    font-size: 20px;
+    max-width: 600px;
+    margin: 0 auto 36px;
+    color: #1a1a1a;
+  }
+
+  /* ===== Футер ===== */
+  footer.site-footer {
+    background: #000;
+    border-top: 1px solid #1a1a1a;
+    padding: 50px 0 28px;
+    color: #737373;
+    font-size: 14px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-top h5 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    color: #facc15;
+    margin-bottom: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .footer-top p, .footer-top a { display: block; margin-bottom: 6px; }
+  .footer-top a:hover { color: #facc15; }
+  .footer-copy {
+    border-top: 1px solid #1a1a1a;
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+  .footer-social { display: flex; gap: 12px; }
+  .footer-social a {
+    width: 36px; height: 36px;
+    border: 1px solid #1a1a1a;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color .15s, color .15s;
+  }
+  .footer-social a:hover { border-color: #facc15; color: #facc15; }
+
+  /* ===== Адаптив ===== */
+  @media (max-width: 960px) {
+    .facts-grid { grid-template-columns: 1fr 1fr; }
+    .fact:nth-child(2) { border-right: none; }
+    .fact:nth-child(1), .fact:nth-child(2) { border-bottom: 1px solid #1a1a1a; }
+    .speakers-grid { grid-template-columns: 1fr 1fr; }
+    .location-grid { grid-template-columns: 1fr; gap: 30px; }
+    .partners-grid { grid-template-columns: repeat(3, 1fr); }
+    .tickets-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #000; flex-direction: column; gap: 0; padding: 16px 32px; border-bottom: 1px solid #1a1a1a; z-index: 30; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 0; border-bottom: 1px solid #1a1a1a; }
+    .burger { display: flex; }
+    section.block { padding: 60px 0; }
+    .hero { padding: 30px 0 60px; }
+    .program-tabs button { font-size: 13px; padding: 16px 8px; }
+    .timeline-row { grid-template-columns: 80px 1fr; }
+    .timeline-row .duration { grid-column: 1 / -1; padding-top: 6px; }
+    .timeline-row .t { font-size: 22px; }
+    .countdown { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Шапка ===== -->
+<header class="site-header">
+  <div class="container nav">
+    <div class="logo">PRODUCTDAY <span class="year">'26</span></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#speakers">Спикеры</a>
+      <a href="#program">Программа</a>
+      <a href="#location">Локация</a>
+      <a href="#tickets">Билеты</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <a href="#tickets" class="btn btn-yellow" style="padding: 10px 18px; font-size: 13px;">Купить билет</a>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-mega-date">12.09.26</div>
+    <h1 class="hero-title">ProductDay<br>2026</h1>
+    <p class="hero-subtitle">Главная конференция года о Product Management, дизайне и технологиях. 800 участников, 24 спикера, 3 трека, 10 часов нетворкинга в Москве.</p>
+
+    <div class="hero-info-row">
+      <div class="hero-info-item">
+        <span class="label">Дата</span>
+        <span class="value">12 сентября 2026</span>
+      </div>
+      <div class="hero-info-item">
+        <span class="label">Локация</span>
+        <span class="value">Москва · ЦДП</span>
+      </div>
+      <div class="hero-info-item">
+        <span class="label">Формат</span>
+        <span class="value">Офлайн + онлайн</span>
+      </div>
+      <div class="hero-info-item">
+        <span class="label">Длительность</span>
+        <span class="value">10:00 — 22:00</span>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#tickets" class="btn btn-yellow">Купить билет →</a>
+      <a href="#program" class="btn btn-outline">Программа</a>
+    </div>
+
+    <!-- Обратный отсчёт -->
+    <div style="margin-top: 60px;">
+      <div style="font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #facc15; margin-bottom: 18px; font-weight: 700;">До старта конференции</div>
+      <div class="countdown">
+        <div class="countdown-cell">
+          <div class="n" id="cd-days">00</div>
+          <div class="l">Дней</div>
+        </div>
+        <div class="countdown-cell">
+          <div class="n" id="cd-hours">00</div>
+          <div class="l">Часов</div>
+        </div>
+        <div class="countdown-cell">
+          <div class="n" id="cd-mins">00</div>
+          <div class="l">Минут</div>
+        </div>
+        <div class="countdown-cell">
+          <div class="n" id="cd-secs">00</div>
+          <div class="l">Секунд</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Цифры ===== -->
+<section>
+  <div class="facts-grid">
+    <div class="fact">
+      <div class="number">800</div>
+      <div class="label">Участников</div>
+    </div>
+    <div class="fact">
+      <div class="number">24</div>
+      <div class="label">Спикера</div>
+    </div>
+    <div class="fact">
+      <div class="number">3</div>
+      <div class="label">Параллельных трека</div>
+    </div>
+    <div class="fact">
+      <div class="number">10ч</div>
+      <div class="label">Нетворкинга</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Спикеры ===== -->
+<section class="block" id="speakers">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 50px;">
+      <div>
+        <div class="section-tag">Спикеры</div>
+        <h2 class="section-title">Люди,<br>которые <span class="accent-yellow">делают индустрию</span></h2>
+      </div>
+      <a href="#program" class="btn btn-outline">Вся программа →</a>
+    </div>
+
+    <div class="speakers-grid">
+      <div class="speaker-card">
+        <img src="https://picsum.photos/seed/speaker-1/500/620" alt="" loading="lazy">
+        <div class="info">
+          <div class="role">Product Lead</div>
+          <h4>Анна Соколова</h4>
+          <div class="company">Авито</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <img src="https://picsum.photos/seed/speaker-2/500/620" alt="" loading="lazy">
+        <div class="info">
+          <div class="role">CPO</div>
+          <h4>Дмитрий Орлов</h4>
+          <div class="company">Озон</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <img src="https://picsum.photos/seed/speaker-3/500/620" alt="" loading="lazy">
+        <div class="info">
+          <div class="role">Head of Design</div>
+          <h4>Юлия Попова</h4>
+          <div class="company">Альфа-Банк</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <img src="https://picsum.photos/seed/speaker-4/500/620" alt="" loading="lazy">
+        <div class="info">
+          <div class="role">Co-founder</div>
+          <h4>Денис Гордеев</h4>
+          <div class="company">Loop &amp; Co</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <img src="https://picsum.photos/seed/speaker-5/500/620" alt="" loading="lazy">
+        <div class="info">
+          <div class="role">VP Engineering</div>
+          <h4>Полина Зверева</h4>
+          <div class="company">Т-Банк</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <img src="https://picsum.photos/seed/speaker-6/500/620" alt="" loading="lazy">
+        <div class="info">
+          <div class="role">Group PM</div>
+          <h4>Михаил Котов</h4>
+          <div class="company">Wildberries</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <img src="https://picsum.photos/seed/speaker-7/500/620" alt="" loading="lazy">
+        <div class="info">
+          <div class="role">CTO</div>
+          <h4>Светлана Гончарова</h4>
+          <div class="company">Циан</div>
+        </div>
+      </div>
+      <div class="speaker-card">
+        <img src="https://picsum.photos/seed/speaker-8/500/620" alt="" loading="lazy">
+        <div class="info">
+          <div class="role">Head of Research</div>
+          <h4>Антон Кравченко</h4>
+          <div class="company">СберМаркет</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Программа ===== -->
+<section class="block block-white" id="program">
+  <div class="container">
+    <div class="section-tag">Программа</div>
+    <h2 class="section-title">Три трека.<br>Один день. Один зал.</h2>
+    <p style="font-size: 17px; color: #525252; max-width: 600px; margin-bottom: 50px;">
+      Параллельная программа в трёх залах. Между докладами — кофе-брейки и нетворкинг.
+    </p>
+
+    <!-- Табы треков -->
+    <div class="program-tabs" role="tablist">
+      <button class="active" data-track="product">Product</button>
+      <button data-track="design">Design</button>
+      <button data-track="tech">Tech</button>
+    </div>
+
+    <!-- Трек Product -->
+    <div class="program-track active" id="track-product">
+      <div class="timeline-row">
+        <div class="t">10:00</div>
+        <div>
+          <h4>Открытие конференции и keynote года</h4>
+          <div class="speaker">Анна Соколова · Product Lead, Авито</div>
+        </div>
+        <div class="duration">45 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">11:00</div>
+        <div>
+          <h4>Как выжить в 2026: продакт между AI и инфляцией</h4>
+          <div class="speaker">Дмитрий Орлов · CPO, Озон</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">12:00</div>
+        <div>
+          <h4>From 0 to 1M users: реальные цифры роста</h4>
+          <div class="speaker">Михаил Котов · Group PM, Wildberries</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row break">
+        <div class="t">13:00</div>
+        <div><h4>Обед</h4></div>
+        <div class="duration">60 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">14:00</div>
+        <div>
+          <h4>Discovery без иллюзий: 12 ошибок продактов</h4>
+          <div class="speaker">Антон Кравченко · Head of Research, СберМаркет</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">15:00</div>
+        <div>
+          <h4>Метрики, которые лгут, и метрики, которые меняют решения</h4>
+          <div class="speaker">Денис Гордеев · Co-founder, Loop &amp; Co</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row break">
+        <div class="t">16:00</div>
+        <div><h4>Кофе-брейк и нетворкинг</h4></div>
+        <div class="duration">30 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">16:30</div>
+        <div>
+          <h4>Roadmap, которому верит команда</h4>
+          <div class="speaker">Юлия Попова · Head of Design, Альфа-Банк</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">17:30</div>
+        <div>
+          <h4>Закрывающая панель: куда движется индустрия</h4>
+          <div class="speaker">Все спикеры дня</div>
+        </div>
+        <div class="duration">60 минут</div>
+      </div>
+    </div>
+
+    <!-- Трек Design -->
+    <div class="program-track" id="track-design">
+      <div class="timeline-row">
+        <div class="t">10:00</div>
+        <div>
+          <h4>Открытие конференции (общий зал)</h4>
+          <div class="speaker">Анна Соколова · Product Lead, Авито</div>
+        </div>
+        <div class="duration">45 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">11:00</div>
+        <div>
+          <h4>Design-системы, которые живут год и больше</h4>
+          <div class="speaker">Юлия Попова · Head of Design, Альфа-Банк</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">12:00</div>
+        <div>
+          <h4>UX-исследования с AI-аналитиком</h4>
+          <div class="speaker">Антон Кравченко · Head of Research, СберМаркет</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row break">
+        <div class="t">13:00</div>
+        <div><h4>Обед</h4></div>
+        <div class="duration">60 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">14:00</div>
+        <div>
+          <h4>Когда брендинг ест ваш продукт</h4>
+          <div class="speaker">Денис Гордеев · Co-founder, Loop &amp; Co</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">15:00</div>
+        <div>
+          <h4>Motion-дизайн как продуктовая фича</h4>
+          <div class="speaker">Светлана Гончарова · CTO, Циан</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row break">
+        <div class="t">16:00</div>
+        <div><h4>Кофе-брейк и нетворкинг</h4></div>
+        <div class="duration">30 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">16:30</div>
+        <div>
+          <h4>Воркшоп: redesign в условиях ограничений</h4>
+          <div class="speaker">Юлия Попова и команда</div>
+        </div>
+        <div class="duration">90 минут</div>
+      </div>
+    </div>
+
+    <!-- Трек Tech -->
+    <div class="program-track" id="track-tech">
+      <div class="timeline-row">
+        <div class="t">10:00</div>
+        <div>
+          <h4>Открытие конференции (общий зал)</h4>
+          <div class="speaker">Анна Соколова · Product Lead, Авито</div>
+        </div>
+        <div class="duration">45 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">11:00</div>
+        <div>
+          <h4>LLM в продакшене: 2 года без галлюцинаций</h4>
+          <div class="speaker">Полина Зверева · VP Engineering, Т-Банк</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">12:00</div>
+        <div>
+          <h4>Архитектура, которая выдержит ×100 трафика</h4>
+          <div class="speaker">Светлана Гончарова · CTO, Циан</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row break">
+        <div class="t">13:00</div>
+        <div><h4>Обед</h4></div>
+        <div class="duration">60 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">14:00</div>
+        <div>
+          <h4>Платформенный подход в небольшой команде</h4>
+          <div class="speaker">Михаил Котов · Group PM, Wildberries</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">15:00</div>
+        <div>
+          <h4>Observability: что должен видеть каждый разработчик</h4>
+          <div class="speaker">Дмитрий Орлов · CPO, Озон</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+      <div class="timeline-row break">
+        <div class="t">16:00</div>
+        <div><h4>Кофе-брейк и нетворкинг</h4></div>
+        <div class="duration">30 минут</div>
+      </div>
+      <div class="timeline-row">
+        <div class="t">16:30</div>
+        <div>
+          <h4>Open Source как часть найма и роста</h4>
+          <div class="speaker">Полина Зверева · VP Engineering, Т-Банк</div>
+        </div>
+        <div class="duration">35 минут</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Локация ===== -->
+<section class="block" id="location">
+  <div class="container">
+    <div class="location-grid">
+      <!-- Стилизованная SVG-карта района -->
+      <div class="location-map">
+        <svg viewBox="0 0 400 300" width="100%" height="100%">
+          <!-- Дороги -->
+          <line x1="0" y1="150" x2="400" y2="150" stroke="#facc15" stroke-width="3" opacity=".4"/>
+          <line x1="200" y1="0" x2="200" y2="300" stroke="#facc15" stroke-width="2" opacity=".25"/>
+          <line x1="60" y1="0" x2="60" y2="300" stroke="#1a1a1a" stroke-width="1"/>
+          <line x1="340" y1="0" x2="340" y2="300" stroke="#1a1a1a" stroke-width="1"/>
+          <line x1="0" y1="60" x2="400" y2="60" stroke="#1a1a1a" stroke-width="1"/>
+          <line x1="0" y1="240" x2="400" y2="240" stroke="#1a1a1a" stroke-width="1"/>
+
+          <!-- Здания -->
+          <rect x="80" y="80" width="80" height="40" fill="#1a1a1a"/>
+          <rect x="170" y="180" width="40" height="40" fill="#1a1a1a"/>
+          <rect x="280" y="80" width="40" height="60" fill="#1a1a1a"/>
+          <rect x="80" y="200" width="50" height="30" fill="#1a1a1a"/>
+
+          <!-- Маркер -->
+          <circle cx="200" cy="150" r="14" fill="#facc15"/>
+          <circle cx="200" cy="150" r="6" fill="#000"/>
+          <circle cx="200" cy="150" r="28" fill="none" stroke="#facc15" stroke-width="1" opacity=".4"/>
+
+          <!-- Подписи -->
+          <text x="20" y="160" font-family="Inter" font-size="10" fill="#737373">Космодамианская наб.</text>
+          <text x="240" y="148" font-family="Inter" font-size="11" font-weight="600" fill="#facc15">ЦДП</text>
+          <text x="240" y="160" font-family="Inter" font-size="9" fill="#737373">здесь</text>
+        </svg>
+      </div>
+
+      <div class="location-info">
+        <div class="section-tag">Локация</div>
+        <h2>Цифровое<br>Деловое<br>Пространство</h2>
+        <p>В двух шагах от Павелецкого вокзала. Большой главный зал, три параллельных зала поменьше, бесплатный паркинг.</p>
+        <div class="location-features">
+          <div class="location-feature">
+            <h5>Адрес</h5>
+            <p>Москва, Космодамианская наб., 52с2</p>
+          </div>
+          <div class="location-feature">
+            <h5>Метро</h5>
+            <p>Павелецкая, 7 минут пешком</p>
+          </div>
+          <div class="location-feature">
+            <h5>Залы</h5>
+            <p>1 главный + 3 параллельных</p>
+          </div>
+          <div class="location-feature">
+            <h5>Паркинг</h5>
+            <p>Бесплатный на 120 машин</p>
+          </div>
+        </div>
+        <a href="#" class="btn btn-outline">Открыть в Яндекс.Картах →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Партнёры ===== -->
+<section class="block">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 50px;">
+      <div class="section-tag">Партнёры</div>
+      <h2 class="section-title">При <span class="accent-yellow">поддержке</span></h2>
+    </div>
+    <div class="partners-grid">
+      <div class="partner">КВАРТА</div>
+      <div class="partner">NORTHPATH</div>
+      <div class="partner">◐ LINSTEAD</div>
+      <div class="partner">TUNCHA</div>
+      <div class="partner">BRIGADE</div>
+      <div class="partner">▰ PIXELROOM</div>
+      <div class="partner">LOOP&amp;CO</div>
+      <div class="partner">KVATEK</div>
+      <div class="partner">◉ ORBITA</div>
+      <div class="partner">NEXTWAVE</div>
+      <div class="partner">STUDIO·12</div>
+      <div class="partner">◆ ATLAS</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Билеты ===== -->
+<section class="block block-white" id="tickets">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 60px;">
+      <div class="section-tag">Билеты</div>
+      <h2 class="section-title">Выберите формат</h2>
+      <p style="font-size: 17px; color: #525252;">Цена растёт за 30 дней до мероприятия. Сейчас — ранние тарифы.</p>
+    </div>
+    <div class="tickets-grid">
+      <div class="ticket">
+        <div class="ticket-type">Standard</div>
+        <div class="ticket-price">9 900 ₽</div>
+        <div class="ticket-old">12 900 ₽</div>
+        <ul>
+          <li>Доступ ко всем 3 трекам</li>
+          <li>Обед и кофе-брейки</li>
+          <li>Доступ к записям выступлений</li>
+          <li class="no">Закрытая зона нетворкинга</li>
+          <li class="no">Афтепати в баре «Стрелка»</li>
+          <li class="no">Встреча 1-on-1 со спикером</li>
+        </ul>
+        <button type="button" class="ticket-btn">Купить Standard</button>
+      </div>
+
+      <div class="ticket featured">
+        <div class="featured-badge">Хит</div>
+        <div class="ticket-type">Pro</div>
+        <div class="ticket-price">19 900 ₽</div>
+        <div class="ticket-old">26 900 ₽</div>
+        <ul>
+          <li>Всё из Standard</li>
+          <li>Закрытая зона нетворкинга</li>
+          <li>Афтепати в баре «Стрелка»</li>
+          <li>Welcome-набор и мерч</li>
+          <li class="no">Встреча 1-on-1 со спикером</li>
+          <li class="no">VIP-парковка</li>
+        </ul>
+        <button type="button" class="ticket-btn">Купить Pro</button>
+      </div>
+
+      <div class="ticket">
+        <div class="ticket-type">VIP</div>
+        <div class="ticket-price">49 900 ₽</div>
+        <div class="ticket-old">59 900 ₽</div>
+        <ul>
+          <li>Всё из Pro</li>
+          <li>Встреча 1-on-1 со спикером</li>
+          <li>Места в первых рядах</li>
+          <li>VIP-парковка</li>
+          <li>Премиум-обед и lounge-зона</li>
+          <li>Сертификат участника</li>
+        </ul>
+        <button type="button" class="ticket-btn">Купить VIP</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Прошлые годы ===== -->
+<section class="block" id="past">
+  <div class="container">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; margin-bottom: 40px;">
+      <div>
+        <div class="section-tag">Прошлые годы</div>
+        <h2 class="section-title">Как это было</h2>
+      </div>
+      <p style="color: #a3a3a3; max-width: 360px; font-size: 16px;">Конференция проводится с 2022 года. В 2025 — 720 участников, 22 спикера.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-tile">
+        <img src="https://picsum.photos/seed/event-1/600/600" alt="" loading="lazy">
+        <div class="year-badge">2025</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="https://picsum.photos/seed/event-2/600/600" alt="" loading="lazy">
+        <div class="year-badge">2025</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="https://picsum.photos/seed/event-3/600/600" alt="" loading="lazy">
+        <div class="year-badge">2024</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="https://picsum.photos/seed/event-4/600/600" alt="" loading="lazy">
+        <div class="year-badge">2024</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="https://picsum.photos/seed/event-5/600/600" alt="" loading="lazy">
+        <div class="year-badge">2023</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="https://picsum.photos/seed/event-6/600/600" alt="" loading="lazy">
+        <div class="year-badge">2023</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="https://picsum.photos/seed/event-7/600/600" alt="" loading="lazy">
+        <div class="year-badge">2022</div>
+      </div>
+      <div class="gallery-tile">
+        <img src="https://picsum.photos/seed/event-8/600/600" alt="" loading="lazy">
+        <div class="year-badge">2022</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="block" id="faq">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 50px;">
+      <div class="section-tag">Частые вопросы</div>
+      <h2 class="section-title">FAQ</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Можно ли вернуть билет?</summary>
+        <p class="faq-a">Да. До 1 августа возвращаем 100%, с 1 по 31 августа — 50%, после 31 августа возврат невозможен. Передать билет другому участнику можно бесплатно до 10 сентября.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Будет ли запись выступлений?</summary>
+        <p class="faq-a">Да, все основные доклады. Запись выкладываем в течение 2 недель после конференции. Доступ к записям включён во все типы билетов.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Подойдёт ли мероприятие новичку?</summary>
+        <p class="faq-a">Скорее нет. Программа рассчитана на middle+ продактов, дизайнеров и разработчиков. Будут темы для джунов, но основной фокус — стратегические и прикладные задачи команд от 20 человек.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Есть ли промокоды и скидки для команд?</summary>
+        <p class="faq-a">При покупке от 5 билетов одной компанией — скидка 15%. Для студентов вузов-партнёров — 30% (по студенческому). Промокоды публикуем в Telegram-канале.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Что насчёт онлайн-участия?</summary>
+        <p class="faq-a">Прямая трансляция главного зала будет бесплатной с задержкой 24 часа. Записи параллельных треков — только для держателей билетов.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Дресс-код?</summary>
+        <p class="faq-a">Smart casual. Никаких строгих требований — приходите в чём комфортно. Афтепати — без галстуков, но с регистрацией.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Финальный CTA ===== -->
+<section class="block block-yellow">
+  <div class="container final-cta">
+    <h2>До встречи<br>12.09.26</h2>
+    <p>Не пропустите главную конференцию года. Цены растут за 30 дней до мероприятия.</p>
+    <a href="#tickets" class="btn" style="background: #000; color: #facc15;">Купить билет →</a>
+  </div>
+</section>
+
+<!-- ===== Футер ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="logo" style="font-size: 18px; margin-bottom: 14px;">PRODUCTDAY <span style="color:#facc15;">'26</span></div>
+        <p>Конференция о Product Management, дизайне и технологиях. С 2022 года.</p>
+        <p>organizers@productday.ru</p>
+      </div>
+      <div>
+        <h5>Конференция</h5>
+        <a href="#program">Программа</a>
+        <a href="#speakers">Спикеры</a>
+        <a href="#tickets">Билеты</a>
+        <a href="#past">Прошлые годы</a>
+      </div>
+      <div>
+        <h5>Партнёрам</h5>
+        <a href="#">Стать партнёром</a>
+        <a href="#">Спикерство</a>
+        <a href="#">Медиа-аккредитация</a>
+      </div>
+      <div>
+        <h5>Соцсети</h5>
+        <div class="footer-social">
+          <a href="#" aria-label="Telegram">TG</a>
+          <a href="#" aria-label="VK">VK</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <div>© 2026 ProductDay · ООО «ПродактДэй» · ИНН 7700000000</div>
+      <div>Договор-оферта · Политика приватности</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ===== Обратный отсчёт до 12 сентября 2026, 10:00 МСК ===== */
+  function startCountdown() {
+    // 12 сентября 2026, 10:00 МСК = 07:00 UTC
+    const target = new Date(Date.UTC(2026, 8, 12, 7, 0, 0));
+    const els = {
+      d: document.getElementById('cd-days'),
+      h: document.getElementById('cd-hours'),
+      m: document.getElementById('cd-mins'),
+      s: document.getElementById('cd-secs'),
+    };
+    function tick() {
+      let diff = Math.max(0, target.getTime() - Date.now());
+      const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+      const h = Math.floor(diff / 3600000);  diff -= h * 3600000;
+      const m = Math.floor(diff / 60000);    diff -= m * 60000;
+      const s = Math.floor(diff / 1000);
+      els.d.textContent = String(d).padStart(2, '0');
+      els.h.textContent = String(h).padStart(2, '0');
+      els.m.textContent = String(m).padStart(2, '0');
+      els.s.textContent = String(s).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+  startCountdown();
+
+  /* ===== Переключение табов программы (Product / Design / Tech) ===== */
+  const tabs = document.querySelectorAll('.program-tabs button');
+  const tracks = document.querySelectorAll('.program-track');
+  tabs.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      // Сбрасываем активный таб и трек
+      tabs.forEach(function (b) { b.classList.remove('active'); });
+      tracks.forEach(function (t) { t.classList.remove('active'); });
+      // Активируем выбранный
+      btn.classList.add('active');
+      document.getElementById('track-' + btn.dataset.track).classList.add('active');
+    });
+  });
+
+  /* ===== Мобильное меню (бургер) ===== */
+  document.getElementById('burger').addEventListener('click', function () {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>

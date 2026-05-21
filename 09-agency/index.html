@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NORD&amp;CO — цифровая студия в Москве и Берлине</title>
+<meta name="description" content="Делаем цифровые продукты: брендинг, веб-сайты, мобильные приложения, дизайн-системы. Работаем с 2017 года, 80+ проектов.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== База ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fff;
+    color: #0a0a0a;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; letter-spacing: -1px; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  /* Утилиты */
+  .container { max-width: 1320px; margin: 0 auto; padding: 0 40px; }
+  .accent-red { color: #dc2626; }
+  .small-caps {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 14px 26px; border-radius: 0; font-weight: 500; font-size: 14px;
+    transition: background .2s, color .2s;
+    border: 1px solid #0a0a0a;
+    letter-spacing: .5px;
+  }
+  .btn-dark { background: #0a0a0a; color: #fff; }
+  .btn-dark:hover { background: #dc2626; border-color: #dc2626; }
+  .btn-outline { background: transparent; color: #0a0a0a; }
+  .btn-outline:hover { background: #0a0a0a; color: #fff; }
+  .btn-light { background: #fff; color: #0a0a0a; border-color: #fff; }
+  .btn-light:hover { background: #dc2626; color: #fff; border-color: #dc2626; }
+
+  /* ===== Шапка ===== */
+  header.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .logo .amp { color: #dc2626; }
+  .nav-links { display: flex; gap: 36px; }
+  .nav-links a { font-size: 14px; opacity: .8; transition: opacity .15s; }
+  .nav-links a:hover { opacity: 1; color: #dc2626; }
+  .burger { display: none; width: 28px; height: 16px; flex-direction: column; justify-content: space-between; }
+  .burger span { width: 100%; height: 1.5px; background: #0a0a0a; }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 80px 0 60px;
+    position: relative;
+  }
+  .hero h1 {
+    font-size: clamp(48px, 9vw, 140px);
+    line-height: .95;
+    margin-bottom: 40px;
+    font-weight: 500;
+    letter-spacing: -3px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #dc2626;
+    font-weight: 400;
+  }
+  .hero-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #0a0a0a;
+    margin-top: 40px;
+  }
+  .hero-meta .lead {
+    font-size: 19px;
+    max-width: 440px;
+    line-height: 1.5;
+    color: #1f1f1f;
+  }
+  .hero-meta .meta-right {
+    text-align: right;
+    padding-top: 6px;
+  }
+  .hero-meta .meta-right .label {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #525252;
+    margin-bottom: 8px;
+  }
+  .hero-meta .meta-right .value {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  /* ===== Бегущая строка ===== */
+  .marquee {
+    overflow: hidden;
+    border-top: 1px solid #0a0a0a;
+    border-bottom: 1px solid #0a0a0a;
+    padding: 22px 0;
+    background: #fff;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-block;
+    animation: scroll 35s linear infinite;
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 500;
+    font-style: italic;
+  }
+  .marquee-track span {
+    display: inline-flex;
+    align-items: center;
+    gap: 32px;
+    margin-right: 32px;
+  }
+  .marquee-track .dot {
+    color: #dc2626;
+    font-style: normal;
+  }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ===== Универсальная секция ===== */
+  section.block { padding: 120px 0; }
+  .block-dark { background: #0a0a0a; color: #fff; }
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: end;
+    margin-bottom: 60px;
+  }
+  .section-head .tag-row {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 12px;
+  }
+  .section-head .tag-row .dot {
+    width: 8px; height: 8px;
+    background: #dc2626;
+    border-radius: 50%;
+  }
+  .section-head h2 {
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: .95;
+    letter-spacing: -2px;
+  }
+  .section-head h2 em { color: #dc2626; font-style: italic; font-weight: 400; }
+  .section-head .desc {
+    font-size: 17px;
+    color: #525252;
+    line-height: 1.55;
+    padding-bottom: 12px;
+  }
+  .block-dark .section-head .desc { color: #a3a3a3; }
+  .block-dark .section-head h2 em { color: #ef4444; }
+
+  /* ===== Избранные работы ===== */
+  .works-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px 40px;
+  }
+  .work {
+    cursor: pointer;
+  }
+  .work.tall { margin-top: 80px; }
+  .work-image {
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #f5f5f5;
+    margin-bottom: 24px;
+  }
+  .work.tall .work-image { aspect-ratio: 5/4; }
+  .work-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(35%);
+    transition: filter .4s, transform .5s;
+  }
+  .work:hover .work-image img { filter: grayscale(0); transform: scale(1.02); }
+  .work-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #525252;
+  }
+  .work-meta .cat {
+    color: #dc2626;
+    font-weight: 600;
+  }
+  .work h3 {
+    font-size: 30px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+    letter-spacing: -.5px;
+  }
+  .work p.work-desc {
+    font-size: 14px;
+    color: #525252;
+  }
+
+  /* ===== Услуги (раскрывающиеся блоки) ===== */
+  .services-list {
+    border-top: 1px solid #0a0a0a;
+  }
+  .service-row {
+    border-bottom: 1px solid #0a0a0a;
+  }
+  .service-row summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 40px;
+    align-items: center;
+    padding: 36px 0;
+    transition: padding .2s;
+  }
+  .service-row summary::-webkit-details-marker { display: none; }
+  .service-row:hover summary { padding-left: 16px; }
+  .service-row[open]:hover summary { padding-left: 0; }
+  .service-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #dc2626;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .service-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 500;
+    letter-spacing: -1px;
+    line-height: 1.05;
+  }
+  .service-row[open] .service-title em { color: #dc2626; font-style: italic; }
+  .service-toggle {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 1px solid #0a0a0a;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, color .2s, transform .25s;
+  }
+  .service-row[open] .service-toggle {
+    background: #dc2626;
+    border-color: #dc2626;
+    color: #fff;
+    transform: rotate(45deg);
+  }
+  .service-toggle svg { width: 20px; height: 20px; }
+  .service-body {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 40px;
+    padding: 0 0 36px;
+    max-width: 100%;
+  }
+  .service-body > div:first-child { /* пустая колонка под номер */ }
+  .service-body p {
+    font-size: 17px;
+    color: #1f1f1f;
+    line-height: 1.65;
+    grid-column: 2;
+  }
+  .service-body ul {
+    list-style: none;
+    grid-column: 3;
+  }
+  .service-body ul li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #d4d4d4;
+    font-size: 14px;
+    color: #1f1f1f;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .service-body ul li::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: #dc2626;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ===== О студии ===== */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+  .about-text p {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 28px;
+    letter-spacing: -.5px;
+  }
+  .about-text p em { color: #dc2626; font-style: italic; }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px 40px;
+    padding-top: 8px;
+  }
+  .stat {
+    border-top: 1px solid #ffffff33;
+    padding-top: 24px;
+  }
+  .stat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 72px;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 14px;
+    letter-spacing: -3px;
+  }
+  .stat .num em { color: #ef4444; font-style: italic; }
+  .stat .lbl {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #a3a3a3;
+  }
+
+  /* ===== Команда ===== */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  .team-member {
+    cursor: pointer;
+  }
+  .team-photo {
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: #f5f5f5;
+    margin-bottom: 14px;
+  }
+  .team-photo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: filter .4s, transform .5s;
+  }
+  .team-member:hover .team-photo img { filter: grayscale(0); transform: scale(1.03); }
+  .team-member h4 {
+    font-size: 19px;
+    margin-bottom: 2px;
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+  }
+  .team-member .role {
+    font-size: 13px;
+    color: #525252;
+  }
+
+  /* ===== Клиенты ===== */
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    border: 1px solid #0a0a0a;
+  }
+  .client {
+    aspect-ratio: 3/2;
+    border-right: 1px solid #0a0a0a;
+    border-bottom: 1px solid #0a0a0a;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22px;
+    color: #525252;
+    transition: color .2s, background .2s;
+  }
+  .client:hover { color: #dc2626; background: #fafafa; }
+  .client:nth-child(6n) { border-right: none; }
+  .client:nth-last-child(-n+6) { border-bottom: none; }
+
+  /* ===== Награды ===== */
+  .awards-list {
+    border-top: 1px solid #0a0a0a;
+  }
+  .award-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr auto;
+    gap: 32px;
+    align-items: center;
+    padding: 28px 0;
+    border-bottom: 1px solid #d4d4d4;
+    transition: padding .2s, background .2s;
+  }
+  .award-row:hover { padding-left: 16px; }
+  .award-year {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .award-name {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+  }
+  .award-project {
+    font-size: 14px;
+    color: #525252;
+  }
+  .award-medal {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #dc2626;
+    font-weight: 600;
+  }
+
+  /* ===== Финальный CTA ===== */
+  .final-cta {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 140px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(220, 38, 38, .25), transparent 70%);
+    pointer-events: none;
+  }
+  .final-cta h2 {
+    font-size: clamp(48px, 9vw, 140px);
+    line-height: .95;
+    margin-bottom: 60px;
+    font-weight: 500;
+    letter-spacing: -3px;
+    position: relative;
+  }
+  .final-cta h2 em { color: #ef4444; font-style: italic; font-weight: 400; }
+  .cta-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    position: relative;
+  }
+  .cta-form-grid .left p {
+    font-size: 18px;
+    color: #a3a3a3;
+    max-width: 380px;
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+  .cta-contacts { font-size: 15px; }
+  .cta-contacts h4 { font-family: 'Inter', sans-serif; font-size: 12px; color: #dc2626; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; font-weight: 600; }
+  .cta-contacts p { margin-bottom: 8px; }
+  .cta-form { display: grid; gap: 14px; }
+  .cta-form label { font-size: 12px; color: #a3a3a3; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: -4px; }
+  .cta-form input, .cta-form select, .cta-form textarea {
+    width: 100%;
+    padding: 16px 0;
+    background: transparent;
+    color: #fff;
+    font: inherit;
+    font-size: 17px;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .25);
+    transition: border-color .2s;
+  }
+  .cta-form input::placeholder, .cta-form textarea::placeholder { color: rgba(255, 255, 255, .35); }
+  .cta-form input:focus, .cta-form select:focus, .cta-form textarea:focus { outline: none; border-bottom-color: #dc2626; }
+  .cta-form select option { background: #0a0a0a; }
+  .cta-form textarea { resize: vertical; min-height: 60px; }
+  .cta-form button {
+    margin-top: 18px;
+    padding: 22px 32px;
+    background: #dc2626;
+    color: #fff;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background .2s;
+    border: none;
+    cursor: pointer;
+  }
+  .cta-form button:hover { background: #ef4444; }
+  .cta-disclaimer { font-size: 12px; color: #525252; margin-top: 12px; }
+
+  /* ===== Футер ===== */
+  footer.site-footer {
+    background: #fff;
+    color: #525252;
+    padding: 60px 0 30px;
+    font-size: 14px;
+    border-top: 1px solid #0a0a0a;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .footer-top h5 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #0a0a0a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .footer-top p, .footer-top a { display: block; margin-bottom: 6px; }
+  .footer-top a:hover { color: #dc2626; }
+  .footer-top .logo { margin-bottom: 14px; color: #0a0a0a; }
+  .footer-copy {
+    border-top: 1px solid #e5e5e5;
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* ===== Адаптив ===== */
+  @media (max-width: 960px) {
+    .hero-meta { grid-template-columns: 1fr; gap: 30px; }
+    .hero-meta .meta-right { text-align: left; }
+    .section-head { grid-template-columns: 1fr; gap: 24px; }
+    .works-grid { grid-template-columns: 1fr; gap: 50px; }
+    .work.tall { margin-top: 0; }
+    .service-row summary { grid-template-columns: 60px 1fr auto; gap: 20px; }
+    .service-body { grid-template-columns: 60px 1fr; }
+    .service-body ul { grid-column: 1 / -1; }
+    .about-grid { grid-template-columns: 1fr; gap: 50px; }
+    .team-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .clients-grid { grid-template-columns: repeat(3, 1fr); }
+    .client:nth-child(6n) { border-right: 1px solid #0a0a0a; }
+    .client:nth-child(3n) { border-right: none; }
+    .award-row { grid-template-columns: 80px 1fr; }
+    .award-project, .award-medal { grid-column: 2; padding-left: 0; }
+    .cta-form-grid { grid-template-columns: 1fr; gap: 40px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .container { padding: 0 24px; }
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; padding: 16px 24px; gap: 0; border-bottom: 1px solid #0a0a0a; z-index: 40; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 0; border-bottom: 1px solid #f0f0f0; }
+    .burger { display: flex; }
+    section.block { padding: 70px 0; }
+    .hero { padding: 50px 0 40px; }
+    .marquee-track { font-size: 28px; }
+    .team-grid { grid-template-columns: 1fr; }
+    .clients-grid { grid-template-columns: 1fr 1fr; }
+    .client { border-right: 1px solid #0a0a0a !important; }
+    .client:nth-child(2n) { border-right: none !important; }
+    .final-cta { padding: 80px 0; }
+    .footer-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Шапка ===== -->
+<header class="site-header">
+  <div class="container nav">
+    <div class="logo">NORD<span class="amp">&amp;</span>CO</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#works">Работы</a>
+      <a href="#services">Услуги</a>
+      <a href="#about">Студия</a>
+      <a href="#team">Команда</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <a href="#contact" class="btn btn-outline">Обсудить проект</a>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container">
+    <h1>Мы делаем<br>цифровые продукты,<br><em>которые работают</em></h1>
+    <div class="hero-meta">
+      <p class="lead">Студия в Москве и Берлине. С 2017 года помогаем брендам строить продуктовые экосистемы — от идентичности до боевой версии в App Store.</p>
+      <div class="meta-right">
+        <div class="label">Сейчас в работе</div>
+        <div class="value">7 проектов</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Бегущая строка ===== -->
+<section class="marquee">
+  <div class="marquee-track">
+    <span>Branding <span class="dot">●</span> Digital Design <span class="dot">●</span> Web Development <span class="dot">●</span> Mobile Apps <span class="dot">●</span> Design Systems <span class="dot">●</span> Motion Identity <span class="dot">●</span></span>
+    <span>Branding <span class="dot">●</span> Digital Design <span class="dot">●</span> Web Development <span class="dot">●</span> Mobile Apps <span class="dot">●</span> Design Systems <span class="dot">●</span> Motion Identity <span class="dot">●</span></span>
+  </div>
+</section>
+
+<!-- ===== Избранные работы ===== -->
+<section class="block" id="works">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="tag-row"><div class="dot"></div><span class="small-caps">Избранные работы</span></div>
+        <h2>Свежее за <em>прошлый год</em></h2>
+      </div>
+      <p class="desc">Каждый кейс — это от 4 до 9 месяцев работы в плотной связке с продуктовой командой клиента. Все проекты — с измеримым результатом.</p>
+    </div>
+
+    <div class="works-grid">
+      <div class="work">
+        <div class="work-image">
+          <img src="https://picsum.photos/seed/case-1/900/700" alt="" loading="lazy">
+        </div>
+        <div class="work-meta">
+          <span class="cat">Branding · Web</span>
+          <span>2025</span>
+        </div>
+        <h3>Meridian Capital — ребрендинг</h3>
+        <p class="work-desc">Новая идентичность и сайт для инвестфонда. Запустили за 4 месяца.</p>
+      </div>
+
+      <div class="work tall">
+        <div class="work-image">
+          <img src="https://picsum.photos/seed/case-2/900/700" alt="" loading="lazy">
+        </div>
+        <div class="work-meta">
+          <span class="cat">Mobile App</span>
+          <span>2025</span>
+        </div>
+        <h3>Northpath Coffee — мобильное приложение</h3>
+        <p class="work-desc">iOS и Android для сети кофеен. +38% повторных заказов за квартал.</p>
+      </div>
+
+      <div class="work">
+        <div class="work-image">
+          <img src="https://picsum.photos/seed/case-3/900/700" alt="" loading="lazy">
+        </div>
+        <div class="work-meta">
+          <span class="cat">Design System</span>
+          <span>2024</span>
+        </div>
+        <h3>Tuncha Bank — дизайн-система</h3>
+        <p class="work-desc">200+ компонентов и токены для 5 продуктов банка. Внедрение 6 месяцев.</p>
+      </div>
+
+      <div class="work tall">
+        <div class="work-image">
+          <img src="https://picsum.photos/seed/case-4/900/700" alt="" loading="lazy">
+        </div>
+        <div class="work-meta">
+          <span class="cat">Web · Identity</span>
+          <span>2024</span>
+        </div>
+        <h3>Brigade Studio — портфолио и сайт</h3>
+        <p class="work-desc">Архитектурное бюро. Идентичность, сайт, презентационные материалы.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Услуги (раскрывающийся аккордеон) ===== -->
+<section class="block" id="services" style="background: #fafafa;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="tag-row"><div class="dot"></div><span class="small-caps">Услуги</span></div>
+        <h2>Четыре направления, <em>в которых мы сильны</em></h2>
+      </div>
+      <p class="desc">Не берёмся за всё подряд. Глубокая экспертиза в четырёх дисциплинах — и партнёрская сеть для всего остального.</p>
+    </div>
+
+    <div class="services-list">
+      <details class="service-row" open>
+        <summary>
+          <div class="service-num">01</div>
+          <h3 class="service-title">Brand <em>Identity</em></h3>
+          <div class="service-toggle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="service-body">
+          <div></div>
+          <p>Логотип, типографика, палитра, motion-айдентика, гайдлайны. Делаем то, что живёт не год, а 5 — и адаптируется к новым продуктовым линиям.</p>
+          <ul>
+            <li>Логотип и базовая идентификация</li>
+            <li>Гайдлайны и стайл-гид</li>
+            <li>Motion-айдентика</li>
+            <li>Типографические системы</li>
+            <li>Презентационные материалы</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="service-row">
+        <summary>
+          <div class="service-num">02</div>
+          <h3 class="service-title">Digital <em>Products</em></h3>
+          <div class="service-toggle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="service-body">
+          <div></div>
+          <p>Веб-сайты, корпоративные платформы и сложные продуктовые интерфейсы. От дизайна до запуска в проде вместе с разработкой клиента или нашими разработчиками.</p>
+          <ul>
+            <li>Корпоративные сайты</li>
+            <li>Промо-сайты и лендинги</li>
+            <li>SaaS-интерфейсы и dashboards</li>
+            <li>E-commerce платформы</li>
+            <li>Дизайн-направление под проект</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="service-row">
+        <summary>
+          <div class="service-num">03</div>
+          <h3 class="service-title">Mobile <em>Apps</em></h3>
+          <div class="service-toggle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="service-body">
+          <div></div>
+          <p>iOS и Android — нативно, без компромиссов. Работаем циклами: дизайн-спринт, MVP, тестирование с пользователями, релиз.</p>
+          <ul>
+            <li>Mobile UX/UI-дизайн</li>
+            <li>iOS-разработка (Swift)</li>
+            <li>Android-разработка (Kotlin)</li>
+            <li>Прототипы и юзер-тесты</li>
+            <li>Поддержка после релиза</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="service-row">
+        <summary>
+          <div class="service-num">04</div>
+          <h3 class="service-title">Design <em>Systems</em></h3>
+          <div class="service-toggle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+        </summary>
+        <div class="service-body">
+          <div></div>
+          <p>Для крупных продуктов и компаний с несколькими цифровыми каналами. Дизайн-системы, которые принимаются командами, а не отправляются в архив через полгода.</p>
+          <ul>
+            <li>Аудит существующих систем</li>
+            <li>Дизайн-токены и архитектура</li>
+            <li>Библиотеки компонентов</li>
+            <li>Документация и обучение команд</li>
+            <li>Интеграция с фронтенд-фреймворками</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== О студии (тёмная секция) ===== -->
+<section class="block block-dark" id="about">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="tag-row"><div class="dot"></div><span class="small-caps" style="color: #a3a3a3;">О студии</span></div>
+        <h2>С 2017-го —<br><em>9 лет вместе</em></h2>
+      </div>
+      <p class="desc">Команда из 12 человек, два офиса в Москве и Берлине. Работаем с клиентами по всему миру — от российских банков до европейских стартапов.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Мы делаем продукты, а не презентации. Каждый проект — это не финальный лейаут, а <em>живой работающий интерфейс</em>, который пользователи открывают каждый день.</p>
+        <p>Не работаем по принципу «дизайн ради дизайна». Каждое решение объясняется через юзкейс, метрику или гипотезу — иначе не делаем.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat">
+          <div class="num">9 <em>лет</em></div>
+          <div class="lbl">на рынке</div>
+        </div>
+        <div class="stat">
+          <div class="num">80+</div>
+          <div class="lbl">завершённых проектов</div>
+        </div>
+        <div class="stat">
+          <div class="num">12</div>
+          <div class="lbl">человек в команде</div>
+        </div>
+        <div class="stat">
+          <div class="num">2</div>
+          <div class="lbl">офиса · Москва, Берлин</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Команда ===== -->
+<section class="block" id="team">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="tag-row"><div class="dot"></div><span class="small-caps">Команда</span></div>
+        <h2>Кто <em>работает над вашим</em> проектом</h2>
+      </div>
+      <p class="desc">Никаких джунов под видом сеньоров. На каждом проекте — дизайн-директор, продакт-дизайнер и разработчик с опытом 7+ лет.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-member">
+        <div class="team-photo"><img src="https://picsum.photos/seed/team-1/500/600" alt="" loading="lazy"></div>
+        <h4>Артём Северин</h4>
+        <div class="role">Co-founder · Design Director</div>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="https://picsum.photos/seed/team-2/500/600" alt="" loading="lazy"></div>
+        <h4>Алёна Кронберг</h4>
+        <div class="role">Co-founder · Strategy</div>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="https://picsum.photos/seed/team-3/500/600" alt="" loading="lazy"></div>
+        <h4>Антон Поляков</h4>
+        <div class="role">Head of Product Design</div>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="https://picsum.photos/seed/team-4/500/600" alt="" loading="lazy"></div>
+        <h4>Лиза Громова</h4>
+        <div class="role">Head of Engineering</div>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="https://picsum.photos/seed/team-5/500/600" alt="" loading="lazy"></div>
+        <h4>Михаил Корн</h4>
+        <div class="role">Senior Brand Designer</div>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="https://picsum.photos/seed/team-6/500/600" alt="" loading="lazy"></div>
+        <h4>Анна Шульце</h4>
+        <div class="role">Motion Designer (Berlin)</div>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="https://picsum.photos/seed/team-7/500/600" alt="" loading="lazy"></div>
+        <h4>Игорь Светлов</h4>
+        <div class="role">iOS Engineer</div>
+      </div>
+      <div class="team-member">
+        <div class="team-photo"><img src="https://picsum.photos/seed/team-8/500/600" alt="" loading="lazy"></div>
+        <h4>Дария Хан</h4>
+        <div class="role">Project Director</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Клиенты ===== -->
+<section class="block">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="tag-row"><div class="dot"></div><span class="small-caps">Клиенты</span></div>
+        <h2>С кем <em>работали</em></h2>
+      </div>
+      <p class="desc">Крупный бизнес, новые бренды, культурные институции и независимые проекты. Часто работаем с одними клиентами по несколько лет подряд.</p>
+    </div>
+    <div class="clients-grid">
+      <div class="client">Meridian</div>
+      <div class="client">Northpath</div>
+      <div class="client">Tuncha</div>
+      <div class="client">Brigade</div>
+      <div class="client">Linstead</div>
+      <div class="client">Kvarta</div>
+      <div class="client">Loop&amp;Co</div>
+      <div class="client">Pixelroom</div>
+      <div class="client">Orbita</div>
+      <div class="client">Atlas</div>
+      <div class="client">Nextwave</div>
+      <div class="client">Studio·12</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Награды ===== -->
+<section class="block" style="background: #fafafa;">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <div class="tag-row"><div class="dot"></div><span class="small-caps">Награды и публикации</span></div>
+        <h2>Признание <em>индустрии</em></h2>
+      </div>
+      <p class="desc">Мы не делаем работ ради конкурсов, но рады, когда наши проекты замечают коллеги.</p>
+    </div>
+    <div class="awards-list">
+      <div class="award-row">
+        <div class="award-year">2025</div>
+        <div class="award-name">Awwwards · Site of the Day</div>
+        <div class="award-project">Northpath Coffee</div>
+        <div class="award-medal">★ SOTD</div>
+      </div>
+      <div class="award-row">
+        <div class="award-year">2025</div>
+        <div class="award-name">CSS Design Awards · Best UI</div>
+        <div class="award-project">Meridian Capital</div>
+        <div class="award-medal">★ Featured</div>
+      </div>
+      <div class="award-row">
+        <div class="award-year">2024</div>
+        <div class="award-name">Behance · Branding Featured</div>
+        <div class="award-project">Tuncha Bank</div>
+        <div class="award-medal">★ Featured</div>
+      </div>
+      <div class="award-row">
+        <div class="award-year">2024</div>
+        <div class="award-name">Red Dot · Communication Design</div>
+        <div class="award-project">Brigade Studio identity</div>
+        <div class="award-medal">★ Winner</div>
+      </div>
+      <div class="award-row">
+        <div class="award-year">2023</div>
+        <div class="award-name">European Design Awards · Bronze</div>
+        <div class="award-project">Pixelroom rebranding</div>
+        <div class="award-medal">★ Bronze</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Финальный CTA ===== -->
+<section class="final-cta" id="contact">
+  <div class="container">
+    <h2>Расскажите<br>о своём <em>проекте</em></h2>
+    <div class="cta-form-grid">
+      <div class="left">
+        <p>Отвечаем в течение 24 часов. Если поняли, что подходим друг другу — назначаем созвон-знакомство на 45 минут.</p>
+        <div class="cta-contacts">
+          <h4>Контакты</h4>
+          <p>hello@nordandco.studio</p>
+          <p>Москва · Берлин</p>
+          <p>+7 (495) 000-00-00</p>
+        </div>
+      </div>
+      <!-- Демо-форма: submit отключён -->
+      <form class="cta-form" onsubmit="return false">
+        <div>
+          <label>Имя</label>
+          <input type="text" placeholder="Как к вам обращаться" required>
+        </div>
+        <div>
+          <label>Компания</label>
+          <input type="text" placeholder="Название компании или проекта" required>
+        </div>
+        <div>
+          <label>E-mail</label>
+          <input type="email" placeholder="your@company.com" required>
+        </div>
+        <div>
+          <label>Бюджет проекта</label>
+          <select required>
+            <option value="">Выберите вилку</option>
+            <option>До 1 млн ₽</option>
+            <option>1-3 млн ₽</option>
+            <option>3-8 млн ₽</option>
+            <option>8-20 млн ₽</option>
+            <option>Свыше 20 млн ₽</option>
+          </select>
+        </div>
+        <div>
+          <label>О проекте</label>
+          <textarea placeholder="Кратко опишите задачу и контекст" rows="3"></textarea>
+        </div>
+        <button type="button">Отправить заявку →</button>
+        <p class="cta-disclaimer">Нажимая, соглашаетесь с обработкой персональных данных. Не передаём ваши данные третьим лицам.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Футер ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="logo">NORD<span class="amp">&amp;</span>CO</div>
+        <p>Цифровая студия. Брендинг, веб, мобильные приложения, дизайн-системы. С 2017 года.</p>
+      </div>
+      <div>
+        <h5>Адреса</h5>
+        <p>Москва<br>Большой Гнездниковский, 3</p>
+        <p style="margin-top: 8px;">Berlin<br>Torstraße 124</p>
+      </div>
+      <div>
+        <h5>Услуги</h5>
+        <a href="#services">Brand Identity</a>
+        <a href="#services">Digital Products</a>
+        <a href="#services">Mobile Apps</a>
+        <a href="#services">Design Systems</a>
+      </div>
+      <div>
+        <h5>Соцсети</h5>
+        <a href="#">Behance</a>
+        <a href="#">Instagram</a>
+        <a href="#">Dribbble</a>
+        <a href="#">Telegram</a>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <div>© 2026 NORD&amp;CO · ООО «Норд» · ИНН 7700000000</div>
+      <div>nordandco.studio · hello@nordandco.studio</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ===== Мобильное меню (бургер) ===== */
+  document.getElementById('burger').addEventListener('click', function () {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  /* ===== Эксклюзивное открытие услуг: при открытии одной — остальные закрываются ===== */
+  document.querySelectorAll('.service-row').forEach(function (s) {
+    s.addEventListener('toggle', function () {
+      if (s.open) {
+        document.querySelectorAll('.service-row').forEach(function (other) {
+          if (other !== s) other.open = false;
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

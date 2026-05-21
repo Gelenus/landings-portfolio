@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flowdesk — облачная CRM для малого бизнеса</title>
+<meta name="description" content="Flowdesk — CRM для студий, агентств и сервисных компаний. Канбан, автоматизации, AI-ассистент. Триал 14 дней бесплатно.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== База ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fff;
+    color: #111827;
+    line-height: 1.55;
+  }
+  img, svg { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  /* Утилиты */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .grad-text {
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 13px 22px; border-radius: 10px; font-weight: 600; font-size: 15px;
+    transition: transform .15s, box-shadow .15s, background .15s;
+  }
+  .btn-primary {
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(99, 102, 241, .35);
+  }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 22px rgba(99, 102, 241, .45); }
+  .btn-secondary { background: #111827; color: #fff; }
+  .btn-ghost { color: #4b5563; }
+  .btn-ghost:hover { color: #111827; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px;
+    background: linear-gradient(90deg, rgba(99, 102, 241, .1), rgba(139, 92, 246, .1));
+    border: 1px solid rgba(99, 102, 241, .2);
+    color: #6366f1;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .pill .new-tag {
+    background: #6366f1;
+    color: #fff;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .5px;
+  }
+
+  /* ===== Шапка ===== */
+  header.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, .85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 32px; }
+  .logo { display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: 20px; letter-spacing: -.5px; }
+  .logo-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 14px; color: #4b5563; transition: color .15s; }
+  .nav-links a:hover { color: #111827; }
+  .nav-actions { display: flex; align-items: center; gap: 8px; }
+  .burger { display: none; width: 24px; height: 18px; flex-direction: column; justify-content: space-between; }
+  .burger span { width: 100%; height: 2px; background: #111827; border-radius: 2px; }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 1000px; height: 600px;
+    background:
+      radial-gradient(circle at 20% 50%, rgba(99, 102, 241, .15), transparent 40%),
+      radial-gradient(circle at 80% 50%, rgba(139, 92, 246, .15), transparent 40%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 5.5vw, 64px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin: 26px auto 22px;
+    max-width: 820px;
+  }
+  .hero p.lead {
+    font-size: 19px;
+    color: #4b5563;
+    max-width: 620px;
+    margin: 0 auto 36px;
+  }
+  .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .hero-microcopy {
+    display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+    font-size: 13px; color: #6b7280;
+  }
+  .hero-microcopy span { display: inline-flex; align-items: center; gap: 6px; }
+  .hero-microcopy svg { color: #10b981; }
+
+  /* ===== Логотипы клиентов ===== */
+  .clients-row {
+    padding: 50px 0;
+    border-top: 1px solid #f3f4f6;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .clients-row .label {
+    text-align: center;
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 24px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .clients-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .client-logo {
+    color: #9ca3af;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -.5px;
+    display: flex; align-items: center; gap: 8px;
+    opacity: .8;
+  }
+
+  /* ===== Скриншот продукта (SVG dashboard) ===== */
+  .product-shot {
+    margin: 60px auto 0;
+    max-width: 1080px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(99, 102, 241, .2), 0 0 0 1px #e5e7eb;
+    background: #fff;
+  }
+  .product-shot svg { width: 100%; height: auto; display: block; }
+
+  /* ===== Универсальная секция ===== */
+  section.block { padding: 100px 0; }
+  .block-light { background: #f9fafb; }
+  .section-header { text-align: center; max-width: 760px; margin: 0 auto 56px; }
+  .section-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    background: rgba(99, 102, 241, .08);
+    color: #6366f1;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-header h2 { font-size: clamp(32px, 4.5vw, 48px); font-weight: 800; line-height: 1.1; margin-bottom: 14px; letter-spacing: -1px; }
+  .section-header p { font-size: 17px; color: #4b5563; }
+
+  /* ===== Возможности (6 карточек) ===== */
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .feature-card {
+    background: #fff;
+    border: 1px solid #f3f4f6;
+    border-radius: 16px;
+    padding: 32px 28px;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .feature-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(99, 102, 241, .1); border-color: rgba(99, 102, 241, .2); }
+  .feature-card .icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, .12), rgba(139, 92, 246, .12));
+    color: #6366f1;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .feature-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+  .feature-card p { font-size: 15px; color: #4b5563; line-height: 1.6; }
+
+  /* ===== Как работает (3 шага с SVG) ===== */
+  .steps { display: flex; flex-direction: column; gap: 80px; }
+  .step-row {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .step-row.reverse { grid-template-columns: 1.1fr 1fr; }
+  .step-row.reverse .step-content { order: 2; }
+  .step-row.reverse .step-visual { order: 1; }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+  .step-row h3 { font-size: 28px; font-weight: 700; margin-bottom: 14px; letter-spacing: -.5px; }
+  .step-row > .step-content > p { font-size: 17px; color: #4b5563; margin-bottom: 18px; }
+  .step-row ul { list-style: none; }
+  .step-row ul li {
+    padding: 6px 0 6px 26px;
+    font-size: 15px;
+    color: #374151;
+    position: relative;
+  }
+  .step-row ul li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 11px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: rgba(99, 102, 241, .12);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='4'><path d='M20 6L9 17l-5-5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .step-visual {
+    background: linear-gradient(135deg, #f9fafb, #fff);
+    border: 1px solid #f3f4f6;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, .08);
+  }
+
+  /* ===== Интеграции ===== */
+  .integrations-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+  }
+  .integration {
+    background: #fff;
+    border: 1px solid #f3f4f6;
+    border-radius: 12px;
+    padding: 22px 12px;
+    text-align: center;
+    transition: transform .15s, border-color .15s;
+  }
+  .integration:hover { transform: translateY(-2px); border-color: rgba(99, 102, 241, .3); }
+  .integration .icon-circle {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    margin: 0 auto 10px;
+    background: #f9fafb;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    color: #fff;
+  }
+  .integration .name { font-size: 13px; color: #4b5563; font-weight: 500; }
+
+  /* ===== Кейсы клиентов ===== */
+  .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .case-card {
+    background: #fff;
+    border: 1px solid #f3f4f6;
+    border-radius: 18px;
+    padding: 32px 28px;
+  }
+  .case-card .company {
+    display: inline-block;
+    padding: 4px 10px;
+    background: #f3f4f6;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 20px;
+  }
+  .case-card .metric {
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .case-card .metric-label { font-size: 13px; color: #6b7280; margin-bottom: 24px; }
+  .case-card p.story { font-size: 15px; color: #374151; line-height: 1.6; margin-bottom: 20px; }
+  .case-card .person {
+    display: flex; align-items: center; gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid #f3f4f6;
+  }
+  .case-card .person-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .case-card .person-name { font-size: 14px; font-weight: 600; }
+  .case-card .person-role { font-size: 12px; color: #6b7280; }
+
+  /* ===== Тарифы ===== */
+  .pricing-switch {
+    display: inline-flex;
+    align-items: center;
+    background: #f3f4f6;
+    border-radius: 999px;
+    padding: 4px;
+    margin: 0 auto 40px;
+  }
+  .pricing-switch button {
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #4b5563;
+    transition: background .2s, color .2s;
+  }
+  .pricing-switch button.active {
+    background: #fff;
+    color: #111827;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
+  }
+  .pricing-switch .save-badge {
+    margin-left: 6px;
+    padding: 1px 6px;
+    background: rgba(99, 102, 241, .12);
+    color: #6366f1;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .plan-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 36px 32px;
+    transition: transform .2s, border-color .2s;
+  }
+  .plan-card:hover { transform: translateY(-3px); }
+  .plan-card.popular {
+    background: linear-gradient(180deg, #111827, #1f2937);
+    color: #fff;
+    border-color: #111827;
+    position: relative;
+  }
+  .plan-card.popular::before {
+    content: '⭐ Популярный';
+    position: absolute;
+    top: -12px; left: 32px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .plan-card h3 { font-size: 19px; margin-bottom: 6px; }
+  .plan-card .plan-desc { font-size: 14px; color: #6b7280; margin-bottom: 28px; }
+  .plan-card.popular .plan-desc { color: #9ca3af; }
+  .plan-card .plan-price {
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .plan-card .plan-price small { font-size: 18px; color: #6b7280; font-weight: 600; }
+  .plan-card.popular .plan-price small { color: #9ca3af; }
+  .plan-card .plan-billing { font-size: 13px; color: #6b7280; margin-bottom: 24px; }
+  .plan-card.popular .plan-billing { color: #9ca3af; }
+  .plan-card .btn { width: 100%; }
+  .plan-features { margin-top: 24px; list-style: none; }
+  .plan-features li {
+    padding: 8px 0 8px 28px;
+    font-size: 14px;
+    position: relative;
+  }
+  .plan-features li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 12px;
+    width: 16px; height: 16px;
+    background: rgba(99, 102, 241, .12);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='4'><path d='M20 6L9 17l-5-5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+  }
+  .plan-card.popular .plan-features li::before {
+    background-color: rgba(255, 255, 255, .15);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='4'><path d='M20 6L9 17l-5-5'/></svg>");
+  }
+
+  /* ===== Отзывы ===== */
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .review-card {
+    background: #fff;
+    border: 1px solid #f3f4f6;
+    border-radius: 16px;
+    padding: 28px;
+  }
+  .review-card .stars { color: #f59e0b; margin-bottom: 12px; letter-spacing: 2px; }
+  .review-card p.text { font-size: 15px; color: #374151; line-height: 1.6; margin-bottom: 20px; }
+  .review-card .reviewer { display: flex; align-items: center; gap: 12px; }
+  .reviewer-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .reviewer .name { font-size: 14px; font-weight: 600; }
+  .reviewer .role { font-size: 12px; color: #6b7280; }
+
+  /* ===== FAQ ===== */
+  .faq { max-width: 800px; margin: 0 auto; }
+  .faq details {
+    background: #fff;
+    border: 1px solid #f3f4f6;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 26px;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: '+';
+    color: #6366f1;
+    font-size: 24px;
+    font-weight: 300;
+    transition: transform .25s;
+  }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq p.faq-a { padding: 0 26px 22px; font-size: 15px; color: #4b5563; line-height: 1.65; }
+
+  /* ===== Финальный CTA ===== */
+  .final-cta {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 28px;
+    padding: 70px 48px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255, 255, 255, .2), transparent 60%);
+    pointer-events: none;
+  }
+  .final-cta::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(255, 255, 255, .15), transparent 60%);
+    pointer-events: none;
+  }
+  .final-cta h2 {
+    font-size: clamp(34px, 4.5vw, 48px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .final-cta p { font-size: 18px; opacity: .95; max-width: 520px; margin: 0 auto 32px; position: relative; }
+  .final-cta-form {
+    display: flex; gap: 10px; max-width: 460px; margin: 0 auto 18px;
+    position: relative;
+  }
+  .final-cta-form input {
+    flex: 1;
+    padding: 16px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+    font: inherit;
+    font-size: 15px;
+    backdrop-filter: blur(8px);
+  }
+  .final-cta-form input::placeholder { color: rgba(255, 255, 255, .65); }
+  .final-cta-form button {
+    background: #111827;
+    color: #fff;
+    padding: 16px 26px;
+    border-radius: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .final-cta .microcopy { font-size: 13px; opacity: .85; position: relative; }
+
+  /* ===== Футер ===== */
+  footer.site-footer {
+    background: #fff;
+    border-top: 1px solid #f3f4f6;
+    padding: 60px 0 30px;
+    color: #6b7280;
+    font-size: 14px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 36px;
+  }
+  .footer-grid h5 { color: #111827; font-size: 13px; margin-bottom: 14px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .footer-grid p, .footer-grid a { display: block; margin-bottom: 8px; }
+  .footer-grid a:hover { color: #6366f1; }
+  .footer-copy { border-top: 1px solid #f3f4f6; padding-top: 24px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; }
+
+  /* ===== Адаптив ===== */
+  @media (max-width: 960px) {
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .step-row, .step-row.reverse { grid-template-columns: 1fr; gap: 30px; }
+    .step-row.reverse .step-content { order: 2; }
+    .step-row.reverse .step-visual { order: 1; }
+    .integrations-grid { grid-template-columns: repeat(4, 1fr); }
+    .cases-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; padding: 16px 24px; gap: 0; border-bottom: 1px solid #f3f4f6; z-index: 40; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
+    .burger { display: flex; }
+    .nav-actions .btn-ghost { display: none; }
+    section.block { padding: 60px 0; }
+    .features-grid { grid-template-columns: 1fr; }
+    .integrations-grid { grid-template-columns: repeat(3, 1fr); }
+    .final-cta { padding: 50px 24px; }
+    .final-cta-form { flex-direction: column; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Шапка ===== -->
+<header class="site-header">
+  <div class="container nav">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12h6l3-9 3 18 3-9h3"/></svg>
+      </div>
+      <span>Flowdesk</span>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#features">Возможности</a>
+      <a href="#integrations">Интеграции</a>
+      <a href="#pricing">Тарифы</a>
+      <a href="#cases">Кейсы</a>
+      <a href="#faq">Помощь</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#" class="btn btn-ghost">Войти</a>
+      <a href="#cta" class="btn btn-primary">Попробовать бесплатно</a>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container">
+    <span class="pill">
+      <span class="new-tag">NEW</span>
+      AI-ассистент для рутины — уже в Flowdesk
+    </span>
+    <h1>CRM, которая <span class="grad-text">работает за вас</span></h1>
+    <p class="lead">Канбан, автоматизации и AI-ассистент в одной системе. Для студий, агентств и сервисных компаний — без сложных настроек.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn btn-primary">Попробовать 14 дней бесплатно</a>
+      <a href="#features" class="btn btn-secondary">Смотреть демо</a>
+    </div>
+    <div class="hero-microcopy">
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Без карты</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Настройка за 10 минут</span>
+      <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Перенос данных бесплатно</span>
+    </div>
+
+    <!-- SVG-мокап дашборда -->
+    <div class="product-shot">
+      <svg viewBox="0 0 1080 600" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bg-grad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fafbff"/>
+            <stop offset="100%" stop-color="#f3f4f6"/>
+          </linearGradient>
+          <linearGradient id="card-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#6366f1"/>
+            <stop offset="100%" stop-color="#8b5cf6"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Фон приложения -->
+        <rect width="1080" height="600" fill="url(#bg-grad)"/>
+
+        <!-- Топ-бар -->
+        <rect width="1080" height="56" fill="#fff" stroke="#e5e7eb"/>
+        <circle cx="28" cy="28" r="6" fill="#6366f1"/>
+        <text x="44" y="33" font-family="Inter" font-size="14" font-weight="700" fill="#111827">Flowdesk</text>
+        <rect x="320" y="14" width="280" height="28" rx="6" fill="#f3f4f6"/>
+        <text x="335" y="32" font-family="Inter" font-size="12" fill="#9ca3af">Поиск по клиентам, сделкам, задачам…</text>
+        <circle cx="1020" cy="28" r="14" fill="#8b5cf6"/>
+        <text x="1020" y="33" font-family="Inter" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">ЮВ</text>
+
+        <!-- Сайдбар -->
+        <rect x="0" y="56" width="180" height="544" fill="#fff" stroke="#e5e7eb"/>
+        <rect x="16" y="80" width="148" height="32" rx="6" fill="#eef2ff"/>
+        <text x="30" y="100" font-family="Inter" font-size="12" font-weight="600" fill="#6366f1">▦ Канбан</text>
+        <text x="30" y="138" font-family="Inter" font-size="12" fill="#4b5563">▤ Клиенты</text>
+        <text x="30" y="166" font-family="Inter" font-size="12" fill="#4b5563">📋 Задачи</text>
+        <text x="30" y="194" font-family="Inter" font-size="12" fill="#4b5563">📊 Отчёты</text>
+        <text x="30" y="222" font-family="Inter" font-size="12" fill="#4b5563">⚡ Автоматизации</text>
+        <text x="30" y="250" font-family="Inter" font-size="12" fill="#4b5563">✨ AI-ассистент</text>
+        <text x="30" y="278" font-family="Inter" font-size="12" fill="#4b5563">⚙ Настройки</text>
+
+        <!-- Заголовок страницы -->
+        <text x="208" y="100" font-family="Inter" font-size="22" font-weight="800" fill="#111827">Воронка продаж</text>
+        <rect x="900" y="80" width="160" height="36" rx="8" fill="url(#card-grad)"/>
+        <text x="980" y="103" font-family="Inter" font-size="13" font-weight="600" fill="#fff" text-anchor="middle">+ Новая сделка</text>
+
+        <!-- Канбан колонки -->
+        <!-- Колонка 1: Новые -->
+        <rect x="208" y="140" width="200" height="440" rx="14" fill="#fff" stroke="#e5e7eb"/>
+        <circle cx="225" cy="166" r="5" fill="#9ca3af"/>
+        <text x="237" y="171" font-family="Inter" font-size="13" font-weight="700" fill="#111827">Новые · 8</text>
+
+        <rect x="220" y="190" width="176" height="74" rx="8" fill="#f9fafb"/>
+        <text x="232" y="210" font-family="Inter" font-size="12" font-weight="600" fill="#111827">ООО «Меридиан»</text>
+        <text x="232" y="226" font-family="Inter" font-size="11" fill="#6b7280">Сайт + брендинг</text>
+        <rect x="232" y="240" width="40" height="14" rx="3" fill="#fef3c7"/>
+        <text x="252" y="250" font-family="Inter" font-size="9" font-weight="600" fill="#92400e" text-anchor="middle">HOT</text>
+        <text x="386" y="252" font-family="Inter" font-size="11" font-weight="600" fill="#111827" text-anchor="end">280K ₽</text>
+
+        <rect x="220" y="276" width="176" height="74" rx="8" fill="#f9fafb"/>
+        <text x="232" y="296" font-family="Inter" font-size="12" font-weight="600" fill="#111827">Кофейня «Тёмная»</text>
+        <text x="232" y="312" font-family="Inter" font-size="11" fill="#6b7280">Лендинг</text>
+        <text x="386" y="338" font-family="Inter" font-size="11" font-weight="600" fill="#111827" text-anchor="end">120K ₽</text>
+
+        <rect x="220" y="362" width="176" height="58" rx="8" fill="#f9fafb"/>
+        <text x="232" y="382" font-family="Inter" font-size="12" font-weight="600" fill="#111827">Юр-компания «Право»</text>
+        <text x="232" y="398" font-family="Inter" font-size="11" fill="#6b7280">CRM-внедрение</text>
+
+        <!-- Колонка 2: Переговоры -->
+        <rect x="426" y="140" width="200" height="440" rx="14" fill="#fff" stroke="#e5e7eb"/>
+        <circle cx="443" cy="166" r="5" fill="#6366f1"/>
+        <text x="455" y="171" font-family="Inter" font-size="13" font-weight="700" fill="#111827">Переговоры · 5</text>
+
+        <rect x="438" y="190" width="176" height="86" rx="8" fill="#eef2ff"/>
+        <text x="450" y="210" font-family="Inter" font-size="12" font-weight="600" fill="#111827">Авто-салон «Премиум»</text>
+        <text x="450" y="226" font-family="Inter" font-size="11" fill="#6b7280">SMM + контекст</text>
+        <rect x="450" y="240" width="48" height="14" rx="3" fill="#dcfce7"/>
+        <text x="474" y="250" font-family="Inter" font-size="9" font-weight="600" fill="#166534" text-anchor="middle">HIGH</text>
+        <text x="604" y="262" font-family="Inter" font-size="11" font-weight="600" fill="#111827" text-anchor="end">450K ₽</text>
+
+        <rect x="438" y="288" width="176" height="74" rx="8" fill="#f9fafb"/>
+        <text x="450" y="308" font-family="Inter" font-size="12" font-weight="600" fill="#111827">Студия йоги «Лотос»</text>
+        <text x="450" y="324" font-family="Inter" font-size="11" fill="#6b7280">Сайт + бот</text>
+        <text x="604" y="350" font-family="Inter" font-size="11" font-weight="600" fill="#111827" text-anchor="end">95K ₽</text>
+
+        <!-- Колонка 3: Договор -->
+        <rect x="644" y="140" width="200" height="440" rx="14" fill="#fff" stroke="#e5e7eb"/>
+        <circle cx="661" cy="166" r="5" fill="#f59e0b"/>
+        <text x="673" y="171" font-family="Inter" font-size="13" font-weight="700" fill="#111827">Договор · 3</text>
+
+        <rect x="656" y="190" width="176" height="74" rx="8" fill="#f9fafb"/>
+        <text x="668" y="210" font-family="Inter" font-size="12" font-weight="600" fill="#111827">«Альфа-Логистик»</text>
+        <text x="668" y="226" font-family="Inter" font-size="11" fill="#6b7280">Корпоративный сайт</text>
+        <text x="822" y="252" font-family="Inter" font-size="11" font-weight="600" fill="#111827" text-anchor="end">720K ₽</text>
+
+        <rect x="656" y="276" width="176" height="74" rx="8" fill="#f9fafb"/>
+        <text x="668" y="296" font-family="Inter" font-size="12" font-weight="600" fill="#111827">Школа танцев «Шаг»</text>
+        <text x="668" y="312" font-family="Inter" font-size="11" fill="#6b7280">Mobile-приложение</text>
+        <text x="822" y="338" font-family="Inter" font-size="11" font-weight="600" fill="#111827" text-anchor="end">340K ₽</text>
+
+        <!-- Колонка 4: Закрыто -->
+        <rect x="862" y="140" width="200" height="440" rx="14" fill="#fff" stroke="#e5e7eb"/>
+        <circle cx="879" cy="166" r="5" fill="#10b981"/>
+        <text x="891" y="171" font-family="Inter" font-size="13" font-weight="700" fill="#111827">Закрыто · 12</text>
+
+        <rect x="874" y="190" width="176" height="74" rx="8" fill="#f0fdf4"/>
+        <text x="886" y="210" font-family="Inter" font-size="12" font-weight="600" fill="#111827">ООО «Зенит»</text>
+        <text x="886" y="226" font-family="Inter" font-size="11" fill="#16a34a">✓ Оплачено</text>
+        <text x="1040" y="252" font-family="Inter" font-size="11" font-weight="600" fill="#111827" text-anchor="end">510K ₽</text>
+
+        <rect x="874" y="276" width="176" height="74" rx="8" fill="#f0fdf4"/>
+        <text x="886" y="296" font-family="Inter" font-size="12" font-weight="600" fill="#111827">«Урбан-Дизайн»</text>
+        <text x="886" y="312" font-family="Inter" font-size="11" fill="#16a34a">✓ Оплачено</text>
+        <text x="1040" y="338" font-family="Inter" font-size="11" font-weight="600" fill="#111827" text-anchor="end">220K ₽</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Логотипы клиентов ===== -->
+<section class="clients-row">
+  <div class="container">
+    <div class="label">Нам доверяют 8 000+ компаний по СНГ</div>
+    <div class="clients-grid">
+      <div class="client-logo">◐ Linstead</div>
+      <div class="client-logo">▰ NorthPath</div>
+      <div class="client-logo">◉ Tuncha</div>
+      <div class="client-logo">▲ Brigade</div>
+      <div class="client-logo">◇ Kvarta</div>
+      <div class="client-logo">◐ Loop&amp;Co</div>
+      <div class="client-logo">▣ Pixelroom</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Возможности (6 карточек) ===== -->
+<section class="block" id="features">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Возможности</div>
+      <h2>Всё для управления командой<br>и сделками — в одном месте</h2>
+      <p>Никаких десятков интеграций и кустарных Excel-таблиц. Flowdesk закрывает все основные процессы.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="11" rx="1"/></svg></div>
+        <h3>Канбан и воронки</h3>
+        <p>Несколько досок под разные процессы: продажи, найм, проекты. Drag-and-drop, фильтры, цветные метки.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h3>Автоматизации</h3>
+        <p>Триггеры на изменение статуса, по таймеру, по дате. Шаблоны типовых сценариев — без кода.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5"/></svg></div>
+        <h3>Отчёты и аналитика</h3>
+        <p>Воронка, выручка, конверсия, прогноз — графики обновляются в реальном времени. Экспорт в PDF и Excel.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M14.5 9a3.5 3.5 0 0 0-7 0M12 13v3"/></svg></div>
+        <h3>Интеграции</h3>
+        <p>Telegram, WhatsApp, e-mail, IP-телефония, Яндекс.Метрика, Tilda, банковские шлюзы — настройка по чек-листу.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg></div>
+        <h3>AI-ассистент</h3>
+        <p>Подскажет, какой клиент «остыл», напишет первое касание, найдёт паттерн в проигранных сделках.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg></div>
+        <h3>Мобильное приложение</h3>
+        <p>iOS и Android. Голосовые заметки в карточки, пуш-уведомления, оффлайн-режим.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Как работает (3 шага с SVG-мокапами) ===== -->
+<section class="block block-light">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Как это работает</div>
+      <h2>От регистрации до первой сделки —<br><span class="grad-text">меньше получаса</span></h2>
+    </div>
+    <div class="steps">
+      <!-- Шаг 1 -->
+      <div class="step-row">
+        <div class="step-content">
+          <div class="step-num">1</div>
+          <h3>Подключаете каналы клиентов</h3>
+          <p>Telegram, WhatsApp, e-mail, телефония, формы с сайта — все обращения собираются в одной ленте.</p>
+          <ul>
+            <li>Готовые интеграции — не нужен разработчик</li>
+            <li>Заявка превращается в карточку автоматически</li>
+            <li>Старый клиент находится по номеру или e-mail</li>
+          </ul>
+        </div>
+        <div class="step-visual">
+          <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="240" rx="8" fill="#fff"/>
+            <text x="20" y="35" font-family="Inter" font-size="14" font-weight="700" fill="#111827">Входящие · 14</text>
+            <rect x="20" y="50" width="360" height="48" rx="8" fill="#f9fafb"/>
+            <circle cx="44" cy="74" r="14" fill="#26a69a"/>
+            <text x="44" y="79" font-family="Inter" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">TG</text>
+            <text x="68" y="71" font-family="Inter" font-size="12" font-weight="600" fill="#111827">Игорь Самойлов</text>
+            <text x="68" y="87" font-family="Inter" font-size="11" fill="#6b7280">«Здравствуйте, нужен лендинг…»</text>
+            <text x="360" y="79" font-family="Inter" font-size="10" fill="#9ca3af" text-anchor="end">12:24</text>
+
+            <rect x="20" y="108" width="360" height="48" rx="8" fill="#f9fafb"/>
+            <circle cx="44" cy="132" r="14" fill="#25d366"/>
+            <text x="44" y="137" font-family="Inter" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">WA</text>
+            <text x="68" y="129" font-family="Inter" font-size="12" font-weight="600" fill="#111827">Юлия Попова</text>
+            <text x="68" y="145" font-family="Inter" font-size="11" fill="#6b7280">«Сколько стоит SMM для салона…»</text>
+            <text x="360" y="137" font-family="Inter" font-size="10" fill="#9ca3af" text-anchor="end">11:50</text>
+
+            <rect x="20" y="166" width="360" height="48" rx="8" fill="#eef2ff"/>
+            <circle cx="44" cy="190" r="14" fill="#6366f1"/>
+            <text x="44" y="195" font-family="Inter" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">📧</text>
+            <text x="68" y="187" font-family="Inter" font-size="12" font-weight="600" fill="#111827">forma@site.ru</text>
+            <text x="68" y="203" font-family="Inter" font-size="11" fill="#6366f1">Новая заявка с сайта</text>
+            <text x="360" y="195" font-family="Inter" font-size="10" fill="#9ca3af" text-anchor="end">сейчас</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Шаг 2 -->
+      <div class="step-row reverse">
+        <div class="step-content">
+          <div class="step-num">2</div>
+          <h3>Настраиваете автоматизации без кода</h3>
+          <p>Конструктор «если → то». Назначить ответственного, отправить напоминание, перевести по воронке.</p>
+          <ul>
+            <li>Готовые шаблоны под типовые процессы</li>
+            <li>Любые триггеры: время, статус, поля, теги</li>
+            <li>Уведомления в Telegram команде</li>
+          </ul>
+        </div>
+        <div class="step-visual">
+          <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="240" rx="8" fill="#fff"/>
+            <text x="20" y="35" font-family="Inter" font-size="14" font-weight="700" fill="#111827">Новая автоматизация</text>
+
+            <rect x="20" y="55" width="360" height="44" rx="8" fill="#eef2ff" stroke="#6366f1" stroke-width="1.5"/>
+            <text x="34" y="74" font-family="Inter" font-size="11" font-weight="700" fill="#6366f1">ЕСЛИ</text>
+            <text x="80" y="74" font-family="Inter" font-size="12" font-weight="600" fill="#111827">Сделка переходит в «Договор»</text>
+            <text x="34" y="89" font-family="Inter" font-size="10" fill="#6b7280">Триггер: смена статуса</text>
+
+            <path d="M200 100 L200 120" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <path d="M196 117 L200 121 L204 117" stroke="#6366f1" stroke-width="1.5" fill="none"/>
+
+            <rect x="20" y="124" width="360" height="44" rx="8" fill="#f9fafb"/>
+            <text x="34" y="143" font-family="Inter" font-size="11" font-weight="700" fill="#8b5cf6">ТО</text>
+            <text x="80" y="143" font-family="Inter" font-size="12" font-weight="600" fill="#111827">Создать задачу «Подготовить акт»</text>
+            <text x="34" y="158" font-family="Inter" font-size="10" fill="#6b7280">Срок: +2 дня · Ответственный: автор</text>
+
+            <rect x="20" y="172" width="360" height="44" rx="8" fill="#f9fafb"/>
+            <text x="34" y="191" font-family="Inter" font-size="11" font-weight="700" fill="#8b5cf6">И</text>
+            <text x="80" y="191" font-family="Inter" font-size="12" font-weight="600" fill="#111827">Отправить пуш в Telegram бухгалтеру</text>
+            <text x="34" y="206" font-family="Inter" font-size="10" fill="#6b7280">Шаблон: «Новый договор {{client}}»</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Шаг 3 -->
+      <div class="step-row">
+        <div class="step-content">
+          <div class="step-num">3</div>
+          <h3>Видите всё в реальном времени</h3>
+          <p>Дашборд с ключевыми метриками: выручка, конверсия, средний цикл сделки, нагрузка команды.</p>
+          <ul>
+            <li>Прогноз выручки до конца месяца</li>
+            <li>Видно, где сделки «застревают»</li>
+            <li>AI подсвечивает аномалии</li>
+          </ul>
+        </div>
+        <div class="step-visual">
+          <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="240" rx="8" fill="#fff"/>
+            <text x="20" y="35" font-family="Inter" font-size="14" font-weight="700" fill="#111827">Выручка · 30 дней</text>
+            <text x="380" y="35" font-family="Inter" font-size="12" font-weight="700" fill="#10b981" text-anchor="end">+34%</text>
+
+            <!-- График -->
+            <polyline points="20,180 60,165 100,170 140,140 180,130 220,110 260,95 300,70 340,55 380,50"
+                      fill="none" stroke="url(#card-grad)" stroke-width="2.5"/>
+            <polygon points="20,180 60,165 100,170 140,140 180,130 220,110 260,95 300,70 340,55 380,50 380,210 20,210"
+                     fill="url(#card-grad)" opacity="0.08"/>
+
+            <!-- Точки -->
+            <circle cx="340" cy="55" r="4" fill="#6366f1"/>
+            <circle cx="340" cy="55" r="8" fill="#6366f1" opacity="0.2"/>
+
+            <!-- Подписи по оси X -->
+            <text x="20" y="225" font-family="Inter" font-size="9" fill="#9ca3af">1 мая</text>
+            <text x="200" y="225" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="middle">15 мая</text>
+            <text x="380" y="225" font-family="Inter" font-size="9" fill="#9ca3af" text-anchor="end">сегодня</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Интеграции ===== -->
+<section class="block" id="integrations">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Интеграции</div>
+      <h2>Подключается ко всему, чем<br>пользуется ваша команда</h2>
+      <p>40+ готовых интеграций и открытый API для нестандартных подключений</p>
+    </div>
+    <div class="integrations-grid">
+      <div class="integration">
+        <div class="icon-circle" style="background:#26a69a">TG</div>
+        <div class="name">Telegram</div>
+      </div>
+      <div class="integration">
+        <div class="icon-circle" style="background:#25d366">WA</div>
+        <div class="name">WhatsApp</div>
+      </div>
+      <div class="integration">
+        <div class="icon-circle" style="background:#ea4335">G</div>
+        <div class="name">Gmail</div>
+      </div>
+      <div class="integration">
+        <div class="icon-circle" style="background:#0078d4">O</div>
+        <div class="name">Outlook</div>
+      </div>
+      <div class="integration">
+        <div class="icon-circle" style="background:#ffd54f;color:#111">Я</div>
+        <div class="name">Я.Метрика</div>
+      </div>
+      <div class="integration">
+        <div class="icon-circle" style="background:#f48024">T</div>
+        <div class="name">Tilda</div>
+      </div>
+      <div class="integration">
+        <div class="icon-circle" style="background:#6366f1">Sb</div>
+        <div class="name">Сбер</div>
+      </div>
+      <div class="integration">
+        <div class="icon-circle" style="background:#fee100;color:#111">Т</div>
+        <div class="name">Тинькофф</div>
+      </div>
+      <div class="integration">
+        <div class="icon-circle" style="background:#0091ff">Mn</div>
+        <div class="name">Мегаплан</div>
+      </div>
+      <div class="integration">
+        <div class="icon-circle" style="background:#4caf50">1С</div>
+        <div class="name">1С:Бухгалтерия</div>
+      </div>
+      <div class="integration">
+        <div class="icon-circle" style="background:#737373">Sl</div>
+        <div class="name">Slack</div>
+      </div>
+      <div class="integration">
+        <div class="icon-circle" style="background:#8b5cf6">A</div>
+        <div class="name">API</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Кейсы клиентов ===== -->
+<section class="block block-light" id="cases">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Кейсы</div>
+      <h2>Цифры, которые получают<br>наши клиенты</h2>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card">
+        <span class="company">Дизайн-студия «Кварта»</span>
+        <div class="metric">+45%</div>
+        <div class="metric-label">конверсия из лида в сделку</div>
+        <p class="story">«До Flowdesk заявки приходили в общий чат — половина забывалась. После — каждая заявка живёт в карточке, никто не теряется.»</p>
+        <div class="person">
+          <div class="person-avatar">АП</div>
+          <div>
+            <div class="person-name">Анна Прохорова</div>
+            <div class="person-role">Co-founder, «Кварта»</div>
+          </div>
+        </div>
+      </div>
+      <div class="case-card">
+        <span class="company">Сервис «АвтоМастер»</span>
+        <div class="metric">−10ч</div>
+        <div class="metric-label">в неделю на рутину</div>
+        <p class="story">«Автоматизации делают за нас половину менеджерской работы: записи на сервис, напоминания, СМС. Я перестал тонуть в Excel.»</p>
+        <div class="person">
+          <div class="person-avatar">ДГ</div>
+          <div>
+            <div class="person-name">Денис Гордеев</div>
+            <div class="person-role">CEO, «АвтоМастер»</div>
+          </div>
+        </div>
+      </div>
+      <div class="case-card">
+        <span class="company">SMM-агентство Loop&amp;Co</span>
+        <div class="metric">×2</div>
+        <div class="metric-label">проектов в работе с той же командой</div>
+        <p class="story">«Раньше мы вели проекты в Trello и Notion параллельно. Flowdesk объединил всё — и нам не пришлось нанимать ещё двух менеджеров при росте.»</p>
+        <div class="person">
+          <div class="person-avatar">МК</div>
+          <div>
+            <div class="person-name">Михаил Котов</div>
+            <div class="person-role">Founder, Loop&amp;Co</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Тарифы ===== -->
+<section class="block" id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Тарифы</div>
+      <h2>Простые и честные цены</h2>
+      <p>Без скрытых платежей. Возврат денег в первые 30 дней — без вопросов.</p>
+    </div>
+    <div style="text-align: center;">
+      <!-- Переключатель оплаты: месяц / год -->
+      <div class="pricing-switch" id="pricingSwitch">
+        <button class="active" data-period="month">Помесячно</button>
+        <button data-period="year">Год <span class="save-badge">−20%</span></button>
+      </div>
+    </div>
+    <div class="pricing-grid">
+      <div class="plan-card">
+        <h3>Старт</h3>
+        <div class="plan-desc">Для соло-фрилансеров и микро-команд</div>
+        <div class="plan-price">0 ₽<small>/мес</small></div>
+        <div class="plan-billing">До 3 пользователей · навсегда</div>
+        <a href="#cta" class="btn btn-secondary">Начать бесплатно</a>
+        <ul class="plan-features">
+          <li>Канбан и воронки</li>
+          <li>До 100 сделок в месяц</li>
+          <li>Базовые интеграции</li>
+          <li>Мобильное приложение</li>
+          <li>1 ГБ хранилища</li>
+        </ul>
+      </div>
+      <div class="plan-card popular">
+        <h3>Про</h3>
+        <div class="plan-desc">Для растущих команд до 20 человек</div>
+        <div class="plan-price" data-month="990 ₽" data-year="790 ₽">990 ₽<small>/польз. в мес</small></div>
+        <div class="plan-billing">Минимум 3 пользователя</div>
+        <a href="#cta" class="btn btn-primary">Попробовать 14 дней</a>
+        <ul class="plan-features">
+          <li>Всё из тарифа «Старт»</li>
+          <li>Безлимит сделок</li>
+          <li>Автоматизации и триггеры</li>
+          <li>AI-ассистент (500 запросов / мес)</li>
+          <li>Все интеграции</li>
+          <li>50 ГБ хранилища</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h3>Бизнес</h3>
+        <div class="plan-desc">Для компаний от 20 человек</div>
+        <div class="plan-price" data-month="2 490 ₽" data-year="1 990 ₽">2 490 ₽<small>/польз. в мес</small></div>
+        <div class="plan-billing">Минимум 10 пользователей</div>
+        <a href="#cta" class="btn btn-secondary">Связаться с продажами</a>
+        <ul class="plan-features">
+          <li>Всё из тарифа «Про»</li>
+          <li>SSO и сложные роли</li>
+          <li>Безлимит AI-запросов</li>
+          <li>Выделенный менеджер</li>
+          <li>SLA 99.95%</li>
+          <li>500 ГБ хранилища</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Отзывы ===== -->
+<section class="block block-light">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Отзывы</div>
+      <h2>4.8 на VC и Habr</h2>
+      <p>А ещё лучшая поддержка в категории — отвечаем за 4 минуты в чате</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="text">Перешли с amoCRM — почувствовали разницу за неделю. Интерфейс легче, автоматизации настраиваются мышкой, AI реально помогает написать первое сообщение клиенту.</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">КС</div>
+          <div>
+            <div class="name">Ксения Соколова</div>
+            <div class="role">Operations · студия Nestlie</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="text">Сэкономили на найме менеджера благодаря автоматизациям и пушам. Стоит как одна подписка на Notion — а закрывает в 5 раз больше задач.</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">ИЛ</div>
+          <div>
+            <div class="name">Иван Левченко</div>
+            <div class="role">Founder · WebKraft</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="text">Очень аккуратная команда: миграция данных бесплатно, чат-поддержка отвечает быстрее всех. Главное — мобильное приложение реально работает (это редкость в CRM).</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">ВН</div>
+          <div>
+            <div class="name">Вера Найдёнова</div>
+            <div class="role">Head of Sales · «Альфа-Логистик»</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="block" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">FAQ</div>
+      <h2>Что обычно спрашивают</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Что входит в триал 14 дней?</summary>
+        <p class="faq-a">Полный доступ ко всем возможностям тарифа «Про» без карты — до 5 пользователей, безлимит сделок, все автоматизации, AI-ассистент. По окончании триала аккаунт переходит на «Старт» (не пропадёт, не удалится).</p>
+      </details>
+      <details>
+        <summary>Как мигрировать с другой CRM?</summary>
+        <p class="faq-a">Бесплатно. Команда внедрения подключится к Zoom, заберёт данные из amoCRM/Bitrix24/Pipedrive по API и развернёт всё в Flowdesk с теми же воронками и полями. Обычно 1-3 дня.</p>
+      </details>
+      <details>
+        <summary>Где хранятся данные?</summary>
+        <p class="faq-a">Дата-центры Selectel (Москва, Санкт-Петербург). Сертификация 152-ФЗ, ISO 27001. Резервные копии каждые 4 часа, retention 30 дней.</p>
+      </details>
+      <details>
+        <summary>Можно ли отказаться от подписки и забрать данные?</summary>
+        <p class="faq-a">Да, в любой момент. Все данные можно выгрузить в JSON или CSV одной кнопкой в настройках. Никаких «вы не можете уйти, потому что…» — мы не блокируем экспорт.</p>
+      </details>
+      <details>
+        <summary>Что если в команде только 1 человек — стоит ли использовать?</summary>
+        <p class="faq-a">Стоит. Тариф «Старт» бесплатный для одного, а автоматизации экономят время даже соло-фрилансеру. У нас 1 800 пользователей — индивидуальных предпринимателей.</p>
+      </details>
+      <details>
+        <summary>Подходит для розничной торговли / интернет-магазина?</summary>
+        <p class="faq-a">Скорее нет — мы заточены под B2B-сервисные модели (студии, агентства, консалтинг). Для e-commerce смотрите специализированные решения вроде RetailCRM.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Финальный CTA ===== -->
+<section class="block" id="cta">
+  <div class="container">
+    <div class="final-cta">
+      <h2>Попробуйте Flowdesk бесплатно</h2>
+      <p>14 дней полного доступа без карты. Через час уже работаете, а не настраиваете.</p>
+      <!-- Демо-форма: submit отключён -->
+      <form class="final-cta-form" onsubmit="return false">
+        <input type="email" placeholder="Рабочий e-mail" required>
+        <button type="button">Начать бесплатно →</button>
+      </form>
+      <div class="microcopy">Без карты · 14 дней · Перенос данных бесплатно</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Футер ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom: 14px;">
+          <div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12h6l3-9 3 18 3-9h3"/></svg></div>
+          <span>Flowdesk</span>
+        </div>
+        <p>Облачная CRM для растущих сервисных компаний. Резиденты Сколково.</p>
+      </div>
+      <div>
+        <h5>Продукт</h5>
+        <a href="#features">Возможности</a>
+        <a href="#integrations">Интеграции</a>
+        <a href="#pricing">Тарифы</a>
+        <a href="#">Дорожная карта</a>
+      </div>
+      <div>
+        <h5>Компания</h5>
+        <a href="#">О нас</a>
+        <a href="#">Блог</a>
+        <a href="#">Карьера</a>
+        <a href="#">Партнёрам</a>
+      </div>
+      <div>
+        <h5>Поддержка</h5>
+        <a href="#">База знаний</a>
+        <a href="#">Документация API</a>
+        <a href="#">Сообщество</a>
+        <a href="#">Контакты</a>
+      </div>
+      <div>
+        <h5>Документы</h5>
+        <a href="#">Договор-оферта</a>
+        <a href="#">152-ФЗ</a>
+        <a href="#">Cookies</a>
+        <a href="#">SLA</a>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <div>© 2026 Flowdesk · ООО «Флоудеск» · ИНН 7700000000</div>
+      <div>flowdesk.ru · hello@flowdesk.ru</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ===== Мобильное меню (бургер) ===== */
+  document.getElementById('burger').addEventListener('click', function () {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  /* ===== Переключатель тарифов: помесячно/годовой ===== */
+  const switchBtns = document.querySelectorAll('#pricingSwitch button');
+  const priceEls = document.querySelectorAll('.plan-price[data-month]');
+
+  // Переключает активную кнопку и переписывает цены в карточках тарифов
+  switchBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      switchBtns.forEach(function (x) { x.classList.remove('active'); });
+      b.classList.add('active');
+      const period = b.dataset.period;
+      priceEls.forEach(function (el) {
+        const val = el.dataset[period];
+        // Сохраняем подсказку «/польз. в мес» в <small>
+        el.innerHTML = val + '<small>/польз. в мес</small>';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>СанМастер — сантехник в Москве за 30 минут, фикс-цены, гарантия 1 год</title>
+<meta name="description" content="Вызов сантехника на дом по Москве и области. Выезд за 30 минут, фиксированные цены, гарантия 1 год. Работаем 24/7.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== Сброс ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fff;
+    color: #1f2937;
+    line-height: 1.55;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  /* Утилиты */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 16px 28px; border-radius: 10px; font-weight: 600; font-size: 16px;
+    transition: transform .15s, box-shadow .15s, background .15s;
+  }
+  .btn-primary { background: #ea580c; color: #fff; }
+  .btn-primary:hover { background: #c2410c; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(234, 88, 12, .3); }
+  .btn-dark { background: #1f2937; color: #fff; }
+  .btn-outline { border: 1.5px solid #1f2937; color: #1f2937; }
+
+  /* ===== Шапка ===== */
+  header.site-header {
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+  .header-top { background: #1f2937; color: #d1d5db; font-size: 13px; padding: 8px 0; }
+  .header-top .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  .header-top span { display: inline-flex; align-items: center; gap: 6px; }
+  .header-top .work-status { color: #34d399; }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 24px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 22px; color: #ea580c; }
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: #ea580c;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 15px; font-weight: 500; color: #1f2937; }
+  .nav-links a:hover { color: #ea580c; }
+  .nav-phone {
+    display: flex; flex-direction: column; align-items: flex-end;
+    font-size: 13px; color: #6b7280;
+  }
+  .nav-phone strong { font-size: 19px; color: #1f2937; font-weight: 700; }
+  .header-actions { display: flex; align-items: center; gap: 20px; }
+  .burger { display: none; width: 28px; height: 22px; flex-direction: column; justify-content: space-between; }
+  .burger span { width: 100%; height: 2.5px; background: #1f2937; border-radius: 2px; }
+
+  /* ===== Hero ===== */
+  .hero {
+    background: linear-gradient(180deg, #fff7ed 0%, #ffedd5 100%);
+    padding: 70px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #fff;
+    border: 1px solid #fed7aa;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #ea580c;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+    color: #1f2937;
+  }
+  .hero h1 .accent { color: #ea580c; }
+  .hero p.lead { font-size: 18px; color: #4b5563; margin-bottom: 28px; max-width: 520px; }
+  .hero-form {
+    background: #fff;
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .08);
+    display: flex;
+    gap: 10px;
+    margin-bottom: 36px;
+    max-width: 540px;
+  }
+  .hero-form input {
+    flex: 1;
+    padding: 14px 18px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 16px;
+  }
+  .hero-form input:focus { outline: 2px solid #ea580c; }
+  .hero-form button {
+    padding: 14px 24px;
+    background: #ea580c;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    white-space: nowrap;
+  }
+  .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .hero-stat .num { font-size: 28px; font-weight: 800; color: #ea580c; line-height: 1; }
+  .hero-stat .lbl { font-size: 13px; color: #6b7280; margin-top: 4px; }
+  .hero-photo {
+    aspect-ratio: 7/6;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .12);
+    position: relative;
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-photo .rating-badge {
+    position: absolute;
+    bottom: 20px; left: 20px;
+    background: #fff;
+    padding: 14px 18px;
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .15);
+    display: flex; gap: 12px; align-items: center;
+  }
+  .hero-photo .rating-badge .stars { color: #ea580c; font-size: 16px; letter-spacing: 1px; }
+  .hero-photo .rating-badge .text { font-size: 13px; color: #6b7280; }
+  .hero-photo .rating-badge strong { color: #1f2937; font-size: 16px; }
+
+  /* ===== Универсальная секция ===== */
+  section.block { padding: 80px 0; }
+  .section-header { max-width: 700px; margin-bottom: 48px; }
+  .section-header.center { margin: 0 auto 48px; text-align: center; }
+  .section-tag { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #ea580c; margin-bottom: 12px; }
+  .section-header h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; line-height: 1.15; margin-bottom: 12px; color: #1f2937; }
+  .section-header p { font-size: 17px; color: #6b7280; }
+
+  /* ===== Услуги (сетка карточек) ===== */
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .service-card {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 28px 24px;
+    border: 1px solid transparent;
+    transition: transform .2s, border-color .2s, box-shadow .2s;
+    cursor: pointer;
+  }
+  .service-card:hover {
+    transform: translateY(-3px);
+    border-color: #fed7aa;
+    box-shadow: 0 10px 30px rgba(234, 88, 12, .1);
+  }
+  .service-card .icon {
+    width: 52px; height: 52px;
+    background: #fff;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: #ea580c;
+    margin-bottom: 18px;
+  }
+  .service-card h3 { font-size: 17px; margin-bottom: 8px; color: #1f2937; }
+  .service-card .price-from {
+    font-size: 14px;
+    color: #6b7280;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+  }
+  .service-card .price-from strong { color: #ea580c; font-size: 19px; font-weight: 700; }
+
+  /* ===== Как мы работаем (4 шага) ===== */
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; }
+  .step {
+    text-align: center;
+    padding: 0 12px;
+    position: relative;
+  }
+  .step::after {
+    content: '';
+    position: absolute;
+    top: 32px; right: -30%;
+    width: 60%;
+    height: 2px;
+    background: repeating-linear-gradient(90deg, #fed7aa 0, #fed7aa 6px, transparent 6px, transparent 12px);
+  }
+  .step:last-child::after { display: none; }
+  .step-num {
+    width: 64px; height: 64px;
+    margin: 0 auto 20px;
+    background: #ea580c;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 22px;
+    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+  .step h4 { font-size: 18px; margin-bottom: 8px; }
+  .step p { font-size: 14px; color: #6b7280; }
+
+  /* ===== Прайс-лист ===== */
+  .price-block { background: #f9fafb; }
+  .price-table {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .04);
+  }
+  .price-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 28px;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .price-row:last-child { border-bottom: none; }
+  .price-row:nth-child(odd) { background: #fafafa; }
+  .price-row .service-name { font-weight: 500; }
+  .price-row .service-time { font-size: 13px; color: #6b7280; }
+  .price-row .price-val { font-weight: 700; color: #ea580c; font-size: 18px; white-space: nowrap; }
+
+  /* ===== Преимущества ===== */
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .feature {
+    display: flex;
+    gap: 18px;
+    padding: 24px;
+    border-radius: 14px;
+    background: #fff7ed;
+  }
+  .feature .icon {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    background: #ea580c;
+    border-radius: 12px;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .feature h4 { font-size: 17px; margin-bottom: 6px; }
+  .feature p { font-size: 14px; color: #6b7280; line-height: 1.55; }
+
+  /* ===== Отзывы ===== */
+  .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .review {
+    background: #fff;
+    border: 1px solid #f3f4f6;
+    border-radius: 16px;
+    padding: 28px;
+  }
+  .review-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .review-head img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
+  .review-head .name { font-weight: 700; font-size: 16px; }
+  .review-head .where { font-size: 13px; color: #6b7280; }
+  .review .stars { color: #ea580c; margin-bottom: 8px; letter-spacing: 1px; }
+  .review p.text { font-size: 15px; color: #374151; line-height: 1.6; }
+  .review .meta-line { margin-top: 14px; font-size: 12px; color: #9ca3af; }
+
+  /* ===== Зона выезда ===== */
+  .zone-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .zone-map {
+    aspect-ratio: 4/3;
+    background: #1f2937;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    padding: 28px;
+  }
+  .zone-districts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+  .zone-districts div {
+    padding: 8px 0;
+    font-size: 15px;
+    border-bottom: 1px dashed #e5e7eb;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .zone-districts div::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: #ea580c;
+    border-radius: 50%;
+  }
+
+  /* ===== Финальная форма заявки ===== */
+  .lead-block {
+    background: #1f2937;
+    color: #fff;
+    border-radius: 24px;
+    padding: 56px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .lead-block h2 { font-size: 32px; margin-bottom: 14px; line-height: 1.15; }
+  .lead-block h2 .accent { color: #fb923c; }
+  .lead-block > div > p { color: #d1d5db; margin-bottom: 24px; }
+  .lead-block ul { list-style: none; }
+  .lead-block li { padding: 6px 0 6px 28px; position: relative; font-size: 15px; }
+  .lead-block li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #fb923c;
+    font-weight: 700;
+  }
+  .lead-form-grid { display: grid; gap: 12px; }
+  .lead-form-grid input, .lead-form-grid select, .lead-form-grid textarea {
+    padding: 16px 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    background: rgba(255, 255, 255, .08);
+    color: #fff;
+    font: inherit;
+    font-size: 15px;
+  }
+  .lead-form-grid input::placeholder, .lead-form-grid textarea::placeholder { color: rgba(255, 255, 255, .55); }
+  .lead-form-grid select { color: rgba(255, 255, 255, .55); }
+  .lead-form-grid input:focus, .lead-form-grid select:focus, .lead-form-grid textarea:focus { outline: 2px solid #fb923c; }
+  .lead-form-grid textarea { resize: vertical; min-height: 80px; }
+  .lead-form-grid button {
+    padding: 18px;
+    background: #ea580c;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 4px;
+  }
+  .lead-form-grid .disclaimer { font-size: 12px; color: #9ca3af; }
+
+  /* ===== Футер ===== */
+  footer.site-footer {
+    background: #111827;
+    color: #9ca3af;
+    padding: 50px 0 28px;
+    font-size: 14px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 36px;
+    margin-bottom: 32px;
+  }
+  .footer-grid h5 { color: #f9fafb; font-size: 14px; margin-bottom: 14px; font-weight: 700; }
+  .footer-grid p { margin-bottom: 8px; }
+  .footer-copy { border-top: 1px solid #374151; padding-top: 24px; font-size: 13px; }
+
+  /* ===== Адаптив ===== */
+  @media (max-width: 960px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps-grid { grid-template-columns: repeat(2, 1fr); }
+    .step::after { display: none; }
+    .features-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .zone-grid { grid-template-columns: 1fr; }
+    .lead-block { grid-template-columns: 1fr; padding: 36px 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; padding: 16px 24px; border-bottom: 1px solid #e5e7eb; z-index: 30; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
+    .burger { display: flex; }
+    .nav-phone { display: none; }
+    section.block { padding: 50px 0; }
+    .services-grid { grid-template-columns: 1fr; }
+    .price-row { grid-template-columns: 1fr; gap: 4px; padding: 14px 18px; }
+    .price-row .service-time { font-size: 12px; }
+    .hero-form { flex-direction: column; }
+    .hero-stats { gap: 20px; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Шапка ===== -->
+<header class="site-header">
+  <!-- Верхняя полоса со статусом работы и контактами -->
+  <div class="header-top">
+    <div class="container">
+      <span class="work-status">● Работаем сейчас · 24/7</span>
+      <span>Москва и область · выезд по всему ЦКАД</span>
+    </div>
+  </div>
+  <div class="container nav">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 7l-6 6m0-6l6 6M2 12a10 10 0 1 0 20 0 10 10 0 0 0-20 0z"/></svg>
+      </div>
+      <span>СанМастер</span>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#services">Услуги</a>
+      <a href="#how">Как работаем</a>
+      <a href="#price">Цены</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <div class="nav-phone">
+        <span>Круглосуточно</span>
+        <strong>+7 (495) 123-45-67</strong>
+      </div>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#ea580c"><circle cx="12" cy="12" r="10"/></svg>
+        Мастер у вас за 30 минут
+      </div>
+      <h1>Сантехник в Москве — <span class="accent">приедем за 30 минут</span></h1>
+      <p class="lead">Фиксированные цены без сюрпризов, гарантия на работы 1 год, оплата после устранения проблемы. Работаем круглосуточно.</p>
+      <!-- Демо-форма: submit отключён -->
+      <form class="hero-form" onsubmit="return false">
+        <input type="tel" placeholder="+7 (___) ___-__-__" required>
+        <button type="button">Вызвать мастера</button>
+      </form>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">10 000+</div>
+          <div class="lbl">выполненных заказов</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">4.9</div>
+          <div class="lbl">рейтинг на Яндексе</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">24/7</div>
+          <div class="lbl">работаем без выходных</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="https://picsum.photos/seed/plumber-master/800/700" alt="Мастер СанМастер" loading="lazy">
+      <div class="rating-badge">
+        <div>
+          <div class="stars">★★★★★</div>
+          <div class="text"><strong>4.9</strong> из 5 · 2 847 отзывов</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Услуги ===== -->
+<section class="block" id="services">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-tag">Услуги</div>
+      <h2>Что мы делаем</h2>
+      <p>Любые сантехнические работы — от устранения протечки до полного ремонта санузла</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 0L8 4m4 4l4-4M5 9h14v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9z"/></svg></div>
+        <h3>Замена смесителя</h3>
+        <div class="price-from">от <strong>1 200 ₽</strong></div>
+      </div>
+      <div class="service-card">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
+        <h3>Устранение засора</h3>
+        <div class="price-from">от <strong>900 ₽</strong></div>
+      </div>
+      <div class="service-card">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 10h8M8 14h8M8 18h4"/></svg></div>
+        <h3>Замена унитаза</h3>
+        <div class="price-from">от <strong>3 500 ₽</strong></div>
+      </div>
+      <div class="service-card">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M6 5h12a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3z"/></svg></div>
+        <h3>Установка ванны</h3>
+        <div class="price-from">от <strong>4 800 ₽</strong></div>
+      </div>
+      <div class="service-card">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></svg></div>
+        <h3>Ремонт стиральной машины</h3>
+        <div class="price-from">от <strong>1 500 ₽</strong></div>
+      </div>
+      <div class="service-card">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></div>
+        <h3>Замена труб</h3>
+        <div class="price-from">от <strong>2 200 ₽</strong></div>
+      </div>
+      <div class="service-card">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21V7l9-4 9 4v14M9 21V12h6v9"/></svg></div>
+        <h3>Ремонт санузла под ключ</h3>
+        <div class="price-from">от <strong>45 000 ₽</strong></div>
+      </div>
+      <div class="service-card">
+        <div class="icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12c0 5-9 12-9 12s-9-7-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Поиск скрытой протечки</h3>
+        <div class="price-from">от <strong>2 000 ₽</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Как мы работаем ===== -->
+<section class="block" id="how" style="background: #f9fafb;">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-tag">Процесс</div>
+      <h2>Как мы работаем</h2>
+      <p>От звонка до решения проблемы — в среднем 2 часа</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Заявка</h4>
+        <p>Звоните или оставляете заявку. Уточняем проблему за 2-3 минуты.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Выезд</h4>
+        <p>Ближайший мастер уже в пути — приезжает за 30-60 минут.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Диагностика</h4>
+        <p>Осматривает, называет фикс-цену по прайсу. Согласуете — приступаем.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Работа и оплата</h4>
+        <p>Выполняем работу, выдаём чек и гарантию на 1 год. Оплата картой или налично.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Прайс-лист ===== -->
+<section class="block price-block" id="price">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-tag">Цены</div>
+      <h2>Прайс-лист</h2>
+      <p>Все цены фиксированные. Если работа потребует дополнительных материалов — согласуем до начала.</p>
+    </div>
+    <div class="price-table">
+      <div class="price-row">
+        <div>
+          <div class="service-name">Устранение засора раковины</div>
+          <div class="service-time">~30 минут</div>
+        </div>
+        <div class="price-val">от 900 ₽</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="service-name">Устранение засора унитаза</div>
+          <div class="service-time">~45 минут</div>
+        </div>
+        <div class="price-val">от 1 400 ₽</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="service-name">Замена смесителя на кухне</div>
+          <div class="service-time">~1 час</div>
+        </div>
+        <div class="price-val">от 1 200 ₽</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="service-name">Замена смесителя в ванной</div>
+          <div class="service-time">~1.5 часа</div>
+        </div>
+        <div class="price-val">от 1 800 ₽</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="service-name">Установка унитаза</div>
+          <div class="service-time">~2 часа</div>
+        </div>
+        <div class="price-val">от 3 500 ₽</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="service-name">Установка ванны / душевой кабины</div>
+          <div class="service-time">~3 часа</div>
+        </div>
+        <div class="price-val">от 4 800 ₽</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="service-name">Замена сифона</div>
+          <div class="service-time">~30 минут</div>
+        </div>
+        <div class="price-val">от 800 ₽</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="service-name">Установка водонагревателя</div>
+          <div class="service-time">~2 часа</div>
+        </div>
+        <div class="price-val">от 3 200 ₽</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="service-name">Замена счётчиков воды</div>
+          <div class="service-time">~1 час</div>
+        </div>
+        <div class="price-val">от 1 500 ₽</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="service-name">Подключение посудомоечной машины</div>
+          <div class="service-time">~1.5 часа</div>
+        </div>
+        <div class="price-val">от 2 200 ₽</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="service-name">Поиск и устранение протечки</div>
+          <div class="service-time">~1-3 часа</div>
+        </div>
+        <div class="price-val">от 2 000 ₽</div>
+      </div>
+      <div class="price-row">
+        <div>
+          <div class="service-name">Выезд мастера и диагностика</div>
+          <div class="service-time">~20 минут</div>
+        </div>
+        <div class="price-val">Бесплатно</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Почему мы ===== -->
+<section class="block">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-tag">Почему мы</div>
+      <h2>6 причин выбрать СанМастер</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg></div>
+        <div>
+          <h4>Гарантия 1 год</h4>
+          <p>Письменная гарантия на все работы. Если что-то снова сломалось — переделаем бесплатно.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div>
+          <h4>Приезжаем за 30 минут</h4>
+          <p>В Москве — 30 минут после заявки. В области — до 1 часа.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 2v20M5 9h11a3 3 0 0 1 0 6H8a3 3 0 0 0 0 6h12"/></svg></div>
+        <div>
+          <h4>Фикс-цены без сюрпризов</h4>
+          <p>Цена согласуется до начала работ. На месте не повышаем — это в договоре.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <div>
+          <h4>Оплата после работы</h4>
+          <p>Не берём предоплату. Оплачиваете, только когда убедитесь, что всё работает.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M16 4h-1a4 4 0 0 0-8 0H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><path d="M9 14l2 2 4-4"/></svg></div>
+        <div>
+          <h4>Свои мастера в штате</h4>
+          <p>Не подрядчики со стороны. У нас 18 мастеров с опытом от 5 лет.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg></div>
+        <div>
+          <h4>Работаем 24/7</h4>
+          <p>Ночью, в выходные, в праздники — без доплат за «срочность».</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Отзывы ===== -->
+<section class="block" id="reviews" style="background: #f9fafb;">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-tag">Отзывы</div>
+      <h2>Что говорят клиенты</h2>
+      <p>Только реальные отзывы из Яндекс.Карт и 2ГИС</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review">
+        <div class="review-head">
+          <img src="https://picsum.photos/seed/client-1/120/120" alt="">
+          <div>
+            <div class="name">Ольга Терентьева</div>
+            <div class="where">м. Войковская</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="text">Прорвало трубу в 23:00, позвонила — через 35 минут мастер был у меня. Устранил протечку, заменил соединение, пол не пострадал. Адекватная цена, никаких надбавок «за ночь».</p>
+        <div class="meta-line">Замена соединения · 2 400 ₽ · март 2026</div>
+      </div>
+      <div class="review">
+        <div class="review-head">
+          <img src="https://picsum.photos/seed/client-2/120/120" alt="">
+          <div>
+            <div class="name">Алексей Гордеев</div>
+            <div class="where">м. Юго-Западная</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="text">Делали под ключ ремонт санузла в новостройке. Сделали за 6 дней, всё по смете. Через месяц обнаружил каплю на трубе — приехали по гарантии, переделали бесплатно.</p>
+        <div class="meta-line">Ремонт санузла · 78 000 ₽ · февраль 2026</div>
+      </div>
+      <div class="review">
+        <div class="review-head">
+          <img src="https://picsum.photos/seed/client-3/120/120" alt="">
+          <div>
+            <div class="name">Михаил Стариков</div>
+            <div class="where">м. Кунцевская</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="text">Засор в раковине, который я полтора часа пытался пробить тросом. Мастер за 20 минут разобрал сифон, всё прочистил и собрал обратно — оказалось, проблема была глубже.</p>
+        <div class="meta-line">Прочистка засора · 1 200 ₽ · апрель 2026</div>
+      </div>
+      <div class="review">
+        <div class="review-head">
+          <img src="https://picsum.photos/seed/client-4/120/120" alt="">
+          <div>
+            <div class="name">Татьяна Голикова</div>
+            <div class="where">г. Балашиха</div>
+          </div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <p class="text">Меняли смеситель и установили счётчики. Мастер показал старые показания, всё опломбировал, выдал акт для УК. Очень аккуратно, разулся при входе, после себя убрал.</p>
+        <div class="meta-line">Смеситель + счётчики · 3 700 ₽ · апрель 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Зона выезда ===== -->
+<section class="block" id="zone">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-tag">Зона выезда</div>
+      <h2>Куда выезжаем</h2>
+      <p>Москва — без доплат. Московская область — +200 ₽ за выезд (ЦКАД).</p>
+    </div>
+    <div class="zone-grid">
+      <!-- SVG-схема Москвы (стилизованная) -->
+      <div class="zone-map">
+        <svg viewBox="0 0 400 300" width="100%" height="100%">
+          <circle cx="200" cy="150" r="120" fill="none" stroke="#ea580c" stroke-width="1.5" stroke-dasharray="4 6" opacity=".6"/>
+          <circle cx="200" cy="150" r="80" fill="none" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="4 6" opacity=".7"/>
+          <circle cx="200" cy="150" r="40" fill="none" stroke="#fed7aa" stroke-width="1.5" opacity=".7"/>
+          <circle cx="200" cy="150" r="6" fill="#ea580c"/>
+          <text x="200" y="180" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Центр</text>
+          <text x="200" y="90" text-anchor="middle" fill="#fb923c" font-size="11">ТТК</text>
+          <text x="200" y="45" text-anchor="middle" fill="#ea580c" font-size="11">МКАД</text>
+          <text x="200" y="290" text-anchor="middle" fill="#9ca3af" font-size="11">ЦКАД</text>
+        </svg>
+      </div>
+      <div>
+        <h3 style="margin-bottom: 18px; font-size: 22px;">Работаем по всей Москве и ближайшей области</h3>
+        <div class="zone-districts">
+          <div>ЦАО</div>
+          <div>ЗАО</div>
+          <div>СВАО</div>
+          <div>ЮВАО</div>
+          <div>САО</div>
+          <div>ЮАО</div>
+          <div>СЗАО</div>
+          <div>ЮЗАО</div>
+          <div>Новая Москва</div>
+          <div>Зеленоград</div>
+          <div>Балашиха</div>
+          <div>Красногорск</div>
+          <div>Мытищи</div>
+          <div>Реутов</div>
+          <div>Химки</div>
+          <div>Одинцово</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Финальная форма заявки ===== -->
+<section class="block" id="contact">
+  <div class="container">
+    <div class="lead-block">
+      <div>
+        <h2>Оставьте заявку — и <span class="accent">мастер приедет за 30 минут</span></h2>
+        <p>Опишите проблему — перезвоним, уточним детали и подскажем стоимость прямо по телефону.</p>
+        <ul>
+          <li>Выезд за 30 минут по Москве</li>
+          <li>Бесплатная диагностика на месте</li>
+          <li>Фикс-цена без надбавок</li>
+          <li>Гарантия 1 год письменно</li>
+          <li>Оплата после устранения проблемы</li>
+        </ul>
+      </div>
+      <!-- Демо-форма: submit отключён -->
+      <form onsubmit="return false">
+        <div class="lead-form-grid">
+          <input type="text" placeholder="Ваше имя" required>
+          <input type="tel" placeholder="+7 (___) ___-__-__" required>
+          <select required>
+            <option value="">Выберите услугу</option>
+            <option>Устранение засора</option>
+            <option>Замена смесителя</option>
+            <option>Замена унитаза / ванны</option>
+            <option>Поиск протечки</option>
+            <option>Ремонт санузла</option>
+            <option>Другое</option>
+          </select>
+          <textarea placeholder="Кратко опишите ситуацию"></textarea>
+          <button type="button">Вызвать мастера</button>
+          <div class="disclaimer">Нажимая кнопку, соглашаюсь с обработкой персональных данных.</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Футер ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h5>СанМастер</h5>
+        <p>Аварийная сантехническая служба в Москве с 2018 года. 18 мастеров в штате. Работаем без выходных и праздников.</p>
+      </div>
+      <div>
+        <h5>Услуги</h5>
+        <p>Замена смесителя</p>
+        <p>Устранение засора</p>
+        <p>Установка унитаза</p>
+        <p>Ремонт санузла</p>
+      </div>
+      <div>
+        <h5>Контакты</h5>
+        <p>+7 (495) 123-45-67</p>
+        <p>info@sanmaster.ru</p>
+        <p>Москва, ул. Сущёвская 12</p>
+      </div>
+      <div>
+        <h5>Документы</h5>
+        <p>Договор-оферта</p>
+        <p>Политика приватности</p>
+        <p>Реквизиты</p>
+      </div>
+    </div>
+    <div class="footer-copy">
+      © 2026 СанМастер · ИП Сергеев А. И. · ИНН 770123456789 · ОГРНИП 318770000123456
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ===== Мобильное меню (бургер) ===== */
+  document.getElementById('burger').addEventListener('click', function () {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  // Закрытие меню после клика по ссылке
+  document.querySelectorAll('.nav-links a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>

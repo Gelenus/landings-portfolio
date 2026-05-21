@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Бесплатный вебинар «SMM-агентство с нуля за 90 дней» — Анна Соколова</title>
+<meta name="description" content="Бесплатный онлайн-вебинар 28 мая 2026, 19:00 МСК. Пошаговый план запуска SMM-агентства с первыми клиентами за 90 дней.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== Базовые стили и сброс ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #0f0a1f;
+    color: #f5f3ff;
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  /* Утилиты */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .gradient-text {
+    background: linear-gradient(90deg, #c084fc, #f472b6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 36px;
+    border-radius: 14px;
+    font-weight: 700;
+    font-size: 17px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .btn-primary {
+    background: linear-gradient(90deg, #7c3aed, #ec4899);
+    color: #fff;
+    box-shadow: 0 10px 40px rgba(236, 72, 153, .35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 15px 50px rgba(236, 72, 153, .5); }
+  .btn-ghost { border: 1px solid rgba(255, 255, 255, .2); color: #fff; }
+  .btn-ghost:hover { background: rgba(255, 255, 255, .05); }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    background: rgba(236, 72, 153, .12);
+    color: #f9a8d4;
+    border: 1px solid rgba(236, 72, 153, .3);
+  }
+  .badge-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #ec4899;
+    box-shadow: 0 0 12px #ec4899;
+    animation: pulse 1.6s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .4; }
+  }
+
+  /* ===== Шапка ===== */
+  header.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(15, 10, 31, .8);
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -.5px; }
+  .logo span { background: linear-gradient(90deg, #c084fc, #f472b6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { font-size: 15px; opacity: .8; transition: opacity .2s; }
+  .nav-links a:hover { opacity: 1; }
+  .burger { display: none; width: 28px; height: 28px; flex-direction: column; justify-content: center; gap: 5px; }
+  .burger span { width: 100%; height: 2px; background: #fff; border-radius: 2px; transition: transform .3s; }
+
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    padding: 80px 0 100px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(124, 58, 237, .35), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin: 24px 0;
+  }
+  .hero p.lead {
+    font-size: 19px;
+    opacity: .8;
+    margin-bottom: 32px;
+    max-width: 540px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .meta-item .label { font-size: 12px; opacity: .6; text-transform: uppercase; letter-spacing: 1px; }
+  .meta-item .value { font-size: 18px; font-weight: 700; }
+
+  /* Карточка обратного отсчёта */
+  .countdown-card {
+    background: linear-gradient(180deg, rgba(124, 58, 237, .12), rgba(236, 72, 153, .08));
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 24px;
+    padding: 32px;
+    backdrop-filter: blur(20px);
+  }
+  .countdown-title { font-size: 14px; opacity: .7; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+  .countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .countdown-cell {
+    background: rgba(255, 255, 255, .04);
+    border: 1px solid rgba(255, 255, 255, .06);
+    border-radius: 14px;
+    padding: 16px 8px;
+    text-align: center;
+  }
+  .countdown-cell .num {
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(180deg, #fff, #c084fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    line-height: 1;
+  }
+  .countdown-cell .lbl { font-size: 11px; opacity: .6; margin-top: 6px; text-transform: uppercase; }
+  .seats-left {
+    margin-top: 24px;
+    padding: 14px 18px;
+    background: rgba(236, 72, 153, .1);
+    border: 1px solid rgba(236, 72, 153, .3);
+    border-radius: 12px;
+    font-size: 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  /* ===== Универсальная секция ===== */
+  section.block { padding: 100px 0; position: relative; }
+  .section-header { text-align: center; max-width: 720px; margin: 0 auto 60px; }
+  .section-header h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+  .section-header p { opacity: .7; font-size: 17px; }
+
+  /* Сетка карточек "для кого" */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .audience-card {
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid rgba(255, 255, 255, .06);
+    border-radius: 20px;
+    padding: 32px 24px;
+    transition: transform .25s, border-color .25s;
+  }
+  .audience-card:hover { transform: translateY(-4px); border-color: rgba(192, 132, 252, .4); }
+  .audience-card .icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .audience-card h3 { font-size: 19px; margin-bottom: 10px; }
+  .audience-card p { font-size: 15px; opacity: .7; line-height: 1.6; }
+
+  /* Список "что узнаете" */
+  .learn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .learn-item {
+    display: flex;
+    gap: 16px;
+    padding: 20px 24px;
+    background: rgba(255, 255, 255, .03);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, .05);
+  }
+  .learn-item .check {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .learn-item p { font-size: 16px; }
+
+  /* Программа таймлайн */
+  .timeline { max-width: 760px; margin: 0 auto; }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+  }
+  .timeline-row:last-child { border-bottom: none; }
+  .timeline-time {
+    font-weight: 800;
+    font-size: 20px;
+    background: linear-gradient(90deg, #c084fc, #f472b6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .timeline-content h4 { font-size: 18px; margin-bottom: 6px; }
+  .timeline-content p { font-size: 15px; opacity: .65; }
+
+  /* Спикер */
+  .speaker-block {
+    background: linear-gradient(135deg, rgba(124, 58, 237, .12), rgba(236, 72, 153, .08));
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 28px;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .speaker-photo {
+    aspect-ratio: 4/5;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #1e1538;
+  }
+  .speaker-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .speaker-info h3 { font-size: 28px; margin-bottom: 8px; }
+  .speaker-info .role { opacity: .7; margin-bottom: 24px; }
+  .speaker-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 28px;
+  }
+  .speaker-stat .num {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #c084fc, #f472b6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .speaker-stat .lbl { font-size: 13px; opacity: .65; }
+  .speaker-info ul { list-style: none; margin-top: 20px; }
+  .speaker-info ul li { padding: 6px 0; opacity: .8; font-size: 15px; }
+  .speaker-info ul li::before { content: '— '; opacity: .5; }
+
+  /* Отзывы */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .review {
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid rgba(255, 255, 255, .06);
+    border-radius: 20px;
+    padding: 28px;
+  }
+  .review-stars { color: #facc15; margin-bottom: 14px; letter-spacing: 2px; }
+  .review p.text { font-size: 15px; line-height: 1.6; opacity: .85; margin-bottom: 20px; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-author img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+  .review-author .name { font-weight: 600; font-size: 15px; }
+  .review-author .pos { font-size: 13px; opacity: .6; }
+
+  /* Бонусы */
+  .bonus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .bonus-card {
+    background: linear-gradient(180deg, rgba(124, 58, 237, .15), rgba(236, 72, 153, .05));
+    border: 1px solid rgba(192, 132, 252, .3);
+    border-radius: 20px;
+    padding: 28px;
+    position: relative;
+  }
+  .bonus-card .price {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: rgba(236, 72, 153, .2);
+    color: #f9a8d4;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: line-through;
+  }
+  .bonus-card h4 { font-size: 19px; margin-bottom: 8px; padding-right: 80px; }
+  .bonus-card p { font-size: 14px; opacity: .7; }
+
+  /* Форма */
+  .form-block {
+    background: linear-gradient(135deg, #7c3aed, #ec4899);
+    border-radius: 32px;
+    padding: 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .form-block::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -10%;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255, 255, 255, .15), transparent 70%);
+    pointer-events: none;
+  }
+  .form-block h2 { font-size: 36px; margin-bottom: 12px; position: relative; }
+  .form-block > p { opacity: .9; margin-bottom: 32px; position: relative; }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 12px;
+    position: relative;
+  }
+  .form-grid input {
+    width: 100%;
+    padding: 18px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+    font: inherit;
+    font-size: 15px;
+    backdrop-filter: blur(8px);
+  }
+  .form-grid input::placeholder { color: rgba(255, 255, 255, .65); }
+  .form-grid input:focus { outline: 2px solid #fff; outline-offset: 1px; }
+  .form-grid button {
+    background: #0f0a1f;
+    color: #fff;
+    padding: 18px 32px;
+    border-radius: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .form-block .disclaimer { font-size: 13px; opacity: .8; margin-top: 16px; position: relative; }
+
+  /* FAQ */
+  .faq { max-width: 760px; margin: 0 auto; }
+  .faq-item {
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 16px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: background .2s;
+  }
+  .faq-item.open { background: rgba(255, 255, 255, .03); }
+  .faq-q {
+    width: 100%;
+    text-align: left;
+    padding: 22px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-weight: 600;
+    font-size: 17px;
+  }
+  .faq-q .plus {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: rgba(192, 132, 252, .15);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .3s;
+  }
+  .faq-item.open .plus { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;
+  }
+  .faq-a p { padding: 0 26px 22px; opacity: .75; font-size: 15px; line-height: 1.6; }
+
+  /* Футер */
+  footer {
+    border-top: 1px solid rgba(255, 255, 255, .06);
+    padding: 40px 0;
+    text-align: center;
+    opacity: .55;
+    font-size: 13px;
+  }
+  footer p + p { margin-top: 8px; }
+
+  /* ===== Мобильный адаптив ===== */
+  @media (max-width: 768px) {
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: #0f0a1f; padding: 20px 24px; border-bottom: 1px solid rgba(255, 255, 255, .06); }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 0; }
+    .burger { display: flex; }
+    .hero { padding: 50px 0 60px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .countdown-cell .num { font-size: 28px; }
+    section.block { padding: 60px 0; }
+    .learn-grid { grid-template-columns: 1fr; }
+    .speaker-block { grid-template-columns: 1fr; padding: 32px 24px; gap: 28px; }
+    .form-block { padding: 36px 24px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .timeline-row { grid-template-columns: 1fr; gap: 8px; }
+    .form-block h2 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Шапка с навигацией и мобильным меню ===== -->
+<header class="site-header">
+  <div class="container nav">
+    <a href="#" class="logo">Анна<span>Соколова</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#about">О вебинаре</a>
+      <a href="#program">Программа</a>
+      <a href="#speaker">Спикер</a>
+      <a href="#bonuses">Бонусы</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== Hero: заголовок, дата, обратный отсчёт ===== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="badge"><span class="badge-dot"></span> Бесплатный вебинар · 28 мая 2026</div>
+      <h1>Как запустить <span class="gradient-text">SMM-агентство</span> с нуля за 90 дней</h1>
+      <p class="lead">Пошаговый план: первые 5 клиентов, упаковка услуг и команда из 3 человек — без бюджета на рекламу.</p>
+      <div class="hero-meta">
+        <div class="meta-item"><span class="label">Дата</span><span class="value">28 мая 2026</span></div>
+        <div class="meta-item"><span class="label">Время</span><span class="value">19:00 МСК</span></div>
+        <div class="meta-item"><span class="label">Формат</span><span class="value">Онлайн · Zoom</span></div>
+      </div>
+      <a href="#register" class="btn btn-primary">Занять бесплатное место →</a>
+    </div>
+
+    <div class="countdown-card">
+      <div class="countdown-title">До старта вебинара</div>
+      <div class="countdown-grid">
+        <div class="countdown-cell"><div class="num" id="cd-days">00</div><div class="lbl">дней</div></div>
+        <div class="countdown-cell"><div class="num" id="cd-hours">00</div><div class="lbl">часов</div></div>
+        <div class="countdown-cell"><div class="num" id="cd-mins">00</div><div class="lbl">минут</div></div>
+        <div class="countdown-cell"><div class="num" id="cd-secs">00</div><div class="lbl">секунд</div></div>
+      </div>
+      <div class="seats-left">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f9a8d4" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Осталось <strong>47</strong> мест из 500
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Для кого вебинар ===== -->
+<section class="block" id="about">
+  <div class="container">
+    <div class="section-header">
+      <h2>Кому будет полезно</h2>
+      <p>Вебинар построен для тех, кто хочет уйти из найма и построить свой digital-бизнес</p>
+    </div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="icon">
+          <!-- Иконка SMM-специалиста -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg>
+        </div>
+        <h3>SMM-специалистам</h3>
+        <p>Устали работать на одного клиента — хочется системного дохода и команды.</p>
+      </div>
+      <div class="audience-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3>Маркетологам в найме</h3>
+        <p>Знаете маркетинг изнутри — пора применить экспертизу в собственном проекте.</p>
+      </div>
+      <div class="audience-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        </div>
+        <h3>Фрилансерам</h3>
+        <p>Хочется вырасти из одиночки в агентство и поднять чек в 3-5 раз.</p>
+      </div>
+      <div class="audience-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3>Тем, кто стартует</h3>
+        <p>Только думаете о digital-агентстве и хотите избежать дорогих ошибок.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Что узнаете ===== -->
+<section class="block" style="background: rgba(255, 255, 255, .015);">
+  <div class="container">
+    <div class="section-header">
+      <h2>Что вы узнаете <span class="gradient-text">за 90 минут</span></h2>
+      <p>Никакой теории — только рабочие инструменты, которые мы используем в собственном агентстве</p>
+    </div>
+    <div class="learn-grid">
+      <div class="learn-item">
+        <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <p>Как найти первых 5 клиентов без бюджета на рекламу за 2 недели</p>
+      </div>
+      <div class="learn-item">
+        <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <p>Как упаковать услугу так, чтобы продавать чек от 80 000 ₽</p>
+      </div>
+      <div class="learn-item">
+        <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <p>Как собрать команду из 3 человек, не платя зарплату из своего кармана</p>
+      </div>
+      <div class="learn-item">
+        <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <p>Какие 3 ниши прямо сейчас платят больше всего и почему</p>
+      </div>
+      <div class="learn-item">
+        <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <p>Какие 7 ошибок убивают агентство на старте — и как их обойти</p>
+      </div>
+      <div class="learn-item">
+        <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <p>Шаблоны коммерческих предложений и договоров (отдадим бесплатно)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Программа таймлайн ===== -->
+<section class="block" id="program">
+  <div class="container">
+    <div class="section-header">
+      <h2>Программа вебинара</h2>
+      <p>90 минут плотного материала + 30 минут на ваши вопросы</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-row">
+        <div class="timeline-time">0:00</div>
+        <div class="timeline-content">
+          <h4>Открытие и кто я</h4>
+          <p>Кратко обо мне, моём агентстве и почему я веду этот вебинар.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">0:10</div>
+        <div class="timeline-content">
+          <h4>Карта рынка SMM 2026</h4>
+          <p>Где деньги, где конкуренция, где «слепые зоны» — где зайти новичку.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">0:25</div>
+        <div class="timeline-content">
+          <h4>Упаковка: что и кому продавать</h4>
+          <p>Готовая структура услуг с ценами и маржинальностью.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">0:45</div>
+        <div class="timeline-content">
+          <h4>Первые 5 клиентов за 14 дней</h4>
+          <p>4 канала входящего потока без бюджета. Скрипты переписки.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">1:05</div>
+        <div class="timeline-content">
+          <h4>Команда и процессы</h4>
+          <p>Как нанять и не разориться. Доли, найм на проект, риски.</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-time">1:25</div>
+        <div class="timeline-content">
+          <h4>Ответы на вопросы + бонусы</h4>
+          <p>Разберём ваши кейсы. Раздадим шаблоны и записи.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Блок о спикере ===== -->
+<section class="block" id="speaker" style="background: rgba(255, 255, 255, .015);">
+  <div class="container">
+    <div class="section-header">
+      <h2>Ведёт <span class="gradient-text">Анна Соколова</span></h2>
+    </div>
+    <div class="speaker-block">
+      <div class="speaker-photo">
+        <img src="https://picsum.photos/seed/speaker-anna/600/750" alt="Анна Соколова" loading="lazy">
+      </div>
+      <div class="speaker-info">
+        <h3>Анна Соколова</h3>
+        <p class="role">Основатель агентства Mint.SMM · спикер RIW, Suprema · 12 лет в маркетинге</p>
+        <ul>
+          <li>Запустила Mint.SMM в 2019 — за 18 месяцев вышла на оборот 4 млн ₽/мес</li>
+          <li>Команда из 12 человек, 40+ клиентов в работе</li>
+          <li>Преподаватель MyAcademy и Нетологии</li>
+          <li>Автор Telegram-канала «Маркетинг без воды» — 28 000 подписчиков</li>
+        </ul>
+        <div class="speaker-stats">
+          <div class="speaker-stat">
+            <div class="num">12</div>
+            <div class="lbl">лет в маркетинге</div>
+          </div>
+          <div class="speaker-stat">
+            <div class="num">240+</div>
+            <div class="lbl">учеников открыли своё агентство</div>
+          </div>
+          <div class="speaker-stat">
+            <div class="num">4 млн</div>
+            <div class="lbl">₽/мес оборот Mint.SMM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Отзывы участников ===== -->
+<section class="block">
+  <div class="container">
+    <div class="section-header">
+      <h2>Что говорят выпускники</h2>
+      <p>Реальные результаты тех, кто прошёл программу Анны</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="text">Дошёл до 280 000 ₽/мес за 4 месяца после вебинара. Главное — Анна не льёт воду, всё конкретно: что писать клиенту, как считать чек.</p>
+        <div class="review-author">
+          <img src="https://picsum.photos/seed/avatar-1/120/120" alt="">
+          <div>
+            <div class="name">Игорь Самойлов</div>
+            <div class="pos">Основатель агентства Slow.Digital</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="text">Я давно работала в найме SMM-менеджером. После вебинара решилась уйти, через 6 недель закрыла первых 3 клиентов. Сейчас 5 проектов в работе.</p>
+        <div class="review-author">
+          <img src="https://picsum.photos/seed/avatar-2/120/120" alt="">
+          <div>
+            <div class="name">Юлия Попова</div>
+            <div class="pos">Фриланс → агентство Yulia.SMM</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div class="review-stars">★★★★★</div>
+        <p class="text">Шаблоны КП и договора окупили вебинар в первую же неделю. Закрыл клиента на 120 000 ₽ просто потому что был готов к разговору.</p>
+        <div class="review-author">
+          <img src="https://picsum.photos/seed/avatar-3/120/120" alt="">
+          <div>
+            <div class="name">Денис Гордеев</div>
+            <div class="pos">Маркетолог, г. Казань</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Бонусы участникам ===== -->
+<section class="block" id="bonuses" style="background: rgba(255, 255, 255, .015);">
+  <div class="container">
+    <div class="section-header">
+      <h2>Бонусы каждому, кто <span class="gradient-text">придёт онлайн</span></h2>
+      <p>Скачаете сразу после эфира — без подвохов и допуплат</p>
+    </div>
+    <div class="bonus-grid">
+      <div class="bonus-card">
+        <div class="price">5 000 ₽</div>
+        <h4>📄 PDF «План на 90 дней»</h4>
+        <p>Пошаговый чек-лист: что делать каждую неделю, чтобы выйти на первых клиентов и команду.</p>
+      </div>
+      <div class="bonus-card">
+        <div class="price">8 000 ₽</div>
+        <h4>📑 Шаблоны КП и договора</h4>
+        <p>Готовые документы, по которым я уже закрыла 80+ клиентов. Подставляйте свои услуги.</p>
+      </div>
+      <div class="bonus-card">
+        <div class="price">3 000 ₽</div>
+        <h4>📹 Запись вебинара</h4>
+        <p>Останется навсегда. Сможете пересматривать любые блоки и применять у себя.</p>
+      </div>
+      <div class="bonus-card">
+        <div class="price">7 000 ₽</div>
+        <h4>💬 Доступ в закрытый чат</h4>
+        <p>Сообщество выпускников — можно задавать вопросы и находить партнёров для проектов.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Форма регистрации ===== -->
+<section class="block" id="register">
+  <div class="container">
+    <div class="form-block">
+      <h2>Зарегистрируйтесь бесплатно</h2>
+      <p>Заполните форму — пришлём ссылку на эфир в Telegram и на e-mail.</p>
+      <!-- Форма-демо: submit заблокирован, кнопка не отправляет данные -->
+      <form onsubmit="return false">
+        <div class="form-grid">
+          <input type="text" placeholder="Ваше имя" required>
+          <input type="email" placeholder="E-mail" required>
+          <input type="tel" placeholder="Телефон / Telegram" required>
+          <button type="button">Занять место →</button>
+        </div>
+      </form>
+      <p class="disclaimer">Нажимая на кнопку, вы соглашаетесь с политикой конфиденциальности. Не передаём ваши данные третьим лицам.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ-аккордеон ===== -->
+<section class="block" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <h2>Вопросы и ответы</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item">
+        <button class="faq-q">Сколько стоит участие? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Вебинар полностью бесплатный. Вам не предложат ничего покупать на эфире — это разбор стратегии, а не продажа курса.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">А если я не смогу быть онлайн? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Только зарегистрированным участникам отправим запись и бонусные материалы на следующий день. Без регистрации записи не будет.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Подойдёт ли вебинар, если у меня уже есть клиенты? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Да. Мы разберём как масштабировать поток, поднять средний чек и нанять команду — это полезнее всего тем, у кого 1-3 клиента и хочется расти.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Какие технические требования? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Ноутбук или телефон + интернет. Эфир в Zoom — ссылку пришлём за час до старта.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Что если будут продавать на эфире? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Никаких многочасовых продаж. В конце упомяну свой курс — для тех, кому захочется углубиться. Остальные просто получат бонусы и попрощаются.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Футер ===== -->
+<footer>
+  <div class="container">
+    <p>© 2026 Анна Соколова · ИП Соколова А. В. · ИНН 770000000000</p>
+    <p>Все материалы вебинара защищены авторским правом. Распространение без согласия автора запрещено.</p>
+  </div>
+</footer>
+
+<script>
+  /* ===== Обратный отсчёт до 28 мая 2026, 19:00 МСК (UTC+3) ===== */
+  function startCountdown() {
+    // Целевая дата в UTC: 28 мая 2026, 16:00 UTC = 19:00 МСК
+    const target = new Date(Date.UTC(2026, 4, 28, 16, 0, 0));
+    const els = {
+      d: document.getElementById('cd-days'),
+      h: document.getElementById('cd-hours'),
+      m: document.getElementById('cd-mins'),
+      s: document.getElementById('cd-secs'),
+    };
+    function tick() {
+      let diff = Math.max(0, target.getTime() - Date.now());
+      const d = Math.floor(diff / 86400000); diff -= d * 86400000;
+      const h = Math.floor(diff / 3600000);  diff -= h * 3600000;
+      const m = Math.floor(diff / 60000);    diff -= m * 60000;
+      const s = Math.floor(diff / 1000);
+      els.d.textContent = String(d).padStart(2, '0');
+      els.h.textContent = String(h).padStart(2, '0');
+      els.m.textContent = String(m).padStart(2, '0');
+      els.s.textContent = String(s).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+  startCountdown();
+
+  /* ===== Аккордеон FAQ — переключает класс .open у пункта ===== */
+  document.querySelectorAll('.faq-q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      // Закрываем все, открываем выбранный (если был закрыт)
+      document.querySelectorAll('.faq-item').forEach(function (i) {
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!wasOpen) {
+        item.classList.add('open');
+        const ans = item.querySelector('.faq-a');
+        ans.style.maxHeight = ans.scrollHeight + 'px';
+      }
+    });
+  });
+
+  /* ===== Мобильное меню (бургер) ===== */
+  document.getElementById('burger').addEventListener('click', function () {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  // Закрытие меню после клика по ссылке
+  document.querySelectorAll('.nav-links a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>

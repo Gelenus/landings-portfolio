@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 ошибок при найме разработчиков — бесплатный PDF-гайд</title>
+<meta name="description" content="Бесплатный PDF-гайд для CTO и фаундеров. 10 ошибок при найме разработчиков, из-за которых стартапы теряют миллионы. 32 страницы. От Артёма Климова.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== База ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fff;
+    color: #134e4a;
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; letter-spacing: -.5px; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  /* Утилиты */
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .container-narrow { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== Шапка ===== */
+  header.site-header {
+    padding: 20px 0;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; }
+  .logo {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -.5px;
+    color: #134e4a;
+  }
+  .logo-mark {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #134e4a, #0d9488);
+    display: flex; align-items: center; justify-content: center;
+    color: #a7f3d0;
+  }
+  .nav a.link {
+    font-size: 14px;
+    color: #134e4a;
+    opacity: .75;
+  }
+  .nav a.link:hover { opacity: 1; }
+
+  /* ===== Hero ===== */
+  .hero {
+    background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 60%, #a7f3d0 100%);
+    padding: 60px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(19, 78, 74, .08), transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: #fff;
+    border: 1px solid #a7f3d0;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #134e4a;
+    margin-bottom: 24px;
+  }
+  .hero-badge .pulse {
+    width: 8px; height: 8px;
+    background: #fb7185;
+    border-radius: 50%;
+    animation: pulse 1.6s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .5; transform: scale(1.2); }
+  }
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    color: #134e4a;
+    margin-bottom: 22px;
+    letter-spacing: -1.5px;
+  }
+  .hero h1 .accent { color: #fb7185; }
+  .hero p.lead {
+    font-size: 18px;
+    color: #115e59;
+    margin-bottom: 36px;
+    max-width: 520px;
+    line-height: 1.55;
+  }
+
+  /* Форма скачивания */
+  .download-form {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 20px 50px rgba(19, 78, 74, .12);
+    max-width: 520px;
+  }
+  .download-form label {
+    display: block;
+    font-size: 13px;
+    color: #115e59;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: .5px;
+  }
+  .download-form input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 1.5px solid #d1fae5;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 16px;
+    background: #ecfdf5;
+    color: #134e4a;
+    margin-bottom: 14px;
+    transition: border-color .15s, background .15s;
+  }
+  .download-form input:focus {
+    outline: none;
+    border-color: #134e4a;
+    background: #fff;
+  }
+  .download-form input::placeholder { color: #5eead4; }
+  .download-form button {
+    width: 100%;
+    padding: 18px;
+    background: #134e4a;
+    color: #a7f3d0;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: background .2s, transform .15s;
+  }
+  .download-form button:hover {
+    background: #0f3a36;
+    transform: translateY(-1px);
+  }
+  .download-form .privacy {
+    margin-top: 14px;
+    font-size: 12px;
+    color: #5eead4;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .privacy svg { color: #134e4a; }
+
+  /* Обложка PDF (SVG) */
+  .pdf-cover-wrap {
+    perspective: 1500px;
+    display: flex;
+    justify-content: center;
+  }
+  .pdf-cover {
+    width: 100%;
+    max-width: 360px;
+    transform: rotate(-6deg) rotateY(-12deg);
+    filter: drop-shadow(0 40px 60px rgba(19, 78, 74, .35));
+    transition: transform .4s;
+  }
+  .pdf-cover:hover { transform: rotate(-3deg) rotateY(-6deg) scale(1.02); }
+  .pdf-cover svg { width: 100%; height: auto; }
+
+  /* ===== Универсальная секция ===== */
+  section.block { padding: 90px 0; }
+  .block-mint { background: #ecfdf5; }
+  .section-header { text-align: center; max-width: 720px; margin: 0 auto 50px; }
+  .section-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    background: rgba(19, 78, 74, .08);
+    color: #134e4a;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-header h2 {
+    font-size: clamp(32px, 4.5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    color: #134e4a;
+    margin-bottom: 14px;
+    letter-spacing: -1px;
+  }
+  .section-header p {
+    font-size: 17px;
+    color: #115e59;
+  }
+
+  /* ===== Что внутри (список 10 ошибок) ===== */
+  .errors-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .error-item {
+    display: flex;
+    gap: 18px;
+    padding: 22px 24px;
+    background: #fff;
+    border: 1px solid #d1fae5;
+    border-radius: 14px;
+    transition: border-color .2s, transform .15s;
+  }
+  .error-item:hover { border-color: #134e4a; transform: translateY(-2px); }
+  .error-num {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: #134e4a;
+    color: #a7f3d0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+  }
+  .error-item h4 {
+    font-size: 16px;
+    color: #134e4a;
+    margin-bottom: 4px;
+  }
+  .error-item p {
+    font-size: 14px;
+    color: #115e59;
+    opacity: .8;
+    line-height: 1.5;
+  }
+
+  /* ===== Кому подойдёт (3 карточки) ===== */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .audience-card {
+    padding: 36px 32px;
+    background: #fff;
+    border-radius: 18px;
+    border: 1px solid #d1fae5;
+    text-align: center;
+  }
+  .audience-card .icon {
+    width: 56px; height: 56px;
+    margin: 0 auto 20px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #134e4a, #0d9488);
+    color: #a7f3d0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .audience-card h3 {
+    font-size: 20px;
+    color: #134e4a;
+    margin-bottom: 10px;
+  }
+  .audience-card p {
+    font-size: 14px;
+    color: #115e59;
+    opacity: .8;
+    line-height: 1.55;
+  }
+
+  /* ===== Об авторе ===== */
+  .author-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    align-items: center;
+    background: #fff;
+    border-radius: 24px;
+    padding: 48px;
+    border: 1px solid #d1fae5;
+  }
+  .author-photo {
+    aspect-ratio: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #ecfdf5;
+  }
+  .author-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .author-info h2 { font-size: 32px; margin-bottom: 14px; }
+  .author-info > p {
+    font-size: 16px;
+    color: #115e59;
+    margin-bottom: 14px;
+    line-height: 1.65;
+  }
+  .author-credits {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid #d1fae5;
+  }
+  .credit-item .num {
+    font-family: 'Manrope', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: #fb7185;
+    line-height: 1;
+  }
+  .credit-item .lbl {
+    font-size: 13px;
+    color: #115e59;
+    opacity: .8;
+    margin-top: 4px;
+  }
+
+  /* ===== Отзывы ===== */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .review {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid #d1fae5;
+  }
+  .review p.text {
+    font-size: 15px;
+    color: #134e4a;
+    margin-bottom: 18px;
+    line-height: 1.6;
+  }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #134e4a, #fb7185);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .review .name { font-size: 14px; font-weight: 600; color: #134e4a; }
+  .review .role { font-size: 12px; color: #115e59; opacity: .7; }
+
+  /* ===== Повторная форма (заберите экземпляр) ===== */
+  .repeat-cta {
+    background: #134e4a;
+    color: #a7f3d0;
+    border-radius: 28px;
+    padding: 60px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .repeat-cta::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(251, 113, 133, .18), transparent 70%);
+    pointer-events: none;
+  }
+  .repeat-cta h2 {
+    color: #fff;
+    font-size: 36px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .repeat-cta h2 .accent { color: #fb7185; }
+  .repeat-cta > div > p {
+    color: rgba(167, 243, 208, .85);
+    margin-bottom: 26px;
+    position: relative;
+  }
+  .repeat-cta ul {
+    list-style: none;
+    position: relative;
+  }
+  .repeat-cta ul li {
+    padding: 8px 0 8px 28px;
+    position: relative;
+    color: rgba(255, 255, 255, .9);
+    font-size: 15px;
+  }
+  .repeat-cta ul li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 13px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #fb7185;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='4'><path d='M20 6L9 17l-5-5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .repeat-form {
+    background: #fff;
+    color: #134e4a;
+    padding: 32px;
+    border-radius: 16px;
+    position: relative;
+  }
+  .repeat-form h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+  .repeat-form input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 1.5px solid #d1fae5;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 16px;
+    background: #ecfdf5;
+    margin-bottom: 14px;
+  }
+  .repeat-form input:focus { outline: none; border-color: #134e4a; background: #fff; }
+  .repeat-form button {
+    width: 100%;
+    padding: 16px;
+    background: #fb7185;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: background .2s;
+  }
+  .repeat-form button:hover { background: #e85a73; }
+  .repeat-form .privacy {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #115e59;
+    text-align: center;
+  }
+
+  /* ===== FAQ ===== */
+  .faq { max-width: 760px; margin: 0 auto; }
+  .faq details {
+    background: #fff;
+    border: 1px solid #d1fae5;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 26px;
+    font-weight: 600;
+    font-size: 17px;
+    color: #134e4a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: '+';
+    color: #fb7185;
+    font-size: 24px;
+    font-weight: 400;
+    transition: transform .25s;
+  }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq p.faq-a {
+    padding: 0 26px 22px;
+    font-size: 15px;
+    color: #115e59;
+    line-height: 1.65;
+  }
+
+  /* ===== Футер ===== */
+  footer.site-footer {
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+    padding: 40px 0;
+    text-align: center;
+    color: #5eead4;
+    font-size: 13px;
+  }
+  .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 14px; flex-wrap: wrap; }
+  .footer-links a { color: #115e59; opacity: .75; }
+  .footer-links a:hover { opacity: 1; color: #134e4a; }
+  footer p { color: #115e59; opacity: .6; }
+
+  /* ===== Адаптив ===== */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .pdf-cover { max-width: 280px; }
+    .errors-list { grid-template-columns: 1fr; }
+    .audience-grid { grid-template-columns: 1fr; }
+    .author-grid { grid-template-columns: 1fr; padding: 32px 24px; gap: 28px; text-align: center; }
+    .author-photo { max-width: 220px; margin: 0 auto; }
+    .author-credits { justify-content: center; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .repeat-cta { grid-template-columns: 1fr; padding: 40px 28px; }
+  }
+  @media (max-width: 600px) {
+    section.block { padding: 60px 0; }
+    .hero { padding: 40px 0 60px; }
+    .hero h1 { font-size: 30px; }
+    .nav .link { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Шапка ===== -->
+<header class="site-header">
+  <div class="container nav">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      </div>
+      <span>Климов · CTO Notes</span>
+    </div>
+    <a href="#about" class="link">Об авторе</a>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-badge">
+        <div class="pulse"></div>
+        Скачали 3 412 человек за этот месяц
+      </div>
+      <h1>10 ошибок при найме разработчиков, из-за которых <span class="accent">стартапы теряют миллионы</span></h1>
+      <p class="lead">Бесплатный PDF-гайд на 32 страницы. Реальные истории, цифры потерь и пошаговые исправления — для CTO и фаундеров.</p>
+
+      <!-- Форма скачивания: submit отключён -->
+      <form class="download-form" onsubmit="return false" id="downloadForm">
+        <label for="hero-email">Куда выслать PDF</label>
+        <input id="hero-email" type="email" placeholder="your@email.com" required>
+        <button type="button">Скачать бесплатно →</button>
+        <div class="privacy">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12z"/></svg>
+          Никакого спама — только этот PDF и редкие письма раз в 2-3 месяца. Отписаться можно одним кликом.
+        </div>
+      </form>
+    </div>
+
+    <!-- SVG-мокап обложки PDF -->
+    <div class="pdf-cover-wrap">
+      <div class="pdf-cover">
+        <svg viewBox="0 0 360 480" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cover-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#134e4a"/>
+              <stop offset="100%" stop-color="#0d9488"/>
+            </linearGradient>
+          </defs>
+          <!-- Корешок -->
+          <rect x="0" y="0" width="14" height="480" fill="#0a3835"/>
+          <!-- Обложка -->
+          <rect x="14" y="0" width="346" height="480" fill="url(#cover-grad)"/>
+
+          <!-- Декоративные кружки -->
+          <circle cx="320" cy="60" r="50" fill="#fb7185" opacity="0.25"/>
+          <circle cx="60" cy="430" r="80" fill="#a7f3d0" opacity="0.1"/>
+
+          <!-- Метка PDF -->
+          <rect x="40" y="48" width="80" height="26" rx="6" fill="#a7f3d0"/>
+          <text x="80" y="65" font-family="Manrope, sans-serif" font-size="11" font-weight="800" fill="#134e4a" text-anchor="middle" letter-spacing="2">PDF · 32 С.</text>
+
+          <!-- Гид -->
+          <text x="40" y="105" font-family="Manrope, sans-serif" font-size="13" font-weight="700" fill="#5eead4" letter-spacing="3">ГАЙД</text>
+
+          <!-- Заголовок -->
+          <text x="40" y="160" font-family="Manrope, sans-serif" font-size="36" font-weight="800" fill="#fff" letter-spacing="-1">10</text>
+          <text x="40" y="200" font-family="Manrope, sans-serif" font-size="22" font-weight="700" fill="#fff" letter-spacing="-.5">ошибок при найме</text>
+          <text x="40" y="228" font-family="Manrope, sans-serif" font-size="22" font-weight="700" fill="#fff" letter-spacing="-.5">разработчиков</text>
+
+          <!-- Подзаголовок -->
+          <text x="40" y="270" font-family="Inter, sans-serif" font-size="14" fill="rgba(167, 243, 208, .9)">из-за которых стартапы</text>
+          <text x="40" y="290" font-family="Inter, sans-serif" font-size="14" fill="rgba(167, 243, 208, .9)">теряют миллионы</text>
+
+          <!-- Разделитель -->
+          <line x1="40" y1="340" x2="180" y2="340" stroke="#fb7185" stroke-width="3"/>
+
+          <!-- Автор -->
+          <text x="40" y="380" font-family="Inter, sans-serif" font-size="11" fill="#5eead4" letter-spacing="2">АВТОР</text>
+          <text x="40" y="404" font-family="Manrope, sans-serif" font-size="20" font-weight="700" fill="#fff">Артём Климов</text>
+          <text x="40" y="424" font-family="Inter, sans-serif" font-size="12" fill="rgba(167, 243, 208, .8)">Бывший CTO 3 стартапов</text>
+
+          <!-- Угол -->
+          <text x="332" y="448" font-family="Inter, sans-serif" font-size="11" fill="rgba(167, 243, 208, .6)" text-anchor="end">2026 · v1.2</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Что внутри (10 ошибок) ===== -->
+<section class="block">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Что внутри</div>
+      <h2>10 ошибок, разобранных по полочкам</h2>
+      <p>Каждая ошибка — с реальным кейсом из 3 разных стартапов, цифрами потерь и пошаговым исправлением. Это уже даёт ценность — даже без скачивания.</p>
+    </div>
+    <div class="errors-list">
+      <div class="error-item">
+        <div class="error-num">01</div>
+        <div>
+          <h4>Нанимать «по горячему»</h4>
+          <p>Срочно нужен — берём первого, кто справился с тех-собесом. Через 3 месяца оказывается, что не сошлись по подходу.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-num">02</div>
+        <div>
+          <h4>Делегировать собес фаундерами</h4>
+          <p>CTO нет — собеседует фаундер с гуманитарным бэкграундом. Цена ошибки — 1.5 года роста.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-num">03</div>
+        <div>
+          <h4>Игнорировать культурный fit</h4>
+          <p>Сильный разработчик с конфликтным стилем тормозит всю команду. Уходит за 4 месяца и забирает с собой ещё двоих.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-num">04</div>
+        <div>
+          <h4>Платить ниже рынка «потому что стартап»</h4>
+          <p>Цена low-cost найма — постоянная текучка и переписывание архитектуры каждые 6 месяцев.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-num">05</div>
+        <div>
+          <h4>Опираться только на резюме</h4>
+          <p>Бывший Yandex Senior может оказаться сеньором по ставке, но не по результату. Проверка — практическое задание.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-num">06</div>
+        <div>
+          <h4>Не описывать ожидания письменно</h4>
+          <p>«Разберёмся по ходу» = три раза переделанная архитектура, потому что разработчик понял задачу иначе.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-num">07</div>
+        <div>
+          <h4>Не давать тестовый период</h4>
+          <p>Лучший момент проверить — первые 30 дней с реальной задачей. Этот этап пропускают чаще всего.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-num">08</div>
+        <div>
+          <h4>Не считать стоимость найма</h4>
+          <p>Каждый неудачный найм senior'а = 2-3 млн ₽ упущенных возможностей. Если знать цифру — собес становится серьёзнее.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-num">09</div>
+        <div>
+          <h4>Игнорировать референсы</h4>
+          <p>2 звонка предыдущим тимлидам спасли бы половину кейсов из этого гайда. Это занимает 30 минут.</p>
+        </div>
+      </div>
+      <div class="error-item">
+        <div class="error-num">10</div>
+        <div>
+          <h4>Не отпускать вовремя</h4>
+          <p>Удерживать «худо-бедно работающего» — копить технический долг и токсичность. Цена промедления растёт ежеквартально.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Кому подойдёт ===== -->
+<section class="block block-mint">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Для кого</div>
+      <h2>Кому будет полезно</h2>
+    </div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 14l2 2 4-4"/></svg>
+        </div>
+        <h3>Фаундерам</h3>
+        <p>Которые нанимают первых разработчиков сами, без опыта тех-собеседований.</p>
+      </div>
+      <div class="audience-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5"/></svg>
+        </div>
+        <h3>CTO</h3>
+        <p>В небольших командах (до 30 человек), где найм отнимает половину рабочего времени.</p>
+      </div>
+      <div class="audience-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+        </div>
+        <h3>HR-директорам</h3>
+        <p>Которые работают с IT-наймом, но хотят понять глазами CTO, что важно на тех-собеседовании.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Об авторе ===== -->
+<section class="block" id="about">
+  <div class="container">
+    <div class="author-grid">
+      <div class="author-photo">
+        <img src="https://picsum.photos/seed/author-klimov/500/500" alt="Артём Климов" loading="lazy">
+      </div>
+      <div class="author-info">
+        <div class="section-tag">Автор</div>
+        <h2>Артём Климов</h2>
+        <p>15 лет в инженерных командах. Был CTO в трёх стартапах: один вырос в публичную компанию (IPO 2022), второй — продан Avito Group, третий честно закрыли — и из этого опыта получился гайд.</p>
+        <p>Сейчас — независимый консультант по техническому найму. Помог более чем 80 командам выстроить процесс собеседований и адаптации разработчиков.</p>
+        <div class="author-credits">
+          <div class="credit-item">
+            <div class="num">15</div>
+            <div class="lbl">лет в инжинерах</div>
+          </div>
+          <div class="credit-item">
+            <div class="num">3</div>
+            <div class="lbl">стартапа как CTO</div>
+          </div>
+          <div class="credit-item">
+            <div class="num">80+</div>
+            <div class="lbl">команд проконсультировал</div>
+          </div>
+          <div class="credit-item">
+            <div class="num">400+</div>
+            <div class="lbl">тех-собесов лично провёл</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Отзывы тех, кто прочёл ===== -->
+<section class="block block-mint">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Отзывы читателей</div>
+      <h2>Что говорят те, кто прочёл</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review">
+        <p class="text">«Узнал в гайде 6 из 10 ошибок, которые мы делали в прошлом году. Внедрили чек-лист из 7-й главы — следующий найм senior'а прошёл без сюрпризов».</p>
+        <div class="review-author">
+          <div class="review-avatar">ОТ</div>
+          <div>
+            <div class="name">Олег Тимофеев</div>
+            <div class="role">CTO · Helpbox</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <p class="text">«Прочитал за 40 минут, переслал команде. Главное — там цифры потерь по каждой ошибке. После такого собеседование становится серьёзным разговором, а не формальностью».</p>
+        <div class="review-author">
+          <div class="review-avatar">КС</div>
+          <div>
+            <div class="name">Ксения Светлова</div>
+            <div class="role">Co-founder · Nestlie</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <p class="text">«Это не очередной guide-для-галочки. Артём пишет то, что знает по личному опыту — видно по деталям, которые в интернете не найдёшь».</p>
+        <div class="review-author">
+          <div class="review-avatar">МК</div>
+          <div>
+            <div class="name">Михаил Котов</div>
+            <div class="role">Founder · Loop &amp; Co</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Повторная форма скачивания ===== -->
+<section class="block">
+  <div class="container">
+    <div class="repeat-cta">
+      <div>
+        <h2>Заберите <span class="accent">свой экземпляр</span></h2>
+        <p>32 страницы, реальные цифры, готовые чек-листы и шаблоны собеседований.</p>
+        <ul>
+          <li>10 ошибок с разбором и решениями</li>
+          <li>Чек-лист тех-собеседования</li>
+          <li>Шаблон описания вакансии</li>
+          <li>Скрипт референс-звонка</li>
+          <li>Формула расчёта стоимости найма</li>
+        </ul>
+      </div>
+      <!-- Повторная форма: submit отключён -->
+      <form class="repeat-form" onsubmit="return false">
+        <h3>Скачать бесплатно</h3>
+        <input type="email" placeholder="Рабочий e-mail" required>
+        <button type="button">Отправить PDF на почту →</button>
+        <div class="privacy">Без спама. Отписаться можно одним кликом.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="block block-mint">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Вопросы</div>
+      <h2>Часто спрашивают</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Зачем оставлять email — это бесплатно?</summary>
+        <p class="faq-a">Чтобы я знал, кому полезен материал. Иногда — раз в 2-3 месяца — присылаю новые гайды и заметки CTO. Если вам это не нужно, можно отписаться одним кликом сразу после получения PDF.</p>
+      </details>
+      <details>
+        <summary>Будете ли спамить?</summary>
+        <p class="faq-a">Не буду. У меня нет автоворонок, нет «дожимающих» писем и партнёрских рассылок. Просто иногда делюсь тем, что сам нашёл интересного — а вы решаете, нужно вам это или нет.</p>
+      </details>
+      <details>
+        <summary>В каком формате PDF?</summary>
+        <p class="faq-a">PDF, 32 страницы, ~3 МБ. Открывается на любом устройстве. Печатать тоже можно — вёрстка под А4.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Футер ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="#about">Об авторе</a>
+      <a href="#">Канал в Telegram</a>
+      <a href="#">Договор-оферта</a>
+      <a href="#">Политика приватности</a>
+    </div>
+    <p>© 2026 Артём Климов · Самозанятый · klimov-notes.ru</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9 примеров одностраничных лендингов — портфолио · Юрий Волконский</title>
+<meta name="description" content="Коллекция из 9 примеров одностраничных лендингов для разных ниш: вебинар, курс, локальный сервис, эксперт, товар, SaaS, конференция, лид-магнит, агентство.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== База ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fafafa;
+    color: #0a0a0a;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Manrope', sans-serif; letter-spacing: -.5px; }
+  a { color: inherit; text-decoration: none; }
+
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+
+  /* ===== Шапка ===== */
+  header.site-header {
+    padding: 24px 0;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; }
+  .logo {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -.5px;
+  }
+  .logo .dot { color: #dc2626; }
+  .nav-meta {
+    font-size: 13px;
+    color: #525252;
+    display: flex;
+    gap: 24px;
+  }
+  .nav-meta a:hover { color: #dc2626; }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid #f0f0f0;
+    background: #fff;
+  }
+  .hero .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: .5px;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+    max-width: 900px;
+  }
+  .hero h1 .accent { color: #dc2626; }
+  .hero p.lead {
+    font-size: 19px;
+    color: #525252;
+    max-width: 640px;
+    line-height: 1.55;
+    margin-bottom: 32px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding-top: 32px;
+    border-top: 1px solid #f0f0f0;
+  }
+  .hero-meta-item .label {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #737373;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .hero-meta-item .value {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+  }
+
+  /* ===== Галерея лендингов ===== */
+  .gallery {
+    padding: 80px 0 120px;
+  }
+  .gallery-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .gallery-head h2 {
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 800;
+    letter-spacing: -1px;
+  }
+  .gallery-head .count {
+    font-size: 14px;
+    color: #525252;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  /* Карточка лендинга */
+  .card {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .08);
+    border-color: #e5e5e5;
+  }
+  .card-preview {
+    aspect-ratio: 16/10;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    text-align: center;
+  }
+  .card-preview .preview-mark {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .card-preview .preview-sub {
+    margin-top: 12px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .card-preview .preview-num {
+    position: absolute;
+    top: 18px; left: 22px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 2px;
+    opacity: .65;
+  }
+  .card-preview .preview-style-dot {
+    position: absolute;
+    top: 22px; right: 22px;
+    display: flex;
+    gap: 6px;
+  }
+  .card-preview .preview-style-dot span {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .card-body {
+    padding: 24px 26px 26px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .card-cat {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #525252;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .card-body h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .card-body p.desc {
+    font-size: 14px;
+    color: #525252;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    flex: 1;
+  }
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+  .card-tag {
+    padding: 4px 10px;
+    background: #f5f5f5;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #525252;
+    font-weight: 500;
+  }
+  .card-cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 1px solid #f0f0f0;
+    margin-top: auto;
+  }
+  .card-cta .cta-text {
+    font-weight: 600;
+    font-size: 14px;
+    color: #0a0a0a;
+  }
+  .card-cta .cta-arrow {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: #0a0a0a;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    transition: background .2s, transform .2s;
+  }
+  .card:hover .cta-arrow {
+    background: #dc2626;
+    transform: translateX(3px);
+  }
+
+  /* ===== Превью-стили (каждый — в своей палитре) ===== */
+  .preview-1 { background: linear-gradient(135deg, #0f0a1f 0%, #7c3aed 100%); color: #fff; }
+  .preview-1 .preview-mark { background: linear-gradient(90deg, #c084fc, #f472b6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .preview-2 { background: #0f172a; color: #fef3c7; }
+  .preview-2 .preview-mark { color: #fef3c7; }
+  .preview-2 .preview-mark em { color: #f97316; font-style: normal; }
+
+  .preview-3 { background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%); color: #1f2937; }
+  .preview-3 .preview-mark { color: #ea580c; }
+
+  .preview-4 { background: linear-gradient(135deg, #f5f1eb 0%, #ede5d4 100%); color: #3a2e26; }
+  .preview-4 .preview-mark { color: #84a98c; font-family: 'Manrope', sans-serif; }
+  .preview-4 .preview-mark em { color: #c97b63; font-style: italic; }
+
+  .preview-5 { background: #0a0a0a; color: #f5f5f5; }
+  .preview-5 .preview-mark { color: #d4a574; }
+
+  .preview-6 { background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%); color: #111827; }
+  .preview-6 .preview-mark { background: linear-gradient(90deg, #6366f1, #8b5cf6); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  .preview-7 { background: #000; color: #fff; }
+  .preview-7 .preview-mark { color: #facc15; letter-spacing: -2px; }
+
+  .preview-8 { background: linear-gradient(135deg, #ecfdf5 0%, #a7f3d0 100%); color: #134e4a; }
+  .preview-8 .preview-mark { color: #134e4a; }
+  .preview-8 .preview-mark em { color: #fb7185; font-style: normal; }
+
+  .preview-9 { background: #fff; color: #0a0a0a; border-bottom: 1px solid #f0f0f0; }
+  .preview-9 .preview-mark { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-weight: 500; }
+  .preview-9 .preview-mark em { color: #dc2626; font-style: italic; }
+
+  /* ===== Раздел "О подходе" ===== */
+  .about-approach {
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+    padding: 100px 0;
+  }
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .approach-grid h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+  .approach-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 40px;
+  }
+  .approach-item {
+    border-top: 1px solid #f0f0f0;
+    padding-top: 20px;
+  }
+  .approach-item h4 {
+    font-size: 17px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .approach-item p {
+    font-size: 14px;
+    color: #525252;
+    line-height: 1.55;
+  }
+
+  /* ===== Контакты ===== */
+  .contact-section {
+    background: #0a0a0a;
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+  }
+  .contact-section h2 {
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.05;
+    margin-bottom: 20px;
+    letter-spacing: -1.5px;
+    font-weight: 800;
+  }
+  .contact-section h2 .accent { color: #ef4444; }
+  .contact-section p {
+    font-size: 18px;
+    color: #a3a3a3;
+    max-width: 540px;
+    margin: 0 auto 36px;
+  }
+  .contact-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background .2s, transform .15s;
+    border: 1px solid rgba(255, 255, 255, .15);
+  }
+  .contact-btn:hover { transform: translateY(-1px); }
+  .contact-btn-primary { background: #dc2626; border-color: #dc2626; }
+  .contact-btn-primary:hover { background: #ef4444; border-color: #ef4444; }
+  .contact-btn-outline:hover { background: rgba(255, 255, 255, .08); }
+
+  /* ===== Футер ===== */
+  footer.site-footer {
+    background: #0a0a0a;
+    color: #737373;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 13px;
+    border-top: 1px solid #1f1f1f;
+  }
+
+  /* ===== Адаптив ===== */
+  @media (max-width: 960px) {
+    .grid { grid-template-columns: 1fr 1fr; }
+    .approach-grid { grid-template-columns: 1fr; gap: 40px; }
+    .approach-list { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .hero { padding: 50px 0 40px; }
+    .gallery { padding: 50px 0 80px; }
+    .grid { grid-template-columns: 1fr; }
+    .nav-meta { display: none; }
+    .about-approach { padding: 60px 0; }
+    .contact-section { padding: 60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Шапка ===== -->
+<header class="site-header">
+  <div class="container nav">
+    <div class="logo">Юрий Волконский<span class="dot">.</span></div>
+    <div class="nav-meta">
+      <span>9 примеров · одностраничные лендинги</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container">
+    <span class="badge">● Портфолио · Одностраничные сайты</span>
+    <h1>9 примеров посадочных страниц <span class="accent">для разных ниш</span></h1>
+    <p class="lead">Каждый лендинг — в одном HTML-файле, с inline CSS и минимальным JS, без внешних зависимостей. Подходит для быстрого старта проекта и как референс по структуре.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="label">Файлов</span>
+        <span class="value">9 HTML</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Зависимостей</span>
+        <span class="value">Нет</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Стек</span>
+        <span class="value">HTML + CSS + ванильный JS</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Адаптив</span>
+        <span class="value">Да, с 320px</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Формы</span>
+        <span class="value">Демо · без отправки</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Галерея лендингов ===== -->
+<section class="gallery">
+  <div class="container">
+    <div class="gallery-head">
+      <h2>Все 9 примеров</h2>
+      <div class="count">Отсортированы по убыванию востребованности · клик открывает лендинг</div>
+    </div>
+    <div class="grid">
+
+      <!-- 1. Вебинар -->
+      <a href="01-webinar/index.html" class="card">
+        <div class="card-preview preview-1">
+          <div class="preview-num">01</div>
+          <div class="preview-style-dot"><span style="background:#7c3aed"></span><span style="background:#ec4899"></span></div>
+          <div>
+            <div class="preview-mark">БЕСПЛАТНО</div>
+            <div class="preview-sub">Webinar · 28.05.26</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Инфобизнес · Вебинар</span>
+          <h3>Бесплатный вебинар</h3>
+          <p class="desc">SMM-агентство с нуля за 90 дней. Обратный отсчёт, программа, спикер, отзывы, форма регистрации.</p>
+          <div class="card-tags">
+            <span class="card-tag">Countdown</span>
+            <span class="card-tag">Градиент</span>
+            <span class="card-tag">FAQ</span>
+          </div>
+          <div class="card-cta">
+            <span class="cta-text">Открыть лендинг</span>
+            <span class="cta-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 2. Курс -->
+      <a href="02-course/index.html" class="card">
+        <div class="card-preview preview-2">
+          <div class="preview-num">02</div>
+          <div class="preview-style-dot"><span style="background:#f97316"></span><span style="background:#fef3c7"></span></div>
+          <div>
+            <div class="preview-mark">Python<em> · </em>аналитика</div>
+            <div class="preview-sub">12 недель · с 15.06</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Образование · Платный курс</span>
+          <h3>Онлайн-курс</h3>
+          <p class="desc">Python для аналитиков данных. Программа модулями, преподаватель, форматы оплаты, отзывы выпускников.</p>
+          <div class="card-tags">
+            <span class="card-tag">Модули</span>
+            <span class="card-tag">Тарифы</span>
+            <span class="card-tag">Академический</span>
+          </div>
+          <div class="card-cta">
+            <span class="cta-text">Открыть лендинг</span>
+            <span class="cta-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 3. Локальные услуги -->
+      <a href="03-local-services/index.html" class="card">
+        <div class="card-preview preview-3">
+          <div class="preview-num">03</div>
+          <div class="preview-style-dot"><span style="background:#ea580c"></span><span style="background:#1f2937"></span></div>
+          <div>
+            <div class="preview-mark">30 минут</div>
+            <div class="preview-sub">Сантехник · 24/7</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">B2C · Локальный сервис</span>
+          <h3>Услуги мастера</h3>
+          <p class="desc">Сантехник «СанМастер»: услуги, прайс таблицей, зона выезда, отзывы, форма «Вызвать мастера».</p>
+          <div class="card-tags">
+            <span class="card-tag">Прайс</span>
+            <span class="card-tag">Карта</span>
+            <span class="card-tag">Утилитарный</span>
+          </div>
+          <div class="card-cta">
+            <span class="cta-text">Открыть лендинг</span>
+            <span class="cta-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 4. Эксперт -->
+      <a href="04-expert-booking/index.html" class="card">
+        <div class="card-preview preview-4">
+          <div class="preview-num">04</div>
+          <div class="preview-style-dot"><span style="background:#84a98c"></span><span style="background:#c97b63"></span></div>
+          <div>
+            <div class="preview-mark">Мария <em>Левина</em></div>
+            <div class="preview-sub">КПТ-психолог</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Эксперт · Личный бренд</span>
+          <h3>Запись к специалисту</h3>
+          <p class="desc">Психолог в когнитивно-поведенческой терапии. Бережный тон, чипы тем, форматы сессий, форма записи.</p>
+          <div class="card-tags">
+            <span class="card-tag">Serif</span>
+            <span class="card-tag">Тёплая палитра</span>
+            <span class="card-tag">Доверие</span>
+          </div>
+          <div class="card-cta">
+            <span class="cta-text">Открыть лендинг</span>
+            <span class="cta-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 5. One-product -->
+      <a href="05-one-product/index.html" class="card">
+        <div class="card-preview preview-5">
+          <div class="preview-num">05</div>
+          <div class="preview-style-dot"><span style="background:#d4a574"></span><span style="background:#f5f5f5"></span></div>
+          <div>
+            <div class="preview-mark">AURA Ring</div>
+            <div class="preview-sub">18 990 ₽ · −24%</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">E-commerce · One-product</span>
+          <h3>Товарный лендинг</h3>
+          <p class="desc">Премиум-гаджет: характеристики, метрики, галерея, сравнение, мокап приложения, селектор размера.</p>
+          <div class="card-tags">
+            <span class="card-tag">Тёмный</span>
+            <span class="card-tag">Сравнение</span>
+            <span class="card-tag">Калькулятор</span>
+          </div>
+          <div class="card-cta">
+            <span class="cta-text">Открыть лендинг</span>
+            <span class="cta-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 6. SaaS -->
+      <a href="06-saas/index.html" class="card">
+        <div class="card-preview preview-6">
+          <div class="preview-num">06</div>
+          <div class="preview-style-dot"><span style="background:#6366f1"></span><span style="background:#8b5cf6"></span></div>
+          <div>
+            <div class="preview-mark">Flowdesk</div>
+            <div class="preview-sub">CRM · Триал 14 дней</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">B2B · SaaS</span>
+          <h3>IT-продукт</h3>
+          <p class="desc">Облачная CRM: SVG-мокап дашборда, фичи, интеграции, 3 тарифа с переключателем мес/год.</p>
+          <div class="card-tags">
+            <span class="card-tag">SVG-mockup</span>
+            <span class="card-tag">Тарифы</span>
+            <span class="card-tag">Переключатель</span>
+          </div>
+          <div class="card-cta">
+            <span class="cta-text">Открыть лендинг</span>
+            <span class="cta-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 7. Конференция -->
+      <a href="07-event/index.html" class="card">
+        <div class="card-preview preview-7">
+          <div class="preview-num">07</div>
+          <div class="preview-style-dot"><span style="background:#facc15"></span><span style="background:#fff"></span></div>
+          <div>
+            <div class="preview-mark">12.09.26</div>
+            <div class="preview-sub">ProductDay · Москва</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Event · Конференция</span>
+          <h3>Мероприятие</h3>
+          <p class="desc">IT-конференция: огромная дата, обратный отсчёт, спикеры, табы программы (3 трека), билеты.</p>
+          <div class="card-tags">
+            <span class="card-tag">Fest-стиль</span>
+            <span class="card-tag">Табы</span>
+            <span class="card-tag">Countdown</span>
+          </div>
+          <div class="card-cta">
+            <span class="cta-text">Открыть лендинг</span>
+            <span class="cta-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 8. Лид-магнит -->
+      <a href="08-lead-magnet/index.html" class="card">
+        <div class="card-preview preview-8">
+          <div class="preview-num">08</div>
+          <div class="preview-style-dot"><span style="background:#134e4a"></span><span style="background:#fb7185"></span></div>
+          <div>
+            <div class="preview-mark">PDF<em> · </em>32 с.</div>
+            <div class="preview-sub">10 ошибок при найме</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">Маркетинг · Лид-магнит</span>
+          <h3>Бесплатный гайд</h3>
+          <p class="desc">PDF в обмен на email. SVG-мокап обложки, список 10 ошибок, об авторе, двойная форма скачивания.</p>
+          <div class="card-tags">
+            <span class="card-tag">SVG-обложка</span>
+            <span class="card-tag">Email-форма</span>
+            <span class="card-tag">Минимализм</span>
+          </div>
+          <div class="card-cta">
+            <span class="cta-text">Открыть лендинг</span>
+            <span class="cta-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <!-- 9. Агентство -->
+      <a href="09-agency/index.html" class="card">
+        <div class="card-preview preview-9">
+          <div class="preview-num">09</div>
+          <div class="preview-style-dot"><span style="background:#0a0a0a"></span><span style="background:#dc2626"></span></div>
+          <div>
+            <div class="preview-mark">NORD<em>&amp;</em>CO</div>
+            <div class="preview-sub">Digital Studio</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-cat">B2B · Агентство</span>
+          <h3>Студия / агентство</h3>
+          <p class="desc">Цифровая студия в editorial-стиле: кейсы, услуги аккордеоном, бегущая строка, команда, награды.</p>
+          <div class="card-tags">
+            <span class="card-tag">Editorial</span>
+            <span class="card-tag">Serif</span>
+            <span class="card-tag">Marquee</span>
+          </div>
+          <div class="card-cta">
+            <span class="cta-text">Открыть лендинг</span>
+            <span class="cta-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== О подходе ===== -->
+<section class="about-approach">
+  <div class="container">
+    <div class="approach-grid">
+      <h2>Как устроена<br>каждая страница</h2>
+      <div class="approach-list">
+        <div class="approach-item">
+          <h4>Один HTML-файл</h4>
+          <p>CSS и JS внутри файла. Никаких внешних зависимостей кроме Google Fonts CDN и плейсхолдеров для фото.</p>
+        </div>
+        <div class="approach-item">
+          <h4>Уникальный стиль</h4>
+          <p>Каждый лендинг — со своей палитрой, типографикой и настроением. Не однотипный шаблон, а 9 разных подходов.</p>
+        </div>
+        <div class="approach-item">
+          <h4>Адаптив с 320px</h4>
+          <p>Все страницы корректно работают на телефонах. Мобильное меню-бургер, перестроение сеток.</p>
+        </div>
+        <div class="approach-item">
+          <h4>Демо-формы</h4>
+          <p>Формы есть визуально, но submit отключён (`onsubmit="return false"`). Подключение бэкенда — отдельной задачей.</p>
+        </div>
+        <div class="approach-item">
+          <h4>Минимум JS</h4>
+          <p>До 30 строк ванильного JS на лендинг. Аккордеоны, табы, обратный отсчёт, мобильное меню — без библиотек.</p>
+        </div>
+        <div class="approach-item">
+          <h4>Комментарии на русском</h4>
+          <p>Внутри HTML и JS — комментарии на русском к крупным блокам. Удобно дорабатывать и переиспользовать.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Контакты ===== -->
+<section class="contact-section">
+  <div class="container">
+    <h2>Нужен лендинг под <span class="accent">ваш проект?</span></h2>
+    <p>Возьму один из этих примеров за основу или сделаю с нуля под вашу задачу. Telegram-боты, лендинги, Mini Apps.</p>
+    <div class="contact-buttons">
+      <a href="https://t.me/" class="contact-btn contact-btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+        Написать в Telegram
+      </a>
+      <a href="mailto:yury.volconskiy@gmail.com" class="contact-btn contact-btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        Yury.Volconskiy@gmail.com
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Футер ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <p>© 2026 Юрий Волконский · ИП · 9 примеров одностраничных лендингов</p>
+  </div>
+</footer>
+
+</body>
+</html>

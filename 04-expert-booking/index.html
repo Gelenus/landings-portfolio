@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мария Левина — КПТ-психолог · Москва и онлайн</title>
+<meta name="description" content="Работаю с тревожностью, выгоранием и кризисами в отношениях. Метод — когнитивно-поведенческая терапия. Первая консультация 30 минут — бесплатно.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ===== База ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f5f1eb;
+    color: #3a2e26;
+    line-height: 1.65;
+  }
+  h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 500; letter-spacing: -.5px; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  /* Утилиты */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 16px 32px; border-radius: 999px; font-weight: 500; font-size: 16px;
+    transition: transform .2s, box-shadow .2s, background .2s;
+  }
+  .btn-primary {
+    background: #84a98c;
+    color: #fff;
+  }
+  .btn-primary:hover { background: #6b8c74; transform: translateY(-1px); box-shadow: 0 8px 22px rgba(132, 169, 140, .35); }
+  .btn-outline {
+    border: 1px solid #84a98c;
+    color: #3a2e26;
+  }
+  .btn-outline:hover { background: rgba(132, 169, 140, .1); }
+  .btn-accent { background: #c97b63; color: #fff; }
+  .btn-accent:hover { background: #b66552; }
+
+  /* ===== Шапка ===== */
+  header.site-header {
+    padding: 28px 0;
+    position: relative;
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  .logo .ml { color: #84a98c; font-style: italic; }
+  .nav-actions { display: flex; align-items: center; gap: 28px; }
+  .nav-actions a.link { font-size: 15px; opacity: .75; }
+  .nav-actions a.link:hover { opacity: 1; }
+  .burger { display: none; width: 26px; height: 20px; flex-direction: column; justify-content: space-between; }
+  .burger span { width: 100%; height: 1.5px; background: #3a2e26; }
+
+  /* ===== Hero ===== */
+  .hero { padding: 30px 0 90px; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .hero-photo {
+    aspect-ratio: 4/5;
+    border-radius: 24px;
+    overflow: hidden;
+    background: #e6dfd1;
+    position: relative;
+  }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-photo::after {
+    content: '';
+    position: absolute;
+    top: 30px; left: -30px; right: 30px; bottom: -30px;
+    border: 1.5px solid #84a98c;
+    border-radius: 24px;
+    z-index: -1;
+  }
+  .hero-info { padding-left: 20px; }
+  .hero-tag {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c97b63;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 5.5vw, 64px);
+    line-height: 1.05;
+    margin-bottom: 22px;
+  }
+  .hero h1 em { font-style: italic; color: #84a98c; }
+  .hero-method {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(132, 169, 140, .12);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    color: #84a98c;
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .hero p.lead {
+    font-size: 19px;
+    line-height: 1.6;
+    color: #5a4a3e;
+    margin-bottom: 32px;
+    max-width: 480px;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+  .hero-meta {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    padding-top: 24px;
+    border-top: 1px solid #e6dfd1;
+    font-size: 14px;
+    color: #6a5a4e;
+  }
+  .hero-meta div { display: flex; align-items: center; gap: 8px; }
+  .hero-meta svg { color: #84a98c; }
+
+  /* ===== Универсальная секция ===== */
+  section.block { padding: 90px 0; }
+  .block-warm { background: #ede5d4; }
+  .block-white { background: #fbf8f1; }
+  .section-header { text-align: center; max-width: 680px; margin: 0 auto 56px; }
+  .section-tag {
+    font-size: 12px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #c97b63;
+    margin-bottom: 14px;
+  }
+  .section-header h2 { font-size: clamp(34px, 4.5vw, 48px); line-height: 1.1; margin-bottom: 14px; }
+  .section-header h2 em { font-style: italic; color: #84a98c; }
+  .section-header p { font-size: 17px; color: #5a4a3e; }
+
+  /* ===== С чем работаю (теги-чипы) ===== */
+  .chips-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    background: #fff;
+    border: 1px solid #e6dfd1;
+    border-radius: 999px;
+    font-size: 15px;
+    color: #3a2e26;
+    transition: transform .15s, background .15s;
+  }
+  .chip:hover { transform: translateY(-2px); background: #fbf8f1; }
+  .chip .dot {
+    width: 8px; height: 8px;
+    background: #84a98c;
+    border-radius: 50%;
+  }
+
+  /* ===== Обо мне ===== */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .about-portrait {
+    aspect-ratio: 3/4;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #e6dfd1;
+  }
+  .about-portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .about h2 { margin-bottom: 22px; }
+  .about p {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    color: #4a3e34;
+  }
+  .credentials-block {
+    margin-top: 28px;
+    padding: 28px;
+    background: #fbf8f1;
+    border-left: 3px solid #84a98c;
+    border-radius: 12px;
+  }
+  .credentials-block h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #84a98c;
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .credentials-block ul { list-style: none; }
+  .credentials-block li { padding: 6px 0; font-size: 15px; }
+  .credentials-block li strong { font-weight: 600; }
+
+  /* ===== Как проходит сессия ===== */
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .step {
+    background: #fbf8f1;
+    border-radius: 18px;
+    padding: 32px 26px;
+  }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 500;
+    color: #84a98c;
+    line-height: 1;
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+  .step h4 { font-size: 22px; margin-bottom: 10px; }
+  .step p { font-size: 14px; color: #5a4a3e; line-height: 1.6; }
+
+  /* ===== Стоимость / форматы ===== */
+  .formats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 980px; margin: 0 auto; }
+  .format-card {
+    background: #fbf8f1;
+    border-radius: 22px;
+    padding: 36px 30px;
+    text-align: center;
+    border: 1px solid transparent;
+    transition: border-color .2s, transform .2s;
+  }
+  .format-card:hover { transform: translateY(-3px); border-color: #84a98c; }
+  .format-card.featured {
+    background: #84a98c;
+    color: #fff;
+  }
+  .format-card.featured h3, .format-card.featured .format-price { color: #fff; }
+  .format-card.featured p { color: rgba(255, 255, 255, .85); }
+  .format-card .icon {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: rgba(132, 169, 140, .15);
+    color: #84a98c;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 18px;
+  }
+  .format-card.featured .icon { background: rgba(255, 255, 255, .15); color: #fff; }
+  .format-card h3 { font-size: 24px; margin-bottom: 8px; }
+  .format-card .desc { font-size: 14px; color: #5a4a3e; margin-bottom: 18px; }
+  .format-card .format-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .format-card .price-note { font-size: 13px; opacity: .65; margin-bottom: 24px; }
+  .format-card ul { list-style: none; text-align: left; margin-bottom: 24px; }
+  .format-card ul li {
+    padding: 6px 0 6px 24px;
+    font-size: 14px;
+    position: relative;
+  }
+  .format-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 13px;
+    width: 12px; height: 1.5px;
+    background: #84a98c;
+  }
+  .format-card.featured ul li::before { background: #fff; }
+
+  /* ===== Отзывы ===== */
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+  .review {
+    background: #fbf8f1;
+    border-radius: 20px;
+    padding: 32px 28px;
+    position: relative;
+  }
+  .review .quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    font-weight: 600;
+    color: #84a98c;
+    line-height: 1;
+    position: absolute;
+    top: 16px; right: 24px;
+    opacity: .25;
+    font-style: italic;
+  }
+  .review p.text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #4a3e34;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .review-author { display: flex; align-items: center; gap: 14px; }
+  .review-author .initials {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #84a98c, #c97b63);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .review-author .name { font-weight: 600; font-size: 15px; }
+  .review-author .age { font-size: 13px; color: #6a5a4e; }
+
+  /* ===== FAQ ===== */
+  .faq { max-width: 780px; margin: 0 auto; }
+  .faq details {
+    background: #fbf8f1;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 28px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    transition: background .15s;
+  }
+  .faq summary:hover { background: rgba(132, 169, 140, .05); }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: '';
+    flex-shrink: 0;
+    width: 18px; height: 18px;
+    border: 1.5px solid #84a98c;
+    border-radius: 50%;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2384a98c' stroke-width='3'><path d='M12 5v14M5 12h14'/></svg>") center/12px no-repeat;
+    transition: transform .25s;
+  }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq p.faq-a { padding: 0 28px 22px; font-size: 15px; color: #5a4a3e; line-height: 1.65; }
+
+  /* ===== Финальная форма записи ===== */
+  .booking-block {
+    background: #fbf8f1;
+    border-radius: 28px;
+    padding: 60px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .booking-text h2 { margin-bottom: 18px; font-size: 38px; }
+  .booking-text h2 em { color: #84a98c; font-style: italic; }
+  .booking-text p { font-size: 16px; color: #5a4a3e; margin-bottom: 16px; }
+  .booking-text .bonus {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(201, 123, 99, .15);
+    color: #c97b63;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .booking-form {
+    background: #fff;
+    border-radius: 18px;
+    padding: 32px;
+  }
+  .booking-form h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  .booking-form label {
+    display: block;
+    font-size: 13px;
+    color: #6a5a4e;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .booking-form input, .booking-form select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e6dfd1;
+    border-radius: 10px;
+    font: inherit;
+    font-size: 15px;
+    margin-bottom: 16px;
+    background: #fbf8f1;
+  }
+  .booking-form input:focus, .booking-form select:focus { outline: 1.5px solid #84a98c; }
+  .contact-method { display: flex; gap: 8px; margin-bottom: 16px; }
+  .contact-method label {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #e6dfd1;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 500;
+    margin-bottom: 0;
+    color: #3a2e26;
+    transition: border-color .15s, background .15s;
+  }
+  .contact-method input[type="radio"] { display: none; }
+  .contact-method input[type="radio"]:checked + span {
+    color: #84a98c;
+    font-weight: 600;
+  }
+  .contact-method label:has(input:checked) {
+    border-color: #84a98c;
+    background: rgba(132, 169, 140, .1);
+  }
+  .booking-form button {
+    width: 100%;
+    padding: 16px;
+    background: #84a98c;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 12px;
+    transition: background .15s;
+  }
+  .booking-form button:hover { background: #6b8c74; }
+  .booking-form .disclaimer { font-size: 12px; color: #6a5a4e; text-align: center; line-height: 1.5; }
+
+  /* ===== Футер ===== */
+  footer.site-footer {
+    padding: 36px 0;
+    text-align: center;
+    border-top: 1px solid #e6dfd1;
+    font-size: 13px;
+    color: #6a5a4e;
+  }
+  footer .links { display: flex; justify-content: center; gap: 24px; margin-bottom: 18px; flex-wrap: wrap; }
+  footer .links a { opacity: .75; }
+  footer .links a:hover { opacity: 1; color: #84a98c; }
+
+  /* ===== Адаптив ===== */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-info { padding-left: 0; }
+    .hero-photo::after { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 30px; }
+    .about-portrait { max-width: 360px; margin: 0 auto; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .formats-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .booking-block { grid-template-columns: 1fr; padding: 40px 28px; }
+  }
+  @media (max-width: 600px) {
+    .nav-actions { display: none; position: absolute; top: 100%; right: 0; left: 0; background: #f5f1eb; flex-direction: column; gap: 0; padding: 16px 24px; align-items: stretch; z-index: 20; border-bottom: 1px solid #e6dfd1; }
+    .nav-actions.open { display: flex; }
+    .nav-actions a.link { padding: 12px 0; }
+    .burger { display: flex; }
+    section.block { padding: 60px 0; }
+    .steps-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Шапка ===== -->
+<header class="site-header">
+  <div class="container nav">
+    <div class="logo">Мария <span class="ml">Левина</span></div>
+    <div class="nav-actions" id="navActions">
+      <a class="link" href="#about">Обо мне</a>
+      <a class="link" href="#topics">Темы</a>
+      <a class="link" href="#price">Стоимость</a>
+      <a class="link" href="#booking">Записаться</a>
+      <a href="#booking" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Записаться</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-photo">
+      <img src="https://picsum.photos/seed/psychologist-maria/600/750" alt="Мария Левина — психолог" loading="lazy">
+    </div>
+    <div class="hero-info">
+      <div class="hero-tag">Психолог · 8 лет практики</div>
+      <h1>Помогаю вернуть<br><em>опору и спокойствие</em></h1>
+      <div class="hero-method">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+        Метод — когнитивно-поведенческая терапия (КПТ)
+      </div>
+      <p class="lead">Работаю онлайн и очно в Москве. Первая консультация 30 минут — бесплатно, чтобы вы могли понять, подхожу ли я вам.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn btn-primary">Записаться на встречу</a>
+        <a href="#about" class="btn btn-outline">Узнать больше</a>
+      </div>
+      <div class="hero-meta">
+        <div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+          Член Ассоциации КПТ
+        </div>
+        <div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          Сессия 50 минут
+        </div>
+        <div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12c0 5-9 12-9 12s-9-7-9-12a9 9 0 0 1 18 0z"/></svg>
+          Москва · Zoom
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== С чем работаю (теги) ===== -->
+<section class="block block-warm" id="topics">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Что мы можем разобрать</div>
+      <h2>С чем <em>я работаю</em></h2>
+      <p>Эти запросы — мой основной фокус, на них прошла специализацию и постоянно учусь</p>
+    </div>
+    <div class="chips-wrap">
+      <div class="chip"><span class="dot"></span>Тревожность и панические атаки</div>
+      <div class="chip"><span class="dot"></span>Профессиональное выгорание</div>
+      <div class="chip"><span class="dot"></span>Кризисы в отношениях</div>
+      <div class="chip"><span class="dot"></span>Низкая самооценка</div>
+      <div class="chip"><span class="dot"></span>Депрессивные состояния</div>
+      <div class="chip"><span class="dot"></span>Перфекционизм</div>
+      <div class="chip"><span class="dot"></span>Сложности с границами</div>
+      <div class="chip"><span class="dot"></span>Расставание и потери</div>
+      <div class="chip"><span class="dot"></span>Жизненные переходы</div>
+      <div class="chip"><span class="dot"></span>Прокрастинация</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Обо мне ===== -->
+<section class="block" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-portrait">
+        <img src="https://picsum.photos/seed/psychologist-portrait/500/650" alt="" loading="lazy">
+      </div>
+      <div class="about">
+        <div class="section-tag">Обо мне</div>
+        <h2>Если вам важна <em>бережность</em>, мы найдём общий язык</h2>
+        <p>Я Мария — психолог в когнитивно-поведенческом подходе. Восемь лет в практике, более 1 800 проведённых сессий с клиентами в возрасте от 19 до 56 лет.</p>
+        <p>Моя работа — не про советы и не про «правильные ответы». В терапии мы вместе разбираемся, как устроены ваши мысли, реакции и решения — и где в этой системе можно бережно что-то изменить.</p>
+        <p>Я не работаю с тяжёлыми психиатрическими расстройствами и в случае такой необходимости направлю к врачу-психотерапевту. Со всеми остальными темами — готова идти рядом столько, сколько потребуется.</p>
+        <div class="credentials-block">
+          <h4>Образование и квалификация</h4>
+          <ul>
+            <li><strong>МГУ им. Ломоносова</strong> · клиническая психология, 2014-2019</li>
+            <li><strong>Beck Institute</strong> · когнитивно-поведенческая терапия, 2020-2022</li>
+            <li><strong>МИП «Beck Diploma»</strong> · программа сертификации, 2023</li>
+            <li><strong>Ассоциация когнитивно-поведенческой терапии</strong> · действующий член</li>
+            <li><strong>Личная терапия</strong> · с 2017 года, регулярные супервизии</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Как проходит сессия ===== -->
+<section class="block block-white">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Как мы работаем</div>
+      <h2>От первого письма <em>до результата</em></h2>
+      <p>Прозрачный процесс — вы заранее понимаете, что вас ждёт на каждом шаге</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">I</div>
+        <h4>Заявка</h4>
+        <p>Вы оставляете контакт. Я отвечаю в течение дня, договариваемся о времени.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">II</div>
+        <h4>Бесплатный звонок 30 минут</h4>
+        <p>Знакомимся, обсуждаем ваш запрос, проверяем — комфортно ли вам со мной как с терапевтом.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">III</div>
+        <h4>План и формат</h4>
+        <p>Договариваемся о частоте сессий, формате (онлайн / очно) и предполагаемой длительности работы.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">IV</div>
+        <h4>Терапия</h4>
+        <p>Регулярные сессии по 50 минут. Промежуточные ретроспективы — раз в 6-8 встреч.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Стоимость / форматы ===== -->
+<section class="block" id="price">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Стоимость</div>
+      <h2>Форматы <em>работы</em></h2>
+      <p>Цена не меняется в зависимости от темы запроса. Сессия — 50 минут.</p>
+    </div>
+    <div class="formats-grid">
+      <div class="format-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 2"/></svg>
+        </div>
+        <h3>Одна сессия</h3>
+        <p class="desc">Разовая встреча онлайн или в Москве</p>
+        <div class="format-price">5 500 ₽</div>
+        <div class="price-note">за 50 минут</div>
+        <ul>
+          <li>Подходит для разового разбора</li>
+          <li>Без обязательств о продолжении</li>
+          <li>Онлайн (Zoom) или очно</li>
+        </ul>
+        <a href="#booking" class="btn btn-outline" style="width: 100%;">Записаться</a>
+      </div>
+      <div class="format-card featured">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        </div>
+        <h3>Абонемент на 4</h3>
+        <p class="desc">Курс из 4 сессий со скидкой</p>
+        <div class="format-price">20 000 ₽</div>
+        <div class="price-note">5 000 ₽ за сессию · экономия 2 000 ₽</div>
+        <ul>
+          <li>Регулярная работа над запросом</li>
+          <li>Промежуточная ретроспектива</li>
+          <li>Связь между сессиями в чате</li>
+          <li>Возможность перенести встречу</li>
+        </ul>
+        <a href="#booking" class="btn" style="width: 100%; background: #fff; color: #84a98c;">Выбрать абонемент</a>
+      </div>
+      <div class="format-card">
+        <div class="icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Парная сессия</h3>
+        <p class="desc">Встреча с партнёром / супругом</p>
+        <div class="format-price">7 500 ₽</div>
+        <div class="price-note">за 80 минут</div>
+        <ul>
+          <li>Конфликты и кризисы в паре</li>
+          <li>Развод и принятие решений</li>
+          <li>Только онлайн (Zoom)</li>
+        </ul>
+        <a href="#booking" class="btn btn-outline" style="width: 100%;">Записаться парой</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Отзывы ===== -->
+<section class="block block-warm">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Отзывы</div>
+      <h2>Что говорят <em>мои клиенты</em></h2>
+      <p>Публикую с разрешения, с сохранением анонимности — поэтому только инициалы и возраст</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review">
+        <div class="quote-mark">"</div>
+        <p class="text">Пришла к Марии после полугода тревоги, которая мешала спать и работать. Через 12 сессий тревога не исчезла совсем, но я научилась её замечать и не убегать от неё. Это меняет всё.</p>
+        <div class="review-author">
+          <div class="initials">АК</div>
+          <div>
+            <div class="name">А. К.</div>
+            <div class="age">32 года · работала 4 месяца</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div class="quote-mark">"</div>
+        <p class="text">Долго искал «своего» психолога — было ощущение, что меня не слышат или сразу пытаются вылечить. С Марией почувствовал, что она действительно интересуется тем, что я говорю, без оценок.</p>
+        <div class="review-author">
+          <div class="initials">ДМ</div>
+          <div>
+            <div class="name">Д. М.</div>
+            <div class="age">38 лет · работали 8 месяцев</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div class="quote-mark">"</div>
+        <p class="text">Шла с темой выгорания, ожидая «техник восстановления». Но мы вышли на то, как я живу в постоянном внутреннем давлении, и работа стала глубже. Сейчас я живу заметно медленнее и осознанней.</p>
+        <div class="review-author">
+          <div class="initials">ЕС</div>
+          <div>
+            <div class="name">Е. С.</div>
+            <div class="age">41 год · работали 7 месяцев</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="block">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Частые вопросы</div>
+      <h2>Что важно <em>знать заранее</em></h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Как обеспечивается конфиденциальность?</summary>
+        <p class="faq-a">Всё, что вы говорите на сессии, остаётся между нами. Я связана профессиональным кодексом этики и не разглашаю содержание встреч. Исключения только те, что предусмотрены законом — например, угроза жизни.</p>
+      </details>
+      <details>
+        <summary>Сколько в среднем длится терапия?</summary>
+        <p class="faq-a">КПТ — относительно короткий формат: средняя работа над одним запросом занимает 8-16 сессий. С тревогой и выгоранием — обычно 12-20. С более глубокими темами вроде самооценки или отношений — от полугода.</p>
+      </details>
+      <details>
+        <summary>В чём разница между онлайн и очным форматом?</summary>
+        <p class="faq-a">Эффективность КПТ онлайн и очно — сопоставимы, исследования подтверждают это. Очно — больше «контакта», подходит для тех, кто плохо переносит видеосвязь. Онлайн — гибче и удобнее, экономит дорогу.</p>
+      </details>
+      <details>
+        <summary>Как оплачивать сессии?</summary>
+        <p class="faq-a">Перевод на карту или счёт ИП до сессии. Также можно оплачивать абонементом — это и удобнее, и дешевле. Чек присылаю по запросу.</p>
+      </details>
+      <details>
+        <summary>Что если я захочу отменить или перенести сессию?</summary>
+        <p class="faq-a">Перенос бесплатно, если вы предупредили за 24 часа. Если отмена в день встречи — сессия оплачивается полностью. В рамках абонемента можно перенести до 2 сессий за курс.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Финальная форма записи ===== -->
+<section class="block" id="booking">
+  <div class="container">
+    <div class="booking-block">
+      <div class="booking-text">
+        <div class="bonus">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"/></svg>
+          Первая встреча 30 минут — бесплатно
+        </div>
+        <h2>Запишитесь на <em>знакомство</em></h2>
+        <p>Бесплатная встреча 30 минут — мы знакомимся, я слушаю ваш запрос и мы вместе решаем, подходим ли мы друг другу как клиент и терапевт.</p>
+        <p>Не обязуясь продолжать. Если почувствуете, что нужен другой специалист — порекомендую коллег.</p>
+      </div>
+      <!-- Демо-форма: submit отключён -->
+      <form class="booking-form" onsubmit="return false">
+        <h3>Заполните форму</h3>
+
+        <label for="bk-name">Как к вам обращаться</label>
+        <input id="bk-name" type="text" placeholder="Имя" required>
+
+        <label>Удобный способ связи</label>
+        <div class="contact-method">
+          <label>
+            <input type="radio" name="cm" value="tg" checked>
+            <span>Telegram</span>
+          </label>
+          <label>
+            <input type="radio" name="cm" value="wa">
+            <span>WhatsApp</span>
+          </label>
+          <label>
+            <input type="radio" name="cm" value="phone">
+            <span>Телефон</span>
+          </label>
+        </div>
+
+        <label for="bk-contact">Контакт для связи</label>
+        <input id="bk-contact" type="text" placeholder="@username или +7..." required>
+
+        <label for="bk-time">Удобное время для звонка</label>
+        <select id="bk-time" required>
+          <option value="">Выберите</option>
+          <option>Утро (9:00 — 12:00)</option>
+          <option>День (12:00 — 17:00)</option>
+          <option>Вечер (17:00 — 21:00)</option>
+          <option>Не имеет значения</option>
+        </select>
+
+        <button type="button">Записаться на бесплатную встречу</button>
+        <div class="disclaimer">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных. Я отвечаю в течение рабочего дня.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Футер ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="links">
+      <a href="#about">Обо мне</a>
+      <a href="#topics">Темы</a>
+      <a href="#price">Стоимость</a>
+      <a href="#booking">Запись</a>
+      <a href="#">Договор-оферта</a>
+      <a href="#">Конфиденциальность</a>
+    </div>
+    <p>© 2026 Мария Левина · Самозанятый · ИНН 770000000000 · marialevina.ru</p>
+  </div>
+</footer>
+
+<script>
+  /* ===== Мобильное меню (бургер) ===== */
+  document.getElementById('burger').addEventListener('click', function () {
+    document.getElementById('navActions').classList.toggle('open');
+  });
+  // Закрытие меню после клика по любой ссылке
+  document.querySelectorAll('.nav-actions a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.getElementById('navActions').classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>

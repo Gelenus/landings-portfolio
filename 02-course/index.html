@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python для аналитиков данных — онлайн-курс Дмитрия Орлова</title>
+<meta name="description" content="12-недельный онлайн-курс по Python для аналитиков. Старт 15 июня 2026. Преподаватель — Дмитрий Орлов, ex-Yandex.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== Базовые стили ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #fef3c7;
+    color: #0f172a;
+    line-height: 1.55;
+  }
+  h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; letter-spacing: -.5px; }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  /* Утилиты */
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 18px 32px; border-radius: 10px; font-weight: 600; font-size: 16px;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn-primary { background: #f97316; color: #fff; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 10px 25px rgba(249, 115, 22, .35); }
+  .btn-secondary { background: #0f172a; color: #fef3c7; }
+  .btn-outline { border: 1.5px solid #0f172a; color: #0f172a; }
+  .btn-outline:hover { background: #0f172a; color: #fef3c7; }
+
+  /* ===== Шапка ===== */
+  header.site-header { background: #0f172a; color: #fef3c7; }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+  .logo { font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 22px; }
+  .logo .dot { color: #f97316; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-size: 15px; opacity: .8; transition: opacity .15s; }
+  .nav-links a:hover { opacity: 1; }
+  .burger { display: none; width: 28px; height: 22px; flex-direction: column; justify-content: space-between; }
+  .burger span { width: 100%; height: 2px; background: #fef3c7; }
+
+  /* ===== Hero ===== */
+  .hero { padding: 80px 0 60px; position: relative; }
+  .hero-cat {
+    display: inline-block;
+    padding: 6px 14px;
+    background: #0f172a;
+    color: #fef3c7;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 5.5vw, 64px);
+    font-weight: 800;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    max-width: 900px;
+  }
+  .hero h1 .accent { color: #f97316; }
+  .hero p.lead { font-size: 20px; opacity: .8; max-width: 640px; margin-bottom: 36px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 60px; }
+  .hero-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .fact {
+    background: #0f172a;
+    color: #fef3c7;
+    padding: 28px 24px;
+    border-radius: 14px;
+  }
+  .fact .num { font-family: 'Manrope', sans-serif; font-size: 36px; font-weight: 800; color: #f97316; line-height: 1; }
+  .fact .lbl { margin-top: 8px; font-size: 14px; opacity: .8; }
+
+  /* ===== Универсальная секция ===== */
+  section.block { padding: 90px 0; }
+  .block-light { background: #fff; }
+  .block-dark { background: #0f172a; color: #fef3c7; }
+  .section-header { max-width: 720px; margin-bottom: 56px; }
+  .section-header.center { margin: 0 auto 56px; text-align: center; }
+  .section-tag {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #f97316;
+    margin-bottom: 14px;
+  }
+  .section-header h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 800; line-height: 1.1; margin-bottom: 14px; }
+  .section-header p { font-size: 17px; opacity: .75; }
+
+  /* ===== Кому подойдёт ===== */
+  .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .audience-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid rgba(15, 23, 42, .08);
+  }
+  .audience-card .num-circle {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: #fef3c7;
+    color: #f97316;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .audience-card h3 { font-size: 20px; margin-bottom: 10px; }
+  .audience-card p { font-size: 15px; opacity: .75; }
+
+  /* ===== Программа модулями (details) ===== */
+  .modules { max-width: 880px; margin: 0 auto; }
+  .module {
+    background: rgba(254, 243, 199, .5);
+    border: 1px solid rgba(15, 23, 42, .1);
+    border-radius: 14px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .module summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: background .15s;
+  }
+  .module summary::-webkit-details-marker { display: none; }
+  .module summary:hover { background: rgba(254, 243, 199, .8); }
+  .module-num {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    background: #0f172a;
+    color: #fef3c7;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+  }
+  .module-title { flex: 1; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 18px; }
+  .module-weeks { font-size: 14px; color: #f97316; font-weight: 600; }
+  .module-toggle {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, .08);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .25s, background .15s;
+  }
+  .module[open] .module-toggle { transform: rotate(45deg); background: #f97316; color: #fff; }
+  .module-body { padding: 0 28px 24px 92px; }
+  .module-body ul { list-style: none; }
+  .module-body li {
+    padding: 8px 0 8px 24px;
+    font-size: 15px;
+    position: relative;
+    opacity: .85;
+  }
+  .module-body li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 17px;
+    width: 8px; height: 8px;
+    background: #f97316;
+    border-radius: 50%;
+  }
+
+  /* ===== Чему научитесь ===== */
+  .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .skill-card {
+    background: #fef3c7;
+    border-radius: 14px;
+    padding: 28px 24px;
+  }
+  .skill-card .icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+    color: #f97316;
+  }
+  .skill-card h4 { font-size: 17px; margin-bottom: 8px; }
+  .skill-card p { font-size: 14px; opacity: .75; }
+
+  /* ===== О преподавателе ===== */
+  .teacher-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .teacher-photo {
+    aspect-ratio: 4/5;
+    border-radius: 18px;
+    overflow: hidden;
+    background: #fef3c7;
+  }
+  .teacher-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .teacher-info h2 { margin-bottom: 18px; }
+  .teacher-info > p { font-size: 17px; margin-bottom: 16px; opacity: .85; }
+  .teacher-creds {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .cred {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(254, 243, 199, .6);
+    border-radius: 10px;
+  }
+  .cred .check {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    background: #f97316;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+  }
+  .cred span { font-size: 14px; font-weight: 500; }
+
+  /* ===== Формат обучения ===== */
+  .format-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .format-item {
+    padding: 32px 28px;
+    background: rgba(254, 243, 199, .15);
+    border: 1px solid rgba(254, 243, 199, .25);
+    border-radius: 16px;
+  }
+  .format-item .num {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    color: #f97316;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .format-item h4 { font-size: 19px; margin-bottom: 10px; color: #fef3c7; }
+  .format-item p { font-size: 14px; opacity: .75; line-height: 1.6; }
+
+  /* ===== Тарифы ===== */
+  .pricing { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 880px; margin: 0 auto; }
+  .price-card {
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, .08);
+    border-radius: 20px;
+    padding: 40px 36px;
+    position: relative;
+  }
+  .price-card.popular {
+    background: #0f172a;
+    color: #fef3c7;
+    border-color: #f97316;
+  }
+  .price-card .pop-badge {
+    position: absolute;
+    top: -14px; left: 36px;
+    background: #f97316;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 6px;
+  }
+  .price-card .name {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .price-card .desc { font-size: 14px; opacity: .7; margin-bottom: 28px; }
+  .price-card .amount {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+    font-size: 44px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .price-card .amount-extra { font-size: 14px; opacity: .65; margin-bottom: 28px; }
+  .price-card ul { list-style: none; margin-bottom: 28px; }
+  .price-card li {
+    padding: 10px 0 10px 28px;
+    font-size: 15px;
+    position: relative;
+  }
+  .price-card li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #f97316;
+    font-weight: 700;
+  }
+
+  /* ===== Отзывы ===== */
+  .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .review {
+    background: #fef3c7;
+    border-radius: 16px;
+    padding: 28px;
+  }
+  .review .stars { color: #f97316; margin-bottom: 12px; }
+  .review p.text { font-size: 15px; line-height: 1.6; margin-bottom: 20px; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-author img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+  .review-author .name { font-weight: 600; font-size: 15px; }
+  .review-author .pos { font-size: 13px; opacity: .7; }
+
+  /* ===== FAQ ===== */
+  .faq { max-width: 800px; margin: 0 auto; }
+  .faq details {
+    border-bottom: 1px solid rgba(15, 23, 42, .1);
+    padding: 20px 0;
+  }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: '+';
+    font-size: 24px;
+    color: #f97316;
+    transition: transform .25s;
+  }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq p.faq-a { margin-top: 14px; font-size: 15px; opacity: .8; line-height: 1.65; }
+
+  /* ===== Финальная форма ===== */
+  .lead-form {
+    background: #f97316;
+    color: #fff;
+    border-radius: 24px;
+    padding: 56px 48px;
+  }
+  .lead-form h2 { font-size: 36px; margin-bottom: 12px; }
+  .lead-form > p { margin-bottom: 32px; opacity: .95; }
+  .lead-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 12px;
+  }
+  .lead-form input {
+    padding: 18px 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .3);
+    background: rgba(255, 255, 255, .15);
+    color: #fff;
+    font: inherit;
+    font-size: 15px;
+  }
+  .lead-form input::placeholder { color: rgba(255, 255, 255, .75); }
+  .lead-form input:focus { outline: 2px solid #fff; }
+  .lead-form button {
+    background: #0f172a;
+    color: #fff;
+    padding: 18px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+  .lead-form .disclaimer { font-size: 13px; margin-top: 14px; opacity: .9; }
+
+  /* ===== Футер ===== */
+  footer.site-footer {
+    background: #0f172a;
+    color: rgba(254, 243, 199, .6);
+    padding: 50px 0 30px;
+    font-size: 14px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 36px;
+  }
+  .footer-grid h4 { color: #fef3c7; font-size: 14px; margin-bottom: 14px; }
+  .footer-grid p { margin-bottom: 8px; }
+  .footer-copy { border-top: 1px solid rgba(254, 243, 199, .1); padding-top: 24px; font-size: 13px; }
+
+  /* ===== Адаптив ===== */
+  @media (max-width: 900px) {
+    .hero-facts { grid-template-columns: repeat(2, 1fr); }
+    .audience-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .teacher-grid { grid-template-columns: 1fr; }
+    .format-grid { grid-template-columns: 1fr 1fr; }
+    .pricing { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .lead-form-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #0f172a; flex-direction: column; gap: 0; padding: 20px 24px; z-index: 30; }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 0; }
+    .burger { display: flex; }
+    section.block { padding: 60px 0; }
+    .hero { padding: 50px 0 40px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .format-grid { grid-template-columns: 1fr; }
+    .module-body { padding-left: 28px; }
+    .lead-form { padding: 36px 24px; }
+    .lead-form h2 { font-size: 28px; }
+  }
+  header.site-header { position: relative; }
+</style>
+</head>
+<body>
+
+<!-- ===== Шапка ===== -->
+<header class="site-header">
+  <div class="container nav">
+    <div class="logo">Orlov<span class="dot">.</span>School</div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#program">Программа</a>
+      <a href="#teacher">Преподаватель</a>
+      <a href="#price">Стоимость</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-cat">Профессия · 12 недель</div>
+    <h1>Python для <span class="accent">аналитиков данных</span> — с нуля до первой работы</h1>
+    <p class="lead">12 недель практики, реальные дата-сеты, проект в портфолио и помощь с трудоустройством. Поток стартует 15 июня 2026.</p>
+    <div class="hero-actions">
+      <a href="#price" class="btn btn-primary">Записаться на курс</a>
+      <a href="#program" class="btn btn-outline">Посмотреть программу</a>
+    </div>
+    <div class="hero-facts">
+      <div class="fact">
+        <div class="num">12</div>
+        <div class="lbl">недель обучения</div>
+      </div>
+      <div class="fact">
+        <div class="num">60+</div>
+        <div class="lbl">практических уроков</div>
+      </div>
+      <div class="fact">
+        <div class="num">6</div>
+        <div class="lbl">проектов в портфолио</div>
+      </div>
+      <div class="fact">
+        <div class="num">84%</div>
+        <div class="lbl">выпускников нашли работу</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Кому подойдёт ===== -->
+<section class="block block-light">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Целевая аудитория</div>
+      <h2>Курс подойдёт вам, если…</h2>
+    </div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="num-circle">01</div>
+        <h3>Работаете с данными в Excel</h3>
+        <p>Уже строите отчёты в Excel/Google Sheets, но упёрлись в потолок: данных стало больше, формулы тормозят, ручная работа съедает дни.</p>
+      </div>
+      <div class="audience-card">
+        <div class="num-circle">02</div>
+        <h3>Хотите сменить профессию</h3>
+        <p>Маркетолог, менеджер, экономист — хотите перейти в data analytics. Готовы потратить 12 недель, чтобы получить новую профессию.</p>
+      </div>
+      <div class="audience-card">
+        <div class="num-circle">03</div>
+        <h3>Junior-аналитик без Python</h3>
+        <p>Уже работаете аналитиком на SQL, но без Python вас не зовут на собеседования в продуктовые компании. Хотите закрыть этот пробел.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Программа курса ===== -->
+<section class="block" id="program">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-tag">Программа</div>
+      <h2>6 модулей за 12 недель</h2>
+      <p>Каждый модуль — 2 недели теории и практики на реальных задачах. К концу курса у вас будет 6 проектов на GitHub.</p>
+    </div>
+    <div class="modules">
+      <details class="module" open>
+        <summary>
+          <div class="module-num">01</div>
+          <div>
+            <div class="module-title">Основы Python для аналитика</div>
+            <div class="module-weeks">Недели 1-2</div>
+          </div>
+          <div class="module-toggle">+</div>
+        </summary>
+        <div class="module-body">
+          <ul>
+            <li>Установка Python, виртуальные окружения, Jupyter Notebook</li>
+            <li>Базовые типы, коллекции, циклы, функции</li>
+            <li>Чтение CSV/Excel, работа с файлами</li>
+            <li>Мини-проект: парсинг отчёта продаж в Python</li>
+          </ul>
+        </div>
+      </details>
+      <details class="module">
+        <summary>
+          <div class="module-num">02</div>
+          <div>
+            <div class="module-title">Pandas: работа с табличными данными</div>
+            <div class="module-weeks">Недели 3-4</div>
+          </div>
+          <div class="module-toggle">+</div>
+        </summary>
+        <div class="module-body">
+          <ul>
+            <li>DataFrame, Series, индексы и срезы</li>
+            <li>Группировки, агрегации, сводные таблицы</li>
+            <li>Очистка данных, обработка пропусков</li>
+            <li>Проект: когортный анализ retention продукта</li>
+          </ul>
+        </div>
+      </details>
+      <details class="module">
+        <summary>
+          <div class="module-num">03</div>
+          <div>
+            <div class="module-title">SQL для аналитика</div>
+            <div class="module-weeks">Недели 5-6</div>
+          </div>
+          <div class="module-toggle">+</div>
+        </summary>
+        <div class="module-body">
+          <ul>
+            <li>SELECT, JOIN, GROUP BY на PostgreSQL</li>
+            <li>Подзапросы, оконные функции, CTE</li>
+            <li>Соединение Python и SQL через SQLAlchemy</li>
+            <li>Проект: расчёт ключевых продуктовых метрик</li>
+          </ul>
+        </div>
+      </details>
+      <details class="module">
+        <summary>
+          <div class="module-num">04</div>
+          <div>
+            <div class="module-title">Визуализация и сторителлинг</div>
+            <div class="module-weeks">Недели 7-8</div>
+          </div>
+          <div class="module-toggle">+</div>
+        </summary>
+        <div class="module-body">
+          <ul>
+            <li>Matplotlib, Seaborn для презентаций</li>
+            <li>Plotly: интерактивные дашборды</li>
+            <li>Как выбрать правильный график под задачу</li>
+            <li>Проект: отчёт для CEO в стиле Bloomberg</li>
+          </ul>
+        </div>
+      </details>
+      <details class="module">
+        <summary>
+          <div class="module-num">05</div>
+          <div>
+            <div class="module-title">Статистика и A/B-тесты</div>
+            <div class="module-weeks">Недели 9-10</div>
+          </div>
+          <div class="module-toggle">+</div>
+        </summary>
+        <div class="module-body">
+          <ul>
+            <li>Описательная статистика, распределения</li>
+            <li>Проверка гипотез, t-test, хи-квадрат</li>
+            <li>Дизайн A/B-теста, расчёт выборки</li>
+            <li>Проект: разбор A/B-теста на реальных данных</li>
+          </ul>
+        </div>
+      </details>
+      <details class="module">
+        <summary>
+          <div class="module-num">06</div>
+          <div>
+            <div class="module-title">Финальный проект и трудоустройство</div>
+            <div class="module-weeks">Недели 11-12</div>
+          </div>
+          <div class="module-toggle">+</div>
+        </summary>
+        <div class="module-body">
+          <ul>
+            <li>Сквозной проект: данные → анализ → дашборд</li>
+            <li>Подготовка резюме и GitHub</li>
+            <li>Подготовка к техническим собеседованиям</li>
+            <li>Mock-интервью с действующими аналитиками</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Чему научитесь ===== -->
+<section class="block block-light">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-tag">Навыки</div>
+      <h2>Что вы будете уметь</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg></div>
+        <h4>Писать чистый Python</h4>
+        <p>От переменных до функций и работы с библиотеками.</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <h4>Анализировать в Pandas</h4>
+        <p>Группировки, сводные, объединение датасетов.</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5M3 12c0 1.7 4 3 9 3s9-1.3 9-3"/></svg></div>
+        <h4>Писать SQL-запросы</h4>
+        <p>JOIN, GROUP BY, оконные функции и CTE.</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M7 14l4-4 4 4 5-5"/></svg></div>
+        <h4>Строить дашборды</h4>
+        <p>Plotly, Seaborn — графики для бизнеса.</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg></div>
+        <h4>Считать продуктовые метрики</h4>
+        <p>Retention, LTV, конверсии, юнит-экономика.</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg></div>
+        <h4>Дизайнить A/B-тесты</h4>
+        <p>Гипотезы, выборка, проверка значимости.</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+        <h4>Собирать пайплайны</h4>
+        <p>От БД до отчёта: автоматизация рутины.</p>
+      </div>
+      <div class="skill-card">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
+        <h4>Презентовать результат</h4>
+        <p>Сторителлинг данных для нетехнической аудитории.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== О преподавателе ===== -->
+<section class="block" id="teacher">
+  <div class="container">
+    <div class="teacher-grid">
+      <div class="teacher-photo">
+        <img src="https://picsum.photos/seed/teacher-orlov/600/750" alt="Дмитрий Орлов" loading="lazy">
+      </div>
+      <div class="teacher-info">
+        <div class="section-tag">Преподаватель</div>
+        <h2>Дмитрий Орлов</h2>
+        <p>10 лет в аналитике данных. Прошёл путь от Junior до Head of Analytics в Yandex Eats. Сейчас независимый консультант и преподаватель.</p>
+        <p>Преподаю не «как в учебнике», а как реально работают аналитики в продуктовых командах. Учу не запоминать команды, а думать как аналитик.</p>
+        <div class="teacher-creds">
+          <div class="cred">
+            <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <span>Ex-Yandex Eats, Head of Analytics</span>
+          </div>
+          <div class="cred">
+            <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <span>Преподавал в ШАД Яндекса</span>
+          </div>
+          <div class="cred">
+            <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <span>4 года в МШУ Сколково (магистр.)</span>
+          </div>
+          <div class="cred">
+            <div class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <span>500+ выпускников за 4 потока</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Формат обучения ===== -->
+<section class="block block-dark">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-tag">Формат</div>
+      <h2 style="color: #fef3c7;">Как устроено обучение</h2>
+    </div>
+    <div class="format-grid">
+      <div class="format-item">
+        <div class="num">01</div>
+        <h4>Живые вебинары</h4>
+        <p>2 раза в неделю по 90 минут. Запись остаётся на платформе навсегда.</p>
+      </div>
+      <div class="format-item">
+        <div class="num">02</div>
+        <h4>Домашние задания</h4>
+        <p>На каждый блок — практика с проверкой код-ревьюером и обратной связью.</p>
+      </div>
+      <div class="format-item">
+        <div class="num">03</div>
+        <h4>Чат с куратором</h4>
+        <p>Ответы на вопросы в течение 4 часов. Чат активен весь курс + 1 месяц после.</p>
+      </div>
+      <div class="format-item">
+        <div class="num">04</div>
+        <h4>Дипломный проект</h4>
+        <p>Сквозной проект, который можно положить в портфолио и показать на собеседовании.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Стоимость / тарифы ===== -->
+<section class="block block-light" id="price">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-tag">Стоимость</div>
+      <h2>Выберите формат оплаты</h2>
+      <p>Полный курс одной суммой со скидкой или удобная рассрочка на 6 месяцев.</p>
+    </div>
+    <div class="pricing">
+      <div class="price-card">
+        <div class="name">Единовременно</div>
+        <div class="desc">Лучшая цена за весь курс</div>
+        <div class="amount">49 900 ₽</div>
+        <div class="amount-extra">Экономия 9 500 ₽</div>
+        <ul>
+          <li>Все 12 недель обучения</li>
+          <li>Доступ к материалам навсегда</li>
+          <li>Проверка ДЗ и обратная связь</li>
+          <li>Дипломный проект и его защита</li>
+          <li>Помощь с трудоустройством</li>
+        </ul>
+        <a href="#lead" class="btn btn-outline" style="width:100%;">Записаться</a>
+      </div>
+      <div class="price-card popular">
+        <div class="pop-badge">Популярный</div>
+        <div class="name">Рассрочка</div>
+        <div class="desc">6 платежей без процентов</div>
+        <div class="amount">9 900 ₽<span style="font-size:18px;font-weight:600;opacity:.7;">/мес</span></div>
+        <div class="amount-extra">Итого 59 400 ₽ за 6 месяцев</div>
+        <ul>
+          <li>Все 12 недель обучения</li>
+          <li>Доступ к материалам навсегда</li>
+          <li>Проверка ДЗ и обратная связь</li>
+          <li>Дипломный проект и его защита</li>
+          <li>Помощь с трудоустройством</li>
+        </ul>
+        <a href="#lead" class="btn btn-primary" style="width:100%;">Оформить рассрочку</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Отзывы ===== -->
+<section class="block" id="reviews">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-tag">Отзывы</div>
+      <h2>Что говорят выпускники</h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p class="text">Прошла курс летом 2025. Через 2 месяца устроилась аналитиком в Авито с зарплатой в 1.7× больше, чем была. Дмитрий объясняет так, что всё укладывается в голове.</p>
+        <div class="review-author">
+          <img src="https://picsum.photos/seed/student-1/120/120" alt="">
+          <div>
+            <div class="name">Светлана Гончарова</div>
+            <div class="pos">Аналитик · Авито</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p class="text">Работал бухгалтером 7 лет, в 34 года решил поменять профессию. После курса — Junior Data Analyst в Циан. Главное — практика на реальных данных, а не задачки из вакуума.</p>
+        <div class="review-author">
+          <img src="https://picsum.photos/seed/student-2/120/120" alt="">
+          <div>
+            <div class="name">Антон Кравченко</div>
+            <div class="pos">Junior Data Analyst · Циан</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p class="text">Уже работала аналитиком, но без Python. После курса прошла собеседование в Тинькофф — там Python обязателен. Спасибо команде за поддержку и за подготовку к интервью.</p>
+        <div class="review-author">
+          <img src="https://picsum.photos/seed/student-3/120/120" alt="">
+          <div>
+            <div class="name">Мария Дёмина</div>
+            <div class="pos">Middle Analyst · Т-Банк</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p class="text">Курс плотный — нужно реально учиться, не просто смотреть видео. Зато к концу есть проекты, которые не стыдно показать. Дипломный пригодился на 3 из 5 собеседований.</p>
+        <div class="review-author">
+          <img src="https://picsum.photos/seed/student-4/120/120" alt="">
+          <div>
+            <div class="name">Илья Поздняков</div>
+            <div class="pos">Data Analyst · СберМаркет</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="block block-light" id="faq">
+  <div class="container">
+    <div class="section-header center">
+      <div class="section-tag">FAQ</div>
+      <h2>Частые вопросы</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>Подойдёт ли курс новичку без опыта программирования?</summary>
+        <p class="faq-a">Да. Курс рассчитан на старт с нуля — мы начинаем с базовых типов и циклов в Python. Главное, что нужно перед стартом: уверенно работать с Excel и не бояться формул.</p>
+      </details>
+      <details>
+        <summary>Сколько часов в неделю нужно тратить?</summary>
+        <p class="faq-a">Минимум 8-10 часов: 3 часа на вебинары и 5-7 на домашние задания. Выпускники, которые тратят меньше 6 часов в неделю, обычно не успевают и не получают диплом.</p>
+      </details>
+      <details>
+        <summary>Есть ли диплом и как помогаете с трудоустройством?</summary>
+        <p class="faq-a">Выдаём именной диплом установленного образца + сертификат на английском. С трудоустройством помогаем 3 месяца после выпуска: разбор резюме, mock-интервью, рекомендации в HR-партнёров.</p>
+      </details>
+      <details>
+        <summary>Что если я начну и пойму, что курс не подходит?</summary>
+        <p class="faq-a">В первые 14 дней — возврат 100% без вопросов. После 14 дней — частичный возврат за оставшиеся модули. Условия в договоре, ничего скрытого.</p>
+      </details>
+      <details>
+        <summary>Будут ли скидки или промо-акции?</summary>
+        <p class="faq-a">При оплате до 25 мая действует ранняя цена −15%. Также есть скидка для тех, кто оформляет вместе с напарником (−10% обоим).</p>
+      </details>
+      <details>
+        <summary>Какие технические требования к компьютеру?</summary>
+        <p class="faq-a">Ноутбук с 8 GB RAM и macOS/Windows/Linux. Никаких видеокарт не нужно — все вычисления укладываются в средний ноутбук.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Финальная форма ===== -->
+<section class="block" id="lead">
+  <div class="container">
+    <div class="lead-form">
+      <h2>Оставьте заявку</h2>
+      <p>Перезвоним в течение часа, ответим на вопросы и расскажем о ближайшем потоке.</p>
+      <!-- Демо-форма: submit отключён, кнопка не отправляет данные -->
+      <form onsubmit="return false">
+        <div class="lead-form-grid">
+          <input type="text" placeholder="Ваше имя" required>
+          <input type="email" placeholder="E-mail" required>
+          <input type="tel" placeholder="Телефон" required>
+          <button type="button">Отправить заявку</button>
+        </div>
+      </form>
+      <p class="disclaimer">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных согласно политике конфиденциальности.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Футер ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Orlov.School</h4>
+        <p>Онлайн-курсы по аналитике данных для тех, кто хочет реальную профессию, а не сертификат.</p>
+      </div>
+      <div>
+        <h4>Документы</h4>
+        <p>Договор-оферта</p>
+        <p>Политика конфиденциальности</p>
+        <p>Лицензия №77Л01-0012345</p>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <p>hello@orlov.school</p>
+        <p>+7 (495) 000-00-00</p>
+        <p>Москва, Пресненская наб. 12</p>
+      </div>
+    </div>
+    <div class="footer-copy">
+      © 2026 ИП Орлов Д. М. · ИНН 770000000000 · ОГРНИП 320770000000000
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ===== Мобильное меню (бургер) ===== */
+  document.getElementById('burger').addEventListener('click', function () {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  // Закрытие меню после клика по ссылке навигации
+  document.querySelectorAll('.nav-links a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  /* ===== Эксклюзивное открытие модулей: при открытии одного — остальные закрываются ===== */
+  document.querySelectorAll('.module').forEach(function (m) {
+    m.addEventListener('toggle', function () {
+      if (m.open) {
+        document.querySelectorAll('.module').forEach(function (other) {
+          if (other !== m) other.open = false;
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
